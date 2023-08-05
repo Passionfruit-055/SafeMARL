@@ -160,30 +160,23 @@ class QMIXagent(object):
             for a, (obs, us, n_obs) in enumerate(zip(obs_set, us_set, n_obs_set)):
                 # Q_eval -> (batchSize, action_size)
                 Q_eval, self.eval_hidden_state[a] = self.eval_net[a](obs[transition], self.eval_hidden_state[a])
-                Q_target, self.target_hidden_state[a] = self.target_net[a](n_obs[transition],
-                                                                           self.target_hidden_state[a])
-
-                # for batch in range(batchSize):
-                #     Q_eval_batch_l.append(Q_eval[batch][us[transition][batch]])
-                #     Q_target_batch_l.append(Q_target[batch][us[transition][batch]])
+                Q_target, self.target_hidden_state[a] = self.target_net[a](n_obs[transition], self.target_hidden_state[a])
+                # Q_eval -> (batchSize, 1)
                 Q_eval = torch.gather(Q_eval, 1, us[transition])
                 Q_target = torch.gather(Q_target, 1, us[transition])
-                # Q_eval_batch -> (batchSize, 1)
+                # wait to stack
                 Q_eval_l.append(Q_eval)
                 Q_target_l.append(Q_target)
-            Q_eval_batch = torch.stack(Q_eval_l, dim=1)
-            Q_target_batch = torch.stack(Q_target, dim=1)
-                # print(Q_eval[batch][us[transition][batch]], Q_target[batch][us[transition][batch]])
-            Q_evals_l.append(Q_eval_batch)
-            Q_targets_l.append(Q_target_batch)
-        Q_evals = torch.stack(Q_evals_l, dim=1)
-        Q_targets = torch.stack(Q_targets_l, dim=1)
-        # 收集时为了方便赋值将第一维设为agent_num, 但在反向传播时，要进行reshape
-        # Q_evals = (self.agent_num, batchSize, seqLen) -> (seqLen, batchSize, self.agent_num)
-        # Q_evals = Q_evals.view(seqLen, batchSize, self.agent_num)
-        # Q_targets = Q_targets.view(seqLen, batchSize, self.agent_num)
+            # Q_eval_all -> (batchSize, agent_num)
+            Q_eval_all = torch.stack(Q_eval_l, dim=0)
+            Q_target_all = torch.stack(Q_target_l, dim=0)
+            # wait to stack
+            Q_evals_l.append(Q_eval_all)
+            Q_targets_l.append(Q_target_all)
+        # Q_evals -> (seqLen, batchSize, agent_num)
+        Q_evals = torch.stack(Q_evals_l, dim=0)
+        Q_targets = torch.stack(Q_targets_l, dim=0)
 
-        # Q_evals -> (seqLen, batchSize, self.agent_num)
         for transition in range(seqLen):
             Q_tot_eval = self.mixing_eval_net(Q_evals[transition], states[transition], self.agent_num, state_size)
             Q_tot_target = self.mixing_target_net(Q_targets[transition], next_states[transition], self.agent_num,
