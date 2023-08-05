@@ -35,7 +35,8 @@ class QMIXNet(nn.Module):
 
     def forward(self, Qvals, states, agent_num, state_size):
         # 更改网络的形状，让其与输入的Qvals匹配，目前Qvals的形状暂时确定(batch_size, seq_len, agent_num), 以此为准，还是分transition 来学习吧
-        Qvals = torch.Tensor(Qvals).view(-1, 1, agent_num)
+        # Qvals = torch.Tensor(Qvals).view(-1, 1, agent_num)
+        # Qvals = Qvals.view(-1, 1, agent_num)
         states = torch.Tensor(states).view(-1, state_size)
         # layer1
         w1 = torch.abs(self.hyper_w1(states)).view(-1, agent_num, self.mixing_hidden_size)

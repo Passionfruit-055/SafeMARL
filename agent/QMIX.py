@@ -58,7 +58,7 @@ class QMIXagent(object):
                                          self.hyper_hidden_size).to(self.dev)
         self.mixing_target_net.load_state_dict(self.mixing_eval_net.state_dict())
 
-        self.mixing_memory = ReplayBuffer(batch_size*2, dev=self.dev)
+        self.mixing_memory = ReplayBuffer(batch_size * 2, dev=self.dev)
 
         # self.eval_parameters = None
         self.param = []
@@ -129,60 +129,73 @@ class QMIXagent(object):
            seqLen = 每个episode抽取多少个时间步的数据
         '''
         # sample minibatch是为了获取Q值，与DQN中是为了获取状态等不同
-        Q_evals = torch.zeros((self.agent_num, batchSize, seqLen)).to(self.dev)
-        Q_targets = torch.zeros((self.agent_num, batchSize, seqLen)).to(self.dev)
+        # Q_evals = torch.zeros((self.agent_num, batchSize, seqLen)).to(self.dev)
+        # Q_targets = torch.zeros((self.agent_num, batchSize, seqLen)).to(self.dev)
+        Q_evals = []
+        Q_targets = []
+
+        states, rewards, next_states = self.mixing_memory.sample_batch(episodes, seqLen, start_pos)
+        state_size = states.shape[2]
+
+        obs_set = []
+        us_set = []
+        n_obs_set = []
+
         for a in range(self.agent_num):
             # sample minibatch
-            obs, us, n_obs, start_pos = self.memory.sample_batch(a, seqLen, episodes, start_pos)
+            obs, us, n_obs = self.memory.sample_batch(a, seqLen, episodes, start_pos)
             obs = obs.view(seqLen, batchSize, -1)
             us = us.view(seqLen, batchSize, -1)
             n_obs = n_obs.view(seqLen, batchSize, -1)
             # print(obs.shape, us.shape, n_obs.shape)
-            seqLen = obs.shape[0]
+            obs_set.append(obs)
+            us_set.append(us)
+            n_obs_set.append(n_obs)
+
+        for transition in range(seqLen):
+            # Q_eval = (batchSize, action_size)
             Q_eval_batch = []
             Q_target_batch = []
             self.hidden_state_reset(batchSize)
-            for transition in range(seqLen):
-                # 这里同时收集q_eval和q_target, q_target并不是用于本地的更新，而是维护一个target网络
-                # Q_eval = (batchSize, action_size)
+            for a, (obs, us, n_obs) in enumerate(zip(obs_set, us_set, n_obs_set)):
                 Q_eval, self.eval_hidden_state[a] = self.eval_net[a](obs[transition], self.eval_hidden_state[a])
                 Q_target, self.target_hidden_state[a] = self.target_net[a](n_obs[transition],
                                                                            self.target_hidden_state[a])
-                # Q_eval_batch = (batchSize, 1)
+            # Q_eval_batch = (batchSize, 1)
                 for batch in range(batchSize):
                     Q_eval_batch.append(Q_eval[batch][us[transition][batch]])
                     Q_target_batch.append(Q_target[batch][us[transition][batch]])
-                    # print(Q_eval[batch][us[transition][batch]], Q_target[batch][us[transition][batch]])
-            # Q_evals[a] = (seqLen, batchSize, 1) -> (batchSize, seqLen)
-            Q_evals[a] = torch.tensor(Q_eval_batch).view(batchSize, seqLen)
-            Q_targets[a] = torch.tensor(Q_target_batch).view(batchSize, seqLen)
-
+                # print(Q_eval[batch][us[transition][batch]], Q_target[batch][us[transition][batch]])
+        # Q_evals[a] = (seqLen, batchSize, 1) -> (batchSize, seqLen)
+        # Q_evals[a] = torch.tensor(Q_eval_batch).view(batchSize, seqLen)
+        # Q_targets[a] = torch.tensor(Q_target_batch).view(batchSize, seqLen)
+            Q_evals.append(Q_eval_batch)
+            Q_targets.append(Q_target_batch)
+        print(f"Q_evals: {Q_evals}")
         # 收集时为了方便赋值将第一维设为agent_num, 但在反向传播时，要进行reshape
         # Q_evals = (self.agent_num, batchSize, seqLen) -> (seqLen, batchSize, self.agent_num)
-        Q_evals = Q_evals.view(seqLen, batchSize, self.agent_num)
-        Q_targets = Q_targets.view(seqLen, batchSize, self.agent_num)
+        # Q_evals = Q_evals.view(seqLen, batchSize, self.agent_num)
+        # Q_targets = Q_targets.view(seqLen, batchSize, self.agent_num)
 
-        states, rewards, next_states = self.mixing_memory.sample_batch(episodes, seqLen, start_pos)
-        # print(f"states = {states.shape} rewards = {rewards.shape} next_states = {next_states.shape}")
-        state_size = states.shape[2]
-        for e in range(self.epoch):
-            for transition in range(seqLen):
-                # print(f"Q_evals = {Q_evals[transition]}")
-                Q_tot_eval = self.mixing_eval_net(Q_evals[transition], states[transition], self.agent_num, state_size)
-                # print(f"Q_tot_eval = {Q_tot_eval}")
-                Q_tot_target = self.mixing_target_net(Q_targets[transition], next_states[transition], self.agent_num,
-                                                      state_size)
-                td_target = rewards[transition] + self.gamma * Q_tot_target
-                # print(f"Q_tot_td_target = {td_target}")
+        # for e in range(self.epoch):
+        for transition in range(seqLen):
+            Q_tot_eval = self.mixing_eval_net(Q_evals[transition], states[transition], self.agent_num, state_size)
+            Q_tot_target = self.mixing_target_net(Q_targets[transition], next_states[transition], self.agent_num,
+                                                  state_size)
+            td_target = rewards[transition] + self.gamma * Q_tot_target
+            # print(f"Q_tot_td_target = {td_target}")
 
-                self.optimizer.zero_grad()
-                loss_val = self.loss(Q_tot_eval, td_target)
-                print(loss_val)
-                loss_val.backward()
-                torch.nn.utils.clip_grad_norm_(self.param, max_norm=10, norm_type=2)
-                for i, param in enumerate(self.param):
-                    print(f"param{i} = {param.grad}")
-                self.optimizer.step()
+            self.optimizer.zero_grad()
+            # loss_val = self.loss(Q_tot_eval, td_target)
+            td_error = Q_tot_eval - td_target.detach()
+            loss_val = ((Q_tot_eval - td_target.detach()) ** 2).sum()
+            print(loss_val)
+            loss_val.backward()
+            # torch.nn.utils.clip_grad_norm_(self.param, max_norm=10, norm_type=2)
+            for i, param in enumerate(self.param):
+                print(f"param{i} = {param}")
+                print(f"param{i} grad = {param.grad}")
+            self.optimizer.step()
 
         self.target_net_update()
 

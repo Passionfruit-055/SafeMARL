@@ -57,7 +57,7 @@ class RecurrentReplayBuffer(object):
         action = torch.tensor(actions).to(self.dev)
         next_state = torch.tensor(next_obs).to(self.dev)
 
-        return state, action, next_state, start_pos
+        return state, action, next_state
 
     def clear(self, agent_num, episode):
         self.buffer['agent' + str(agent_num)]['episode' + str(episode)] = []
