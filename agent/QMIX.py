@@ -159,8 +159,9 @@ class QMIXagent(object):
             self.hidden_state_reset(batchSize)
             for a, (obs, us, n_obs) in enumerate(zip(obs_set, us_set, n_obs_set)):
                 # Q_eval -> (batchSize, action_size)
-                Q_eval, self.eval_hidden_state[a] = self.eval_net[a](obs[transition], self.eval_hidden_state[a])
-                Q_target, self.target_hidden_state[a] = self.target_net[a](n_obs[transition], self.target_hidden_state[a])
+                with torch.autograd.set_detect_anomaly(True):
+                    Q_eval, self.eval_hidden_state[a] = self.eval_net[a](obs[transition], self.eval_hidden_state[a])
+                    Q_target, self.target_hidden_state[a] = self.target_net[a](n_obs[transition], self.target_hidden_state[a])
                 # Q_eval -> (batchSize, 1)
                 Q_eval = torch.gather(Q_eval, 1, us[transition])
                 Q_target = torch.gather(Q_target, 1, us[transition])
@@ -168,8 +169,8 @@ class QMIXagent(object):
                 Q_eval_l.append(Q_eval)
                 Q_target_l.append(Q_target)
             # Q_eval_all -> (batchSize, agent_num)
-            Q_eval_all = torch.stack(Q_eval_l, dim=0)
-            Q_target_all = torch.stack(Q_target_l, dim=0)
+            Q_eval_all = torch.stack(Q_eval_l, dim=1).view(batchSize, -1)
+            Q_target_all = torch.stack(Q_target_l, dim=1).view(batchSize, -1)
             # wait to stack
             Q_evals_l.append(Q_eval_all)
             Q_targets_l.append(Q_target_all)
@@ -185,11 +186,12 @@ class QMIXagent(object):
             # print(f"Q_tot_td_target = {td_target}")
 
             self.optimizer.zero_grad()
-            # loss_val = self.loss(Q_tot_eval, td_target)
-            td_error = Q_tot_eval - td_target.detach()
-            loss_val = ((Q_tot_eval - td_target.detach()) ** 2).sum()
+            loss_val = self.loss(Q_tot_eval, td_target)
+            # td_error = Q_tot_eval - td_target.detach()
+            # loss_val = ((Q_tot_eval - td_target.detach()) ** 2).sum()
             print(loss_val)
-            loss_val.backward()
+            with torch.autograd.set_detect_anomaly(True):
+                loss_val.backward(retain_graph=True)
             # torch.nn.utils.clip_grad_norm_(self.param, max_norm=10, norm_type=2)
             for i, param in enumerate(self.param):
                 print(f"param{i} = {param}")
