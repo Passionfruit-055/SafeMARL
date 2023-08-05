@@ -173,9 +173,10 @@ class QMIXagent(object):
                 Q_target_l.append(Q_target)
             # Q_evals -> (batchSize, agent_num)
             Q_evals = torch.stack(Q_eval_l, dim=1).view(batchSize, -1)
+            # print(f"Q_evals = {Q_evals}")
             Q_targets = torch.stack(Q_target_l, dim=1).view(batchSize, -1)
-
             Q_tot_eval = self.mixing_eval_net(Q_evals, states[transition], self.agent_num, state_size)
+            # print(f"Q_tot_eval = {Q_tot_eval}")
             Q_tot_target = self.mixing_target_net(Q_targets, next_states[transition], self.agent_num,
                                                   state_size)
             td_target = rewards[transition] + self.gamma * Q_tot_target
@@ -186,10 +187,10 @@ class QMIXagent(object):
             print(loss_val)
             with torch.autograd.set_detect_anomaly(True):
                 loss_val.backward(retain_graph=True)
-            # torch.nn.utils.clip_grad_norm_(self.param, max_norm=10, norm_type=2)
-            for i, param in enumerate(self.param):
-                print(f"param{i} = {param}")
-                print(f"param{i} grad = {param.grad}")
+            torch.nn.utils.clip_grad_norm_(self.param, max_norm=10, norm_type=2)
+            # for i, param in enumerate(self.param):
+            #     print(f"param{i} = {param}")
+            #     print(f"param{i} grad = {param.grad}")
             self.optimizer.step()
 
         self.target_net_update()
