@@ -100,7 +100,7 @@ class ReplayBuffer(object):
             reward = [d[1] for d in minibatch]
             next_state = [d[2] for d in minibatch]
 
-            if len(memory) <= end_pos:
+            if len(memory) < end_pos:
                 for i in range(len(memory), end_pos):
                     state.append(memory[-1][0])
                     reward.append(memory[-1][1])
