@@ -100,7 +100,6 @@ class QMIXagent(object):
         maxQvals = torch.zeros(self.agent_num).to(self.dev)
         for a in range(self.agent_num):
             Qvals, self.eval_hidden_state_exec[a] = self.eval_net[a](obs[a], self.eval_hidden_state_exec[a])
-            # print(f"agent{a} Qvals: {Qvals}")
             if random.random() > self.epsilon:
                 actions.append(torch.argmax(Qvals[0], dim=0).item())
             else:
@@ -153,42 +152,37 @@ class QMIXagent(object):
             n_obs_set.append(n_obs)
 
         for transition in range(seqLen):
-
             Q_eval_l = []
             Q_target_l = []
             self.hidden_state_reset(batchSize)
-            for a, (obs, us, n_obs) in enumerate(zip(obs_set, us_set, n_obs_set)):
+            for obs, us, n_obs, eval_net, target_net, eval_hidden_state, target_hidden_state in zip(obs_set, us_set,
+                                                                                                    n_obs_set,
+                                                                                                    self.eval_net,
+                                                                                                    self.target_net,
+                                                                                                    self.eval_hidden_state,
+                                                                                                    self.target_hidden_state):
                 # Q_eval -> (batchSize, action_size)
-                with torch.autograd.set_detect_anomaly(True):
-                    Q_eval, self.eval_hidden_state[a] = self.eval_net[a](obs[transition], self.eval_hidden_state[a])
-                    Q_target, self.target_hidden_state[a] = self.target_net[a](n_obs[transition], self.target_hidden_state[a])
+                # with torch.autograd.set_detect_anomaly(True):
+                Q_eval, eval_hidden_state = eval_net(obs[transition], eval_hidden_state)
+                Q_target, target_hidden_state = target_net(n_obs[transition], target_hidden_state)
                 # Q_eval -> (batchSize, 1)
                 Q_eval = torch.gather(Q_eval, 1, us[transition])
                 Q_target = torch.gather(Q_target, 1, us[transition])
                 # wait to stack
                 Q_eval_l.append(Q_eval)
                 Q_target_l.append(Q_target)
-            # Q_eval_all -> (batchSize, agent_num)
-            Q_eval_all = torch.stack(Q_eval_l, dim=1).view(batchSize, -1)
-            Q_target_all = torch.stack(Q_target_l, dim=1).view(batchSize, -1)
-            # wait to stack
-            Q_evals_l.append(Q_eval_all)
-            Q_targets_l.append(Q_target_all)
-        # Q_evals -> (seqLen, batchSize, agent_num)
-        Q_evals = torch.stack(Q_evals_l, dim=0)
-        Q_targets = torch.stack(Q_targets_l, dim=0)
+            # Q_evals -> (batchSize, agent_num)
+            Q_evals = torch.stack(Q_eval_l, dim=1).view(batchSize, -1)
+            Q_targets = torch.stack(Q_target_l, dim=1).view(batchSize, -1)
 
-        for transition in range(seqLen):
-            Q_tot_eval = self.mixing_eval_net(Q_evals[transition], states[transition], self.agent_num, state_size)
-            Q_tot_target = self.mixing_target_net(Q_targets[transition], next_states[transition], self.agent_num,
+            Q_tot_eval = self.mixing_eval_net(Q_evals, states[transition], self.agent_num, state_size)
+            Q_tot_target = self.mixing_target_net(Q_targets, next_states[transition], self.agent_num,
                                                   state_size)
             td_target = rewards[transition] + self.gamma * Q_tot_target
             # print(f"Q_tot_td_target = {td_target}")
 
             self.optimizer.zero_grad()
             loss_val = self.loss(Q_tot_eval, td_target)
-            # td_error = Q_tot_eval - td_target.detach()
-            # loss_val = ((Q_tot_eval - td_target.detach()) ** 2).sum()
             print(loss_val)
             with torch.autograd.set_detect_anomaly(True):
                 loss_val.backward(retain_graph=True)
