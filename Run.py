@@ -20,6 +20,10 @@ path = 'results/' + rq + '/' + batchn + '/'
 if not os.path.exists(path):
     os.makedirs(path)
 
+info = '超网络中权重对应的网络需要为两层，已经验证过。'
+with open(path + 'args.txt', 'w') as f:
+    f.write(str(args))
+
 os.environ['CUDA_LAUNCH_BLOCKING'] = '1'
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:32"
 

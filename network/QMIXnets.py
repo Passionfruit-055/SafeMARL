@@ -18,6 +18,7 @@ class QMIXNet(nn.Module):
                                       # 这里直接使用Relu是不是会引起梯度爆炸？暂时还是采用将输出的w1直接取绝对值的方法
                                       )
         # 为了降一点复杂度，b1就设置成1层
+        # self.hyper_w1 = nn.Linear(state_size, agent_num * mixing_hidden_size)
         self.hyper_b1 = nn.Linear(state_size, mixing_hidden_size)
 
         # layer 2 for mixing network
@@ -28,6 +29,7 @@ class QMIXNet(nn.Module):
                                       nn.Linear(hyper_hidden_size, mixing_hidden_size)
                                       )
         # 最后一层的权重在论文中有明确说明
+        # self.hyper_w2 = nn.Linear(state_size, mixing_hidden_size)
         self.hyper_b2 = nn.Sequential(nn.Linear(state_size, hyper_hidden_size),
                                       nn.ReLU(),
                                       nn.Linear(hyper_hidden_size, 1)
