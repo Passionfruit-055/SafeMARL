@@ -20,7 +20,7 @@ path = 'results/' + rq + '/' + batchn + '/'
 if not os.path.exists(path):
     os.makedirs(path)
 
-info = '超网络中权重对应的网络需要为两层，已经验证过。'
+info = 'Adam with lr=1e-3'
 with open(path + 'args.txt', 'w') as f:
     f.write(str(args))
 

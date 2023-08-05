@@ -4,7 +4,7 @@ import random
 
 parser = argparse.ArgumentParser()
 # more constant
-parser.add_argument('-lr', '--learning_rate', type=float, default=5e-2, help='learning rate for training')
+parser.add_argument('-lr', '--learning_rate', type=float, default=1e-3, help='learning rate for training')
 parser.add_argument('-buffer', '--buffer_size', type=int, default=2000, help='number of max buffer size')
 parser.add_argument('-gamma', '--gamma', type=float, default=0.9, help='discount factor')
 parser.add_argument('-tau', '--tau', type=float, default=0.01, help='soft update parameter')

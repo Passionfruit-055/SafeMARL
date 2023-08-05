@@ -65,7 +65,8 @@ class QMIXagent(object):
         for i in range(self.agent_num):
             self.param.extend(self.eval_net[i].parameters())
         self.param.extend(self.mixing_eval_net.parameters())
-        self.optimizer = torch.optim.RMSprop(self.param, lr=self.lr)
+        # self.optimizer = torch.optim.RMSprop(self.param, lr=self.lr)
+        self.optimizer = torch.optim.Adam(self.param, lr=self.lr)
         self.loss = nn.MSELoss()
 
         # target network update
