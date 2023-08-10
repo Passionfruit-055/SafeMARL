@@ -20,9 +20,11 @@ path = 'results/' + rq + '/' + batchn + '/'
 if not os.path.exists(path):
     os.makedirs(path)
 
-info = 'Adam with lr=1e-3'
+info = '目标网络取最大值'
 with open(path + 'args.txt', 'w') as f:
-    f.write(str(args))
+    f.write(info + '\n\n')
+    for key in args.keys():
+        f.write(str(key) + ':' + str(args[key]) + '\n')
 
 os.environ['CUDA_LAUNCH_BLOCKING'] = '1'
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:32"
@@ -86,6 +88,7 @@ epochs = args['epoch']
 
 reward_all = []
 explorations = []
+loss_all = deque(maxlen=int(1e4))
 
 for episode in range(episodes):
     rewards = []
@@ -117,10 +120,11 @@ for episode in range(episodes):
         drone.reset([loc[i][0], loc[i][1], 1], energy)
 
     agent.exec_hidden_state_reset()
+    agent.hidden_state_reset(1)
     # 初始的action如何设置不确定，暂时设定为随机
     actions = [np.random.randint(0, 6) for i in range(agent_num)]
     for timestep in range(timesteps):
-        print("\nTime = ", timestep)
+        print("\nTime", timestep)
         state = np.zeros((args['state_size'])).tolist() if timestep == 0 else next_state
         obs = np.zeros((agent_num, args['obs_size'])).tolist() if timestep == 0 else next_obs
         # random
@@ -203,7 +207,7 @@ for episode in range(episodes):
         cmap_dynamic = mpl.colors.ListedColormap(colors[0: len(unique)])
         plt.imshow(obs_map, cmap=cmap_dynamic, origin='lower')
         plt.colorbar()
-        plt.pause(0.1)  # pause 这个可以认为是一帧图片展示的时间
+        plt.pause(0.01)  # pause 这个可以认为是一帧图片展示的时间
         plt.clf() if timestep != timesteps - 1 else None
         # compute whole reward = 平均探索奖励 + 通信奖励 + 更新奖励 - 撞击行为 - 平均受损程度 - 探索奖励方差（防止懒惰智能体）
         avg_r = np.mean(rs)
@@ -234,20 +238,27 @@ for episode in range(episodes):
         next_obs = np.array(next_obs).reshape((agent_num, args['obs_size'])).tolist()
         for d in range(agent_num):
             agent.store_transition(obs[d], actions[d], next_obs[d], episode, d)
-        # next_obs.tolist()
         agent.store_mixing_transition(state, reward, next_state, episode)
-        if timestep >= args['seq_len'] or episode != 0:
-            agent.learn(episode, timestep)
-        agent.learn(episode, timestep)
+        # learn
+        losses = agent.learn(episode, timestep)
+        if losses is not None:
+            loss_all.extend(losses)
         # check mission success
         if explored_now >= 0.9:
             missionSuccess = True
+            break
 
     plt.close()
     plt.plot(rewards)
-    if episode % (args['episode'] // 10) == 0:
+    plt.pause(1)
+    if episode % 10 == 0:
         plt.savefig(path + f"reward{episode}.png", format='png')
         plt.savefig(path + f"reward{episode}.pdf", format='pdf')
+    plt.clf()
+    plt.plot(loss_all)
+    if episode % 10 == 0:
+        plt.savefig(path + f"loss.png", format='png')
+        plt.savefig(path + f"loss.pdf", format='pdf')
     plt.pause(1)
     # plt.clf()
 

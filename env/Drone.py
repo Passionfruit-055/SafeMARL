@@ -72,6 +72,7 @@ class Drone(object):
         # 0-up 1-down 2-forward 3-backward 4-left 5-right
         broken = self.broken
         consumption = 0
+        self.reward = 0
 
         if action == 0:
             if self.pos[2] == self.max_height:
@@ -248,7 +249,7 @@ class Drone(object):
                         # print(f'Drone{index} provides new information!')
         return senders
 
-    def update_whole_map(self, map):
+    def update_whole_map(self, sys_map):
         """
         聚合地图更新有两种方式
         第一是更新的map是时隙开始时的map，这样做的的缺点是可能会有重复更新
@@ -258,9 +259,9 @@ class Drone(object):
         # 上一时刻无人机位置消除
         for i in range(self.col):
             for j in range(self.row):
-                if map[i][j] != self.obs[i][j] and self.obs[i][j] != -1:
+                if sys_map[i][j] != self.obs[i][j] and self.obs[i][j] != -1:
                     # print(f"update ({i}, {j}, {self.obs[i][j]})")
-                    map[i][j] = self.obs[i][j]
+                    sys_map[i][j] = self.obs[i][j]
                     self.reward += 2
 
     def send_message(self, timestep):
@@ -290,7 +291,6 @@ class Drone(object):
     # 以下的方法与环境无关，用于RL
     def get_reward(self):
         reward = self.reward
-        self.reward = 0
         return reward, self.broken
 
     def get_state(self):

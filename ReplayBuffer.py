@@ -43,11 +43,11 @@ class RecurrentReplayBuffer(object):
             next_ob = [d[2] for d in minibatch]
 
             # 对某些未完全结束的episode，需要补充序列
-            if len(memory) <= end_pos:
-                for i in range(len(memory), end_pos):
-                    ob.append(memory[-1][0])
-                    action.append(memory[-1][1])
-                    next_ob.append(memory[-1][2])
+            # if len(memory) <= end_pos:
+            #     for i in range(len(memory), end_pos):
+            #         ob.append(memory[-1][0])
+            #         action.append(memory[-1][1])
+            #         next_ob.append(memory[-1][2])
 
             obs.append(ob)
             actions.append(action)
@@ -86,13 +86,14 @@ class ReplayBuffer(object):
         states = []
         rewards = []
         next_states = []
+        # if timestep < sequence_length:
+        #     start_pos = 0
+        # else:
+        #     start_pos = random.randint(0, timestep - sequence_length)
         batch_size = len(episodes)
         episodes = [e % self.buffer_size for e in episodes]
         for episode in episodes:
-            # last_pos = len(self.buffer['episode' + str(episode)]) - sequence_length
-            # last_pos = max(last_pos, 0)
-            # start_pos = random.randint(0, last_pos)
-            end_pos = start_pos + sequence_length
+            end_pos = start_pos + sequence_length #if start_pos != 0 else timestep
             memory = self.buffer['episode' + str(episode)]
             minibatch = memory[start_pos:end_pos]
 
@@ -100,11 +101,11 @@ class ReplayBuffer(object):
             reward = [d[1] for d in minibatch]
             next_state = [d[2] for d in minibatch]
 
-            if len(memory) < end_pos:
-                for i in range(len(memory), end_pos):
-                    state.append(memory[-1][0])
-                    reward.append(memory[-1][1])
-                    next_state.append(memory[-1][2])
+            # while len(state) < sequence_length:
+            #     state.append(memory[-1][0])
+            #     reward.append(memory[-1][1])
+            #     next_state.append(memory[-1][2])
+
 
             states.append(state)
             rewards.append(reward)
@@ -112,7 +113,8 @@ class ReplayBuffer(object):
 
         state = torch.tensor(list(states), dtype=torch.float).view(sequence_length, batch_size, -1).to(self.dev)
         reward = torch.tensor(list(rewards), dtype=torch.float).view(sequence_length, batch_size, -1).to(self.dev)
-        next_state = torch.tensor(list(next_states), dtype=torch.float).view(sequence_length, batch_size, -1).to(self.dev)
+        next_state = torch.tensor(list(next_states), dtype=torch.float).view(sequence_length, batch_size, -1).to(
+            self.dev)
 
         return state, reward, next_state
 
@@ -123,5 +125,5 @@ class ReplayBuffer(object):
 
 if __name__ == '__main__':
     arr = [1, 2, 3, 4, 5, 6, 7, 8]
-    sub = arr[5:len(arr)+2]
+    sub = arr[5:len(arr) + 2]
     print(sub)

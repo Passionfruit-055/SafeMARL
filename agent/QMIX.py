@@ -86,7 +86,7 @@ class QMIXagent(object):
             for k in t_dict.keys():
                 t_dict[k] = self.tau * t_dict[k] + (1 - self.tau) * e_dict[k]
 
-    def hidden_state_reset(self, batch_size):
+    def hidden_state_reset(self, batch_size=1):
         self.eval_hidden_state = torch.zeros(self.agent_num, batch_size, self.rnn_hidden_size).to(self.dev)
         self.target_hidden_state = torch.zeros(self.agent_num, batch_size, self.rnn_hidden_size).to(self.dev)
 
@@ -117,10 +117,13 @@ class QMIXagent(object):
             print('Not enough memory')
             return
         self.training_step += 1
-        batchSize = min(self.batch_size, episode + 1)
         seqLen = min(timestep, self.seq_length)
-        episodes = random.sample(range(episode + 1), batchSize) if rand else episodes
         start_pos = random.randint(0, max(timestep - seqLen, 0)) if rand else 0
+        # batchSize = min(self.batch_size, episode)
+        # episodes = random.sample(range(episode + 1), batchSize) if rand else episodes
+        batchSize = 1
+        episodes = [episode]
+
         '''
            学习过程的循环不应按照episode而应该是按照一个时间序列来，
            而在每一个时刻相当于对多个episode同时进行重放，提高了数据的并行程度
@@ -131,8 +134,6 @@ class QMIXagent(object):
         # sample minibatch是为了获取Q值，与DQN中是为了获取状态等不同
         # Q_evals = torch.zeros((self.agent_num, batchSize, seqLen)).to(self.dev)
         # Q_targets = torch.zeros((self.agent_num, batchSize, seqLen)).to(self.dev)
-        Q_evals_l = []
-        Q_targets_l = []
 
         states, rewards, next_states = self.mixing_memory.sample_batch(episodes, seqLen, start_pos)
         state_size = states.shape[2]
@@ -147,54 +148,58 @@ class QMIXagent(object):
             obs = obs.view(seqLen, batchSize, -1)
             us = us.view(seqLen, batchSize, -1)
             n_obs = n_obs.view(seqLen, batchSize, -1)
-            # print(obs.shape, us.shape, n_obs.shape)
             obs_set.append(obs)
             us_set.append(us)
             n_obs_set.append(n_obs)
 
-        for transition in range(seqLen):
-            Q_eval_l = []
-            Q_target_l = []
-            self.hidden_state_reset(batchSize)
-            for obs, us, n_obs, eval_net, target_net, eval_hidden_state, target_hidden_state in zip(obs_set, us_set,
-                                                                                                    n_obs_set,
-                                                                                                    self.eval_net,
-                                                                                                    self.target_net,
-                                                                                                    self.eval_hidden_state,
-                                                                                                    self.target_hidden_state):
-                # Q_eval -> (batchSize, action_size)
-                # with torch.autograd.set_detect_anomaly(True):
-                Q_eval, eval_hidden_state = eval_net(obs[transition], eval_hidden_state)
-                Q_target, target_hidden_state = target_net(n_obs[transition], target_hidden_state)
-                # Q_eval -> (batchSize, 1)
-                Q_eval = torch.gather(Q_eval, 1, us[transition])
-                Q_target = torch.gather(Q_target, 1, us[transition])
-                # wait to stack
-                Q_eval_l.append(Q_eval)
-                Q_target_l.append(Q_target)
-            # Q_evals -> (batchSize, agent_num)
-            Q_evals = torch.stack(Q_eval_l, dim=1).view(batchSize, -1)
-            # print(f"Q_evals = {Q_evals}")
-            Q_targets = torch.stack(Q_target_l, dim=1).view(batchSize, -1)
-            Q_tot_eval = self.mixing_eval_net(Q_evals, states[transition], self.agent_num, state_size)
-            # print(f"Q_tot_eval = {Q_tot_eval}")
-            Q_tot_target = self.mixing_target_net(Q_targets, next_states[transition], self.agent_num,
-                                                  state_size)
-            td_target = rewards[transition] + self.gamma * Q_tot_target
-            # print(f"Q_tot_td_target = {td_target}")
+        loss_set = []
+        self.hidden_state_reset(batchSize)
+        for ep in range(self.epoch):
+            for transition in range(seqLen):
+                Q_eval_l = []
+                Q_target_l = []
+                for obs, us, n_obs, eval_net, target_net, eval_hidden_state, target_hidden_state in zip(obs_set, us_set,
+                                                                                                        n_obs_set,
+                                                                                                        self.eval_net,
+                                                                                                        self.target_net,
+                                                                                                        self.eval_hidden_state,
+                                                                                                        self.target_hidden_state):
+                    # Q_eval -> (batchSize, action_size)
+                    # with torch.autograd.set_detect_anomaly(True):
+                    Q_eval, eval_hidden_state = eval_net(obs[transition], eval_hidden_state)
+                    Q_target, target_hidden_state = target_net(n_obs[transition], target_hidden_state)
+                    # Q_eval -> (batchSize, 1)
+                    Q_eval = torch.gather(Q_eval, 1, us[transition])
+                    # Q_target = torch.gather(Q_target, 1, us[transition])
+                    Q_target = torch.max(Q_target, 1)
+                    # wait to stack
+                    Q_eval_l.append(Q_eval)
+                    Q_target_l.append(Q_target[0])
+                # Q_evals -> (batchSize, agent_num)
+                Q_evals = torch.stack(Q_eval_l, dim=1).view(batchSize, -1)
+                # print(f"Q_evals = {Q_evals}")
+                Q_targets = torch.stack(Q_target_l, dim=1).view(batchSize, -1)
+                Q_tot_eval = self.mixing_eval_net(Q_evals, states[transition], self.agent_num, state_size)
+                # print(f"Q_tot_eval = {Q_tot_eval}")
+                Q_tot_target = self.mixing_target_net(Q_targets, next_states[transition], self.agent_num,
+                                                      state_size)
+                td_target = rewards[transition] + self.gamma * Q_tot_target.detach()
+                # print(f"Q_tot_td_target = {td_target}")
 
-            self.optimizer.zero_grad()
-            loss_val = self.loss(Q_tot_eval, td_target)
-            print(loss_val)
-            with torch.autograd.set_detect_anomaly(True):
-                loss_val.backward(retain_graph=True)
-            torch.nn.utils.clip_grad_norm_(self.param, max_norm=10, norm_type=2)
-            # for i, param in enumerate(self.param):
-            #     print(f"param{i} = {param}")
-            #     print(f"param{i} grad = {param.grad}")
-            self.optimizer.step()
+                self.optimizer.zero_grad()
+                loss_val = self.loss(Q_tot_eval, td_target)
+                print(f"loss_val = {loss_val.data}")
+                loss_set.append(loss_val.detach().cpu())
+                with torch.autograd.set_detect_anomaly(True):
+                    loss_val.backward(retain_graph=True)
+                torch.nn.utils.clip_grad_norm_(self.param, max_norm=10, norm_type=2)
+                # for i, param in enumerate(self.param):
+                #     print(f"param{i} = {param}")
+                #     print(f"param{i} grad = {param.grad}")
+                self.optimizer.step()
 
         self.target_net_update()
+        return loss_set
 
     def store_transition(self, ob, u, ob_next, episode, agent):
         self.memory.add(ob, u, ob_next, episode, agent)

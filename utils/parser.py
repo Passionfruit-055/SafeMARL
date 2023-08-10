@@ -4,7 +4,7 @@ import random
 
 parser = argparse.ArgumentParser()
 # more constant
-parser.add_argument('-lr', '--learning_rate', type=float, default=1e-3, help='learning rate for training')
+parser.add_argument('-lr', '--learning_rate', type=float, default=5e-2, help='learning rate for training')
 parser.add_argument('-buffer', '--buffer_size', type=int, default=2000, help='number of max buffer size')
 parser.add_argument('-gamma', '--gamma', type=float, default=0.9, help='discount factor')
 parser.add_argument('-tau', '--tau', type=float, default=0.01, help='soft update parameter')
@@ -21,7 +21,7 @@ parser.add_argument('-obs', '--obs_size', type=int, default=32, help='observatio
 parser.add_argument('-e', '--epoch', type=int, default=1, help='number of epochs to train for')
 parser.add_argument('-batch', '--batch_size', type=int, default=8, help='batch size for training')
 parser.add_argument('-seq', '--seq_len', type=int, default=50, help='sequence length for training')
-parser.add_argument('-ep', '--episode', type=int, default=300, help='number of episodes to train for')
+parser.add_argument('-ep', '--episode', type=int, default=3000, help='number of episodes to train for')
 parser.add_argument('-ts', '--timestep', type=int, default=100, help='number of timesteps for each episode')
 parser.add_argument('-seed', '--seed', type=int, default=random.randint(0, 1000), help='random seed')
 # env

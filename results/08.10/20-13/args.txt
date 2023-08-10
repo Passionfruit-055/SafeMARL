@@ -1,0 +1,26 @@
+save loss and no padding
+learning_rate
+buffer_size
+gamma
+tau
+hsRNN
+hsMixing
+hsHyper
+replace_cycle
+agent_num
+state_size
+action_size
+obs_size
+epoch
+batch_size
+seq_len
+episode
+timestep
+seed
+view_range
+report_cycle
+comm_cycle
+row
+col
+risklevel
+AoI_limit
