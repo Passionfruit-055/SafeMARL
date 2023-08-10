@@ -20,7 +20,7 @@ path = 'results/' + rq + '/' + batchn + '/'
 if not os.path.exists(path):
     os.makedirs(path)
 
-info = '目标网络取最大值'
+info = 'with more epoch'
 with open(path + 'args.txt', 'w') as f:
     f.write(info + '\n\n')
     for key in args.keys():

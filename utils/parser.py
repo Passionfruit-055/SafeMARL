@@ -18,7 +18,7 @@ parser.add_argument('-state', '--state_size', type=int, default=72, help='state 
 parser.add_argument('-action', '--action_size', type=int, default=6, help='action size for whole system')
 parser.add_argument('-obs', '--obs_size', type=int, default=32, help='observation size for each agent')
 # train
-parser.add_argument('-e', '--epoch', type=int, default=1, help='number of epochs to train for')
+parser.add_argument('-e', '--epoch', type=int, default=5, help='number of epochs to train for')
 parser.add_argument('-batch', '--batch_size', type=int, default=8, help='batch size for training')
 parser.add_argument('-seq', '--seq_len', type=int, default=50, help='sequence length for training')
 parser.add_argument('-ep', '--episode', type=int, default=3000, help='number of episodes to train for')
