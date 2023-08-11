@@ -20,7 +20,7 @@ path = 'results/' + rq + '/' + batchn + '/'
 if not os.path.exists(path):
     os.makedirs(path)
 
-info = 'with more epoch'
+info = 'use more than one episode'
 with open(path + 'args.txt', 'w') as f:
     f.write(info + '\n\n')
     for key in args.keys():
@@ -55,7 +55,6 @@ for i in range(int(map_row * map_col * (risk_level / 2))):
             break
     low_obstacle.append((x, y))
     real_map[x][y] = 1
-
 high_obstacle = []
 for i in range(int(map_row * map_col * (risk_level / 2))):
     while True:
@@ -93,16 +92,17 @@ loss_all = deque(maxlen=int(1e4))
 for episode in range(episodes):
     rewards = []
     msgs = deque(maxlen=agent_num)
-    phasereward = {'reward': [i * 10 for i in range(10)], 'phase': [False for i in range(10)]}
+    phase_reward = {'reward': [i * 10 for i in range(10)], 'phase': [False for i in range(10)]}
     explored_now = 0
     finalTimestep = args['timestep']
-    missionSuccess = True
+    terminated = False
     # reset map
     obs_map = np.full((map_row, map_col), -1)
     for l in loc:
         obs_map[l[0]][l[1]] = -2
     # draw map
     fig, ax = plt.subplots(1, 2)
+    fig.canvas.manager.window.setWindowTitle(f"{episodes} episodes, {timesteps} timesteps, {epochs} epochs")
     real_num = len(np.unique(real_map))
     current_num = len(np.unique(obs_map))
     cmap_whole = mpl.colors.ListedColormap(colors[2: 2 + real_num])
@@ -112,7 +112,6 @@ for episode in range(episodes):
     plt.colorbar(ax1, cax=None, ax=None, shrink=0.5)
     plt.colorbar(ax2, cax=None, ax=None, shrink=0.5)
     plt.pause(1)
-    plt.close()
     for l in loc:
         obs_map[l[0]][l[1]] = real_map[l[0]][l[1]]
 
@@ -127,11 +126,8 @@ for episode in range(episodes):
         print("\nTime", timestep)
         state = np.zeros((args['state_size'])).tolist() if timestep == 0 else next_state
         obs = np.zeros((agent_num, args['obs_size'])).tolist() if timestep == 0 else next_obs
-        # random
-        # actions = [np.random.randint(0, 6) for i in range(agent_num)]
         # QMIX
-        pre_actions = actions
-        actions, Qvalues = agent.choose_actions(obs, episode)
+        actions, _= agent.choose_actions(obs, episode)
         print(f'Action = {np.array(Action)[np.array(actions)]}')
         # move and send
         temp_maps = [obs_map.copy()] * agent_num
@@ -156,15 +152,11 @@ for episode in range(episodes):
                     energy_usedup += 1
             if broken_num == agent_num:
                 print("All drones broken")
-                finalTimestep = timestep
-                missionSuccess = False
-                break
+                terminated = True
             elif energy_usedup == agent_num:
                 print("All drones used up energy")
-                finalTimestep = timestep
-                missionSuccess = False
-                break
-            print(f"{broken_num} drones is broken , {energy_usedup} drones used up energy.")
+                terminated = True
+
         # update map
         for temp_map in temp_maps:
             obs_map[temp_map != -1] = temp_map[temp_map != -1]
@@ -184,15 +176,14 @@ for episode in range(episodes):
         for drone in Drones:
             r, br = drone.get_reward()
             rs.append(r)
-
             pos = drone.pos
             drone_pos.append(pos)
             obs_map[pos[0], pos[1]] = -2
 
             remain_energys.append(drone.energy)
             brokens.append(br)
-        remain_energy = min(remain_energys)
-        broken_level = max(brokens)
+        remain_energy = sum(remain_energys) / agent_num
+        broken_level = sum(brokens) / agent_num
         # evaluate exploration rate
         unique, count = np.unique(obs_map, return_counts=True)
         explored = 0
@@ -209,33 +200,29 @@ for episode in range(episodes):
         plt.colorbar()
         plt.pause(0.01)  # pause 这个可以认为是一帧图片展示的时间
         plt.clf() if timestep != timesteps - 1 else None
-        # compute whole reward = 平均探索奖励 + 通信奖励 + 更新奖励 - 撞击行为 - 平均受损程度 - 探索奖励方差（防止懒惰智能体）
-        avg_r = np.mean(rs)
-        reward = onboard + remain_energy / energy * 10 + explored_now * 100 + explored * 100 + avg_r - broken_level  # + comm - var_r
-        # check 阶段性奖励
-        ph = explored_now / 0.1
-        if phasereward['phase'][int(ph)] is False:
-            print(f'phase = {int(ph)}')
-            reward += phasereward['reward'][int(ph)]
-            phasereward['phase'][int(ph)] = True
-
+        # compute reward
+        reward = remain_energy / energy * 10 + explored_now * 10 + np.mean(rs) - broken_level  # + comm - var_r
+        print(f"Reward = {reward}, remain_energy = {remain_energy / energy}, explored = {explored_now*10}, r = {np.mean(rs)}, broken_level = {broken_level}")
+        milestone = explored_now / 0.1
+        if phase_reward['phase'][int(milestone)] is False:
+            reward += phase_reward['reward'][int(milestone)]
+            phase_reward['phase'][int(milestone)] = True
         rewards.append(reward)
-        # print(f'reward = {reward}')
 
         # state_sum = 各个智能体状态 + 最新探索度 + 本轮成功通信次数 + 各个智能体位置 = 1 + 1 + (32+3)*5 = 177
         next_state = [comm, explored]
         next_obs = []
-        for drone, pos, action in zip(Drones, drone_pos, pre_actions):
+        for drone, pos, action in zip(Drones, drone_pos, actions):
             d_obs = drone.get_state()
             d_obs.append(action)
             next_state.extend(d_obs)
-            next_obs.extend(d_obs)
             next_state.extend(pos)
+            next_obs.append(d_obs)
             # delete mark , 这里可以直接赋真实地图中的值，因为无人机经过的地方一定已经被观测过了
             obs_map[pos[0], pos[1]] = real_map[pos[0], pos[1]]
         # store
         obs = np.array(obs).reshape((agent_num, args['obs_size'])).tolist()
-        next_obs = np.array(next_obs).reshape((agent_num, args['obs_size'])).tolist()
+        # next_obs = np.array(next_obs).reshape((agent_num, args['obs_size'])).tolist()
         for d in range(agent_num):
             agent.store_transition(obs[d], actions[d], next_obs[d], episode, d)
         agent.store_mixing_transition(state, reward, next_state, episode)
@@ -245,7 +232,10 @@ for episode in range(episodes):
             loss_all.extend(losses)
         # check mission success
         if explored_now >= 0.9:
-            missionSuccess = True
+            terminated = True
+
+        if terminated:
+            finalTimestep = timestep
             break
 
     plt.close()
@@ -260,10 +250,8 @@ for episode in range(episodes):
         plt.savefig(path + f"loss.png", format='png')
         plt.savefig(path + f"loss.pdf", format='pdf')
     plt.pause(1)
-    # plt.clf()
-
-    reward = rewards[-1] if missionSuccess else rewards[-1] - args['timestep'] + finalTimestep
-    reward_all.append(reward)
+    plt.close()
+    reward_all.append(rewards[-1])
     explorations.append(explored_now)
 
 # 这两个则是更高层的控件

@@ -13,7 +13,6 @@ class QMIXNet(nn.Module):
         self.hyper_w1 = nn.Sequential(nn.Linear(state_size, hyper_hidden_size),
                                       nn.ReLU(),
                                       # mixing network首层的输入为所有agent的q值(1,n), 对应的w1的形状则应该是(n, mixing_hidden_size)
-                                      # nn.Linear(hyper_hidden_size, mixing_hidden_size)
                                       nn.Linear(hyper_hidden_size, agent_num * mixing_hidden_size)
                                       # 这里直接使用Relu是不是会引起梯度爆炸？暂时还是采用将输出的w1直接取绝对值的方法
                                       )
@@ -47,5 +46,7 @@ class QMIXNet(nn.Module):
         b2 = self.hyper_b2(states).view(-1, 1, 1)
         # mixing_network forward
         output = F.elu(torch.bmm(Qvals, w1) + b1)
+        print(f"after layer1, {output}")
         output = torch.bmm(output, w2) + b2
+        print(f"after layer2, {output}")
         return output.view(-1, 1)

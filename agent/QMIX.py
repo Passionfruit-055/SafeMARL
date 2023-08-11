@@ -80,11 +80,11 @@ class QMIXagent(object):
                 tnet.load_state_dict(enet.state_dict())
             self.mixing_target_net.load_state_dict(self.mixing_eval_net.state_dict())
 
-        for t_param, e_param in zip(self.eval_net, self.target_net):
-            t_dict = t_param.state_dict()
-            e_dict = e_param.state_dict()
-            for k in t_dict.keys():
-                t_dict[k] = self.tau * t_dict[k] + (1 - self.tau) * e_dict[k]
+        # for t_param, e_param in zip(self.eval_net, self.target_net):
+        #     t_dict = t_param.state_dict()
+        #     e_dict = e_param.state_dict()
+        #     for k in t_dict.keys():
+        #         t_dict[k] = self.tau * t_dict[k] + (1 - self.tau) * e_dict[k]
 
     def hidden_state_reset(self, batch_size=1):
         self.eval_hidden_state = torch.zeros(self.agent_num, batch_size, self.rnn_hidden_size).to(self.dev)
@@ -101,6 +101,7 @@ class QMIXagent(object):
         maxQvals = torch.zeros(self.agent_num).to(self.dev)
         for a in range(self.agent_num):
             Qvals, self.eval_hidden_state_exec[a] = self.eval_net[a](obs[a], self.eval_hidden_state_exec[a])
+            print(Qvals)
             if random.random() > self.epsilon:
                 actions.append(torch.argmax(Qvals[0], dim=0).item())
             else:
@@ -116,14 +117,12 @@ class QMIXagent(object):
         if timestep == 0 or episode == 0:
             print('Not enough memory')
             return
-        self.training_step += 1
         seqLen = min(timestep, self.seq_length)
         start_pos = random.randint(0, max(timestep - seqLen, 0)) if rand else 0
         # batchSize = min(self.batch_size, episode)
         # episodes = random.sample(range(episode + 1), batchSize) if rand else episodes
         batchSize = 1
         episodes = [episode]
-
         '''
            学习过程的循环不应按照episode而应该是按照一个时间序列来，
            而在每一个时刻相当于对多个episode同时进行重放，提高了数据的并行程度
@@ -132,9 +131,6 @@ class QMIXagent(object):
            seqLen = 每个episode抽取多少个时间步的数据
         '''
         # sample minibatch是为了获取Q值，与DQN中是为了获取状态等不同
-        # Q_evals = torch.zeros((self.agent_num, batchSize, seqLen)).to(self.dev)
-        # Q_targets = torch.zeros((self.agent_num, batchSize, seqLen)).to(self.dev)
-
         states, rewards, next_states = self.mixing_memory.sample_batch(episodes, seqLen, start_pos)
         state_size = states.shape[2]
 
@@ -156,8 +152,10 @@ class QMIXagent(object):
         self.hidden_state_reset(batchSize)
         for ep in range(self.epoch):
             for transition in range(seqLen):
+                self.training_step += 1
                 Q_eval_l = []
                 Q_target_l = []
+                # formulate q-values of each agent
                 for obs, us, n_obs, eval_net, target_net, eval_hidden_state, target_hidden_state in zip(obs_set, us_set,
                                                                                                         n_obs_set,
                                                                                                         self.eval_net,
@@ -170,11 +168,11 @@ class QMIXagent(object):
                     Q_target, target_hidden_state = target_net(n_obs[transition], target_hidden_state)
                     # Q_eval -> (batchSize, 1)
                     Q_eval = torch.gather(Q_eval, 1, us[transition])
-                    # Q_target = torch.gather(Q_target, 1, us[transition])
                     Q_target = torch.max(Q_target, 1)
                     # wait to stack
                     Q_eval_l.append(Q_eval)
                     Q_target_l.append(Q_target[0])
+
                 # Q_evals -> (batchSize, agent_num)
                 Q_evals = torch.stack(Q_eval_l, dim=1).view(batchSize, -1)
                 # print(f"Q_evals = {Q_evals}")
@@ -188,7 +186,7 @@ class QMIXagent(object):
 
                 self.optimizer.zero_grad()
                 loss_val = self.loss(Q_tot_eval, td_target)
-                print(f"loss_val = {loss_val.data}")
+                print(f"loss = {loss_val.data}")
                 loss_set.append(loss_val.detach().cpu())
                 with torch.autograd.set_detect_anomaly(True):
                     loss_val.backward(retain_graph=True)
@@ -197,8 +195,8 @@ class QMIXagent(object):
                 #     print(f"param{i} = {param}")
                 #     print(f"param{i} grad = {param.grad}")
                 self.optimizer.step()
-
-        self.target_net_update()
+                # check whether to update target network at the end of each timestep
+                self.target_net_update()
         return loss_set
 
     def store_transition(self, ob, u, ob_next, episode, agent):

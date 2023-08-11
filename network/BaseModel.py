@@ -19,7 +19,8 @@ class RNN(nn.Module):
         x = f.relu(self.fc1(input))
         h_in = hidden_state.reshape(-1, self.rnn_hidden_size)
         h = self.rnn(x, h_in)
-        q = f.relu(self.fc2(h))
+        # q = f.relu(self.fc2(h))
+        q = self.fc2(h)
         return q, h
 
 

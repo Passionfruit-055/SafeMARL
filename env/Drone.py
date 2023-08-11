@@ -207,7 +207,7 @@ class Drone(object):
                 if 0 <= i < self.col and 0 <= j < self.row:
                     # 每探索到一个新块，获得探索奖励
                     if self.obs[i][j] == -1:
-                        self.reward += 3
+                        self.reward += 1.5
                         # self.explored += 1
                     self.obs[i][j] = self.realMap[i][j]
                     self.shortMem.append((i, j, self.obs[i][j]))
@@ -291,7 +291,7 @@ class Drone(object):
     # 以下的方法与环境无关，用于RL
     def get_reward(self):
         reward = self.reward
-        return reward, self.broken
+        return reward, self.broken / self.broken_limit
 
     def get_state(self):
         # state包括 探索到的总块数，位置（所处位置，周围地图信息），能量，损坏程度，时刻奖励（反映探索，通信，移动）
