@@ -27,35 +27,32 @@ class RecurrentReplayBuffer(object):
         experience = (s, u, s_next)
         self.buffer['agent' + str(agent)]['episode' + str(hashe)].append(experience)
 
-    def sample_batch(self, agent, sequence_length, episodes, start_pos=0):
+    def sample_batch(self, agent, seqLen, batch_size, episodes):
         # 这里会送入一个episode的列表，对其中的每一个都抽取sequence_length长度的序列
-        end_pos = start_pos + sequence_length
         obs = []
         actions = []
         next_obs = []
         episodes = [e % self.buffer_size for e in episodes]
         for episode in episodes:
-            memory = self.buffer['agent' + str(agent)]['episode' + str(episode)]
-            minibatch = memory[start_pos:end_pos]
+            minibatch = self.buffer['agent' + str(agent)]['episode' + str(episode)]
 
             ob = [d[0] for d in minibatch]
             action = [d[1] for d in minibatch]
             next_ob = [d[2] for d in minibatch]
 
-            # 对某些未完全结束的episode，需要补充序列
-            # if len(memory) <= end_pos:
-            #     for i in range(len(memory), end_pos):
-            #         ob.append(memory[-1][0])
-            #         action.append(memory[-1][1])
-            #         next_ob.append(memory[-1][2])
+            # padding
+            while len(minibatch) < seqLen:
+                ob.append(ob[-1])
+                action.append(action[-1])
+                next_ob.append(next_ob[-1])
 
             obs.append(ob)
             actions.append(action)
             next_obs.append(next_ob)
 
-        state = torch.tensor(obs).to(self.dev)
-        action = torch.tensor(actions).to(self.dev)
-        next_state = torch.tensor(next_obs).to(self.dev)
+        state = torch.tensor(obs).view(seqLen, batch_size, -1).to(self.dev)
+        action = torch.tensor(actions).view(seqLen, batch_size, -1).to(self.dev)
+        next_state = torch.tensor(next_obs).view(seqLen, batch_size, -1).to(self.dev)
 
         return state, action, next_state
 
@@ -73,50 +70,47 @@ class ReplayBuffer(object):
         for e in range(buffer_size):
             self.buffer['episode' + str(e)] = []
 
-    def add(self, episode, s, r, s_next):
+    def add(self, episode, s, r, s_next, done):
         hashe = episode % self.buffer_size
         if self.last_episode != episode:
             self.last_episode = episode
             if len(self.buffer['episode' + str(hashe)]) != 0:
                 self.buffer['episode' + str(hashe)] = []
-        experience = (s, r, s_next)
+        experience = (s, r, s_next, done)
         self.buffer['episode' + str(hashe)].append(experience)
 
-    def sample_batch(self, episodes, sequence_length, start_pos):
+    def sample_batch(self, episodes):
         states = []
         rewards = []
         next_states = []
-        # if timestep < sequence_length:
-        #     start_pos = 0
-        # else:
-        #     start_pos = random.randint(0, timestep - sequence_length)
+        minibatch = []
         batch_size = len(episodes)
-        episodes = [e % self.buffer_size for e in episodes]
-        for episode in episodes:
-            end_pos = start_pos + sequence_length #if start_pos != 0 else timestep
+        mapped_episodes = [e % self.buffer_size for e in episodes]
+        seqLen = 0
+        for episode in mapped_episodes:
             memory = self.buffer['episode' + str(episode)]
-            minibatch = memory[start_pos:end_pos]
+            seqLen = max(seqLen, len(memory))
+            minibatch.append(memory)
 
-            state = [d[0] for d in minibatch]
-            reward = [d[1] for d in minibatch]
-            next_state = [d[2] for d in minibatch]
+        # padding
+        for batch in minibatch:
+            while len(batch) < seqLen:
+                batch.append(batch[-1])
 
-            # while len(state) < sequence_length:
-            #     state.append(memory[-1][0])
-            #     reward.append(memory[-1][1])
-            #     next_state.append(memory[-1][2])
-
+            state = [d[0] for d in batch]
+            reward = [d[1] for d in batch]
+            next_state = [d[2] for d in batch]
 
             states.append(state)
             rewards.append(reward)
             next_states.append(next_state)
 
-        state = torch.tensor(list(states), dtype=torch.float).view(sequence_length, batch_size, -1).to(self.dev)
-        reward = torch.tensor(list(rewards), dtype=torch.float).view(sequence_length, batch_size, -1).to(self.dev)
-        next_state = torch.tensor(list(next_states), dtype=torch.float).view(sequence_length, batch_size, -1).to(
+        state = torch.tensor(list(states), dtype=torch.float).view(seqLen, batch_size, -1).to(self.dev)
+        reward = torch.tensor(list(rewards), dtype=torch.float).view(seqLen, batch_size, -1).to(self.dev)
+        next_state = torch.tensor(list(next_states), dtype=torch.float).view(seqLen, batch_size, -1).to(
             self.dev)
 
-        return state, reward, next_state
+        return state, reward, next_state, seqLen
 
     def clear(self):
         self.buffer.clear()

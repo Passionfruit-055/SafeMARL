@@ -4,6 +4,7 @@ from time import sleep
 from env.Drone import Drone
 import numpy as np
 from utils.parser import args
+from utils.logger import logger
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 from agent.QMIX import QMIXagent
@@ -84,12 +85,14 @@ agent = QMIXagent(args['agent_num'], args['state_size'], args['action_size'], ar
 episodes = args['episode']
 timesteps = args['timestep']
 epochs = args['epoch']
+seqLength = args['seq_len']
 
 reward_all = []
 explorations = []
 loss_all = deque(maxlen=int(1e4))
 
 for episode in range(episodes):
+    print(f"Episode {episode + 1}")
     rewards = []
     msgs = deque(maxlen=agent_num)
     phase_reward = {'reward': [i * 10 for i in range(10)], 'phase': [False for i in range(10)]}
@@ -102,7 +105,7 @@ for episode in range(episodes):
         obs_map[l[0]][l[1]] = -2
     # draw map
     fig, ax = plt.subplots(1, 2)
-    fig.canvas.manager.window.setWindowTitle(f"{episodes} episodes, {timesteps} timesteps, {epochs} epochs")
+    fig.canvas.manager.window.setWindowTitle(f"epi{episodes}, t{timesteps}, epo{epochs}, seq{seqLength}")
     real_num = len(np.unique(real_map))
     current_num = len(np.unique(obs_map))
     cmap_whole = mpl.colors.ListedColormap(colors[2: 2 + real_num])
@@ -124,17 +127,27 @@ for episode in range(episodes):
     actions = [np.random.randint(0, 6) for i in range(agent_num)]
     for timestep in range(timesteps):
         print("\nTime", timestep)
-        state = np.zeros((args['state_size'])).tolist() if timestep == 0 else next_state
-        obs = np.zeros((agent_num, args['obs_size'])).tolist() if timestep == 0 else next_obs
+        if timestep == 0:
+            state = [0, 0]
+            obs = []
+            for drone, action in zip(Drones, actions):
+                d_obs = drone.get_state()
+                d_obs.append(action)
+                obs.append(d_obs)
+                state.extend(d_obs)
+                state.extend(drone.pos)
+        else:
+            state = next_state
+            obs = next_obs
+        # state = np.zeros((args['state_size'])).tolist() if timestep == 0 else next_state
+        # obs = np.zeros((agent_num, args['obs_size'])).tolist() if timestep == 0 else next_obs
         # QMIX
-        actions, _= agent.choose_actions(obs, episode)
-        print(f'Action = {np.array(Action)[np.array(actions)]}')
+        actions= agent.choose_actions(obs, episode)
+        # print(f'Action = {np.array(Action)[np.array(actions)]}')
         # move and send
         temp_maps = [obs_map.copy()] * agent_num
         onboard = 0
         for i, temp_map in enumerate(temp_maps):
-            if timestep == 0:
-                Drones[i].update_local_obs()
             # move
             onboard += 1 if Drones[i].move(actions[i], timestep, temp_map) else 0
             # send
@@ -201,8 +214,8 @@ for episode in range(episodes):
         plt.pause(0.01)  # pause 这个可以认为是一帧图片展示的时间
         plt.clf() if timestep != timesteps - 1 else None
         # compute reward
-        reward = remain_energy / energy * 10 + explored_now * 10 + np.mean(rs) - broken_level  # + comm - var_r
-        print(f"Reward = {reward}, remain_energy = {remain_energy / energy}, explored = {explored_now*10}, r = {np.mean(rs)}, broken_level = {broken_level}")
+        reward = remain_energy / energy * 10 + explored_now * 10 + np.mean(rs) - broken_level*10  # + comm - var_r
+        print(f"Reward = {reward}, remain_energy = {remain_energy / energy}, explored = {explored_now*10}, r = {np.mean(rs)}, broken_level = {broken_level*10}")
         milestone = explored_now / 0.1
         if phase_reward['phase'][int(milestone)] is False:
             reward += phase_reward['reward'][int(milestone)]
@@ -221,7 +234,7 @@ for episode in range(episodes):
             # delete mark , 这里可以直接赋真实地图中的值，因为无人机经过的地方一定已经被观测过了
             obs_map[pos[0], pos[1]] = real_map[pos[0], pos[1]]
         # store
-        obs = np.array(obs).reshape((agent_num, args['obs_size'])).tolist()
+        # obs = np.array(obs).reshape((agent_num, args['obs_size'])).tolist()
         # next_obs = np.array(next_obs).reshape((agent_num, args['obs_size'])).tolist()
         for d in range(agent_num):
             agent.store_transition(obs[d], actions[d], next_obs[d], episode, d)
@@ -241,18 +254,30 @@ for episode in range(episodes):
     plt.close()
     plt.plot(rewards)
     plt.pause(1)
-    if episode % 10 == 0:
+    if episode % 3 == 0:
         plt.savefig(path + f"reward{episode}.png", format='png')
         plt.savefig(path + f"reward{episode}.pdf", format='pdf')
     plt.clf()
     plt.plot(loss_all)
-    if episode % 10 == 0:
+    if episode % 3 == 0:
         plt.savefig(path + f"loss.png", format='png')
         plt.savefig(path + f"loss.pdf", format='pdf')
     plt.pause(1)
     plt.close()
     reward_all.append(rewards[-1])
     explorations.append(explored_now)
+    plt.plot(reward_all)
+    if episode % 3 == 0:
+        plt.savefig(path + "reward_all.png", format='png')
+        plt.savefig(path + "reward_all.pdf", format='pdf')
+    plt.pause(1)
+    plt.close()
+    plt.plot(explorations)
+    if episode % 5 == 0:
+        plt.savefig(path + "explore.png", format='png')
+        plt.savefig(path + "explore.pdf", format='pdf')
+    plt.pause(1)
+    plt.close()
 
 # 这两个则是更高层的控件
 plt.close()

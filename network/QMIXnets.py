@@ -35,7 +35,7 @@ class QMIXNet(nn.Module):
                                       )
 
     def forward(self, Qvals, states, agent_num, state_size):
-        # 更改网络的形状，让其与输入的Qvals匹配，目前Qvals的形状暂时确定(batch_size, seq_len, agent_num), 以此为准，还是分transition 来学习吧
+        # 更改网络的形状，让其与输入的Qvals匹配，目前Qvals的形状暂时确定(batch_size, seq_len, agent_num), 由于是每个transition学习，seq_len=1
         Qvals = Qvals.view(-1, 1, agent_num)
         states = torch.Tensor(states).view(-1, state_size)
         # layer1
@@ -46,7 +46,7 @@ class QMIXNet(nn.Module):
         b2 = self.hyper_b2(states).view(-1, 1, 1)
         # mixing_network forward
         output = F.elu(torch.bmm(Qvals, w1) + b1)
-        print(f"after layer1, {output}")
+        # print(f"after layer1, {output}")
         output = torch.bmm(output, w2) + b2
-        print(f"after layer2, {output}")
+        # print(f"after layer2, {output}")
         return output.view(-1, 1)
