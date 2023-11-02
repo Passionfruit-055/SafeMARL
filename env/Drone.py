@@ -12,7 +12,7 @@ dt_string = now.strftime("%Y-%m-%d_%H-%M")
 
 
 class Drone(object):
-    def __init__(self, x, y, height, view_range, energy, index, col, row, total, realMap, obstacle, AoI_limit,
+    def __init__(self, x, y, height, view_range, energy, id, col, row, total, realMap, AoI_limit,
                  report_cycle, comm_cycle):
         self.consumption = 0
         self.pos = [x, y, height]
@@ -20,8 +20,7 @@ class Drone(object):
         self.energy = energy
         self.broken = 0
         self.view_range = view_range
-        self.max_height = 3  # 设置3是为了区别有1，2两档高度的障碍物
-        self.index = index
+        self.id = id
         self.col = col
         self.row = row
 
@@ -185,6 +184,7 @@ class Drone(object):
                     print(f'Drone{self.index} Move Right!')
         # 不同的飞行高度有不同的能耗
         consumption *= self.pos[2]
+
         self.update_local_obs()
 
         if timestep % self.report_cycle == 0:
@@ -297,6 +297,13 @@ class Drone(object):
         # state包括 探索到的总块数，位置（所处位置，周围地图信息），能量，损坏程度，时刻奖励（反映探索，通信，移动）
         # size = 1 * 4 + self.shortMemSize * 3 + last action = 32
         state = [self.explored, self.energy, self.broken, self.reward]
+
+        if len(self.view) == 0:
+            pos = self.pos
+            for i in range(pos[0] - self.view_range, pos[0] + self.view_range + 1):
+                for j in range(pos[1] - self.view_range, pos[1] + self.view_range + 1):
+                    self.view.append((i, j, -1))
+
         for v in self.view:
             state.extend(v)
         return state
