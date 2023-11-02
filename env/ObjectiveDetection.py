@@ -1,3 +1,6 @@
+import random
+from math import sqrt
+
 from env.DronePro import Drone
 from utils.logger import logger
 import numpy as np
@@ -5,6 +8,7 @@ from utils.parser import args
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.animation as animation
 
 
 class ObjectiveDetection(object):
@@ -18,10 +22,14 @@ class ObjectiveDetection(object):
         self.map_height = height
         self.obstacle_num = length * width * risklevel // (height - 1)  # 每层的障碍物数量
         self.obstacle = []
-        self.start_loc = [[0, 0, 1], [0, self.map_width - 1, 1], [self.map_length - 1, 0, 1],
-                          [self.map_length - 1, self.map_width - 1, 1], [self.map_length // 2, self.map_width // 2, 1]]
+        self.start_loc = [[self.map_length // 2 - 1, self.map_width // 2 - 1, 1],
+                          [self.map_length // 2 - 1, self.map_width // 2 + 1, 1],
+                          [self.map_length // 2 + 1, self.map_width // 2 - 1, 1],
+                          [self.map_length // 2 + 1, self.map_width // 2 + 1, 1],
+                          [self.map_length // 2, self.map_width // 2, 1]]
+        self.dest = [[[0, self.map_width - 1], [0, 0]], [[self.map_length - 1, 0],
+                     [self.map_length - 1, self.map_width - 1]]]
         self.explored = []
-        self.dest = []
         # Drone
         self.agent_num = num
         self.UAVs = []
@@ -30,47 +38,47 @@ class ObjectiveDetection(object):
 
     def loading(self):
         chosed = []
-        # init agents
+
+        # init dest
+        # while len(self.dest) < self.agent_num:
+        #     j = np.random.randint(self.map_length * self.map_width // 2, self.map_length * self.map_width)
+        #     if j not in chosed:
+        #         self.map[j // self.map_length][j % self.map_length] = self.map_height
+        #         self.dest.append([j // self.map_length, j % self.map_length])
+        #         chosed.append(j)
+
+            # init agents
         assert self.agent_num <= len(self.start_loc)
         for i in range(self.agent_num):
             loc = self.start_loc[i]
             chosed.append(loc[0] * self.map_length + loc[1])
             self.UAVs.append(
-                Drone(loc.copy(), i, self.map_length, self.map_width, self.map_height, self.map, self.dest))
-            # self.map[loc[0]][loc[1]] = -1
+                Drone(loc.copy(), i, self.map_length, self.map_width, self.map_height, self.map,
+                      self.dest[i]))
 
-        # init dest
-        while len(self.dest) < self.agent_num:
-            j = np.random.randint(self.map_length * self.map_width // 2, self.map_length * self.map_width)
-            if j not in chosed:
-                self.map[j // self.map_length][j % self.map_length] = self.map_height
-                self.dest.append([j // self.map_length, j % self.map_length])
-                chosed.append(j)
 
-        # 初始化障碍物
-        for i in range(self.map_height - 1):
-            obstacle = []
-            while len(obstacle) < self.obstacle_num:
-                j = np.random.randint(0, self.map_length * self.map_width)
-                if j not in chosed:
-                    self.map[j // self.map_length][j % self.map_length] = i + 1
-                    obstacle.append([j // self.map_length, j % self.map_length])
-                    chosed.append(j)
-            self.obstacle.append(obstacle)
+        self.obstacle.append(random.sample([[0, 1], [7, 1], [1, 4], [6, 5]], args['risk_num']))
+        self.obstacle.append(random.sample([[self.map_length // 2 - 2, self.map_width // 2 + 2],
+                                            [self.map_length // 2 - 2, self.map_width // 2 - 2],
+                                            [self.map_length // 2 + 2, self.map_width // 2 - 2],
+                                            [self.map_length // 2 + 2, self.map_width // 2 + 2]], args['risk_num']))
+        # for i, obst in enumerate(self.obstacle):
+        #     for pos in obst:
+        #         self.map[pos[0]][pos[1]] = 1
 
         # log map
-        map_info = f"\nMap size: {self.map_length} * {self.map_width} * {self.map_height} \n"
+        map_info = f"\nMap size: {self.map_length} * {self.map_width} * {self.map_height}"
         for i in range(self.map_height - 1):
-            map_info += f"At height {i + 1} \n"
+            map_info += f"\nAt height {i + 1} \n"
             for loc in self.obstacle[i]:
                 map_info += str(loc) + ' '
-            map_info += "is dangerous\n"
+        map_info += "is dangerous\n"
         map_info += "UAVs are at:\n"
         for i in range(self.agent_num):
             map_info += str(self.UAVs[i].pos) + ' '
         map_info += "\nDest are at:\n"
         for i in range(self.agent_num):
-            map_info += str(self.dest[i]) + ' '
+            map_info += str(self.UAVs[i].dest) + ' '
         self.logger.info(map_info)
 
     def reset(self):
@@ -85,37 +93,53 @@ class ObjectiveDetection(object):
         teammates = []
         for drone in self.UAVs:
             teammate = drones_pos.copy()
-            teammate.remove(drone.pos)
+            index = teammate.index(drone.pos)
+            teammate[index] = None
             teammates.append(teammate)
         return teammates
 
-    def step(self, timestep, obs, agent, root_path):
+    def step(self, timestep, agent, actions, root_path=None):
         n_obs = []
         rewards = []
         done = True
-        actions = agent.choose_actions(obs)
-        # actions = [np.random.randint(0, 6) for _ in range(self.agent_num)]
+        # actions = random.sample(range(0, 6), self.agent_num)
         for drone, action, teammate in zip(self.UAVs, actions, self.find_teammates()):
-            reward, online = drone.move(action, timestep, teammate)
+            reward, arrived, broken = drone.move(action, timestep, teammate)
+            done &= (arrived or broken)
             # after execute
             if drone.pos not in self.explored:
                 self.explored.append(drone.pos)
-            done = done and online
-            n_obs.append(drone.observe())
+            n_obs.append(drone.observe(agent.local_q_mode, agent.agent_num, timestep))
             rewards.append(reward)
-        self.render(root_path, 2)
-        return n_obs, actions, rewards, done
+            # rewards.append(drone.utility)
+        # self.render_3d(root_path)
+        return n_obs, np.array(n_obs).flatten().tolist(), rewards, done
 
-    def communicate(self, timestep, obs):
-        msgs = []
-        costs = []
+    def get_team_reward(self, rewards, timestep):
+        # 每个智能体的reward可以当作行为分，而总体任务的进程可以看作表现分
+        dec = np.sum(rewards).item() - np.std(rewards).item()
+        # dist = self.half_dist - np.mean([min([drone.Euclid_dist(dest) for dest in drone.dest]) for drone in self.UAVs])
+        # damage = np.mean([drone.damage for drone in self.UAVs])
+        done = True
         for drone in self.UAVs:
-            # msg, cost = drone.communicate(timestep)
-            msg = np.zeros(args['comm_size']).tolist()
-            cost = 0
-            costs.append(cost)
+            done &= drone.arrived
+        tr = dec + 150 * (1 - timestep / args['timestep']) if done else 0
+        return tr
+
+    def communicate(self, obs):
+        # request
+        comms = 0
+        msgs = []
+        for drone, ob, teammate in zip(self.UAVs, obs, self.find_teammates()):
+            msg = drone.request(teammate, ob)
+            comms += len(drone.connected)
             msgs.append(msg)
-        return msgs, costs
+        # receive
+        com_info = []
+        for drone in self.UAVs:
+            com_info.append(drone.response(msgs))
+
+        return com_info, comms / 2
 
     def render(self, root_path, mode=1):
         # prepare data
@@ -148,35 +172,52 @@ class ObjectiveDetection(object):
         plt.savefig(str(root_path) + 'map.png')
         plt.close()
 
-    def render_3d(self):
+    def render_3d(self, root_path):
         fig = plt.figure(figsize=(8, 4))
-        ax1 = fig.add_subplot(121, projection='3d')
+        ax1 = fig.add_subplot(111, projection='3d')
 
-        # fake data
-        # _x = np.arange(self.map_length)
-        # _y = np.arange(self.map_width)
-        _x = []
-        _y = []
+        x = []
+        y = []
         top = []
-        for i, obstacle in enumerate(self.obstacle):
-            for pos in obstacle:
-                _x.append(pos[0])
-                _y.append(pos[1])
+        cmap = ['green', 'lightgrey', 'red', 'cyan']
+        colors = []
+
+        for i, o in enumerate(self.obstacle):
+            for pos in o:
+                x.append(pos[0])
+                y.append(pos[1])
                 top.append(i + 1)
+                colors.append(cmap[i])
 
-        _xx, _yy = np.meshgrid(_x, _y)
-        x, y = _xx.ravel(), _yy.ravel()
+        dest_top = 0.02
+        for pos in self.dest:
+            x.append(pos[0])
+            y.append(pos[1])
+            top.append(dest_top)
+            colors.append(cmap[2])
 
-        # top = x + y
         bottom = np.zeros_like(top)
-        width = depth = 1
+        bottom[np.where(np.array(top) == dest_top)] = 1.8
+        prelen = len(bottom)
+        bottom = bottom.tolist()
+        bottom.extend(np.zeros(self.agent_num).tolist())
 
-        ax1.bar3d(x, y, bottom, width, depth, top, shade=True, )
-        ax1.set_title('Shaded')
+        drone_top = 0.2
+        for i, drone in enumerate(self.UAVs):
+            x.append(drone.pos[0])
+            y.append(drone.pos[1])
+            top.append(drone_top)
+            colors.append(cmap[3])
+            bottom[prelen + i] = drone.pos[2] + 0.02
 
-        plt.show()
+        width = depth = .8
 
+        ax1.bar3d(x, y, bottom, width, depth, top, shade=True, color=colors, zsort='average')
+        ax1.set_title('Origin')
 
-if __name__ == '__main__':
-    env = ObjectiveDetection(args, logger, 2, 10, 10, 3, 0.2, 100)
-    env.render_3d()
+        plt.pause(0.5)  # 一帧图片展示的时间
+        plt.savefig(root_path + 'Fig/map.png')
+        plt.close()
+
+    if __name__ == '__main__':
+        env = ObjectiveDetection(args, logger, 2, 10, 10, 3, 0.2, 100)

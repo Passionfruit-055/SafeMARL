@@ -15,7 +15,7 @@ from utils.parser import args
 torch.autograd.set_detect_anomaly(True)
 
 
-class QMIXagent(object):
+class VDNagent(object):
     def __init__(self, agent_num, state_size, action_size, obs_size, logger=None, mixing_hidden_size=args['hsMixing'],
                  hyper_hidden_size=args['hsHyper'], rnn_hidden_size=args['hsRNN'], initial_epsilon=0.2,
                  final_epsilon=0.001, epoch=args['epoch'], lr=args['learning_rate'], buffer_size=args['buffer_size'],
@@ -65,14 +65,6 @@ class QMIXagent(object):
             self.target_net.load_state_dict(self.eval_net.state_dict())
             self.param.extend(self.eval_net.parameters())
 
-        # mixing net (实际上是hypernets在更新)
-        self.mixing_eval_net = QMIXNet(self.agent_num, self.mixing_hidden_size, self.state_size,
-                                       self.hyper_hidden_size).to(self.dev)
-        self.mixing_target_net = QMIXNet(self.agent_num, self.mixing_hidden_size, self.state_size,
-                                         self.hyper_hidden_size).to(self.dev)
-        self.mixing_target_net.load_state_dict(self.mixing_eval_net.state_dict())
-        self.param.extend(self.mixing_eval_net.parameters())
-
         self.memory = RecurrentReplayBuffer(agent_num, seq_length, buffer_size, dev=self.dev)
         # for train
         self.eval_hidden_state = [None] * self.agent_num
@@ -100,14 +92,12 @@ class QMIXagent(object):
                     tnet.load_state_dict(enet.state_dict())
             else:
                 self.target_net.load_state_dict(self.eval_net.state_dict())
-            self.mixing_target_net.load_state_dict(self.mixing_eval_net.state_dict())
-            # logger.info('Target net updated at ' + str(self.training_step))
 
     def decrement_epsilon(self, episode, batch_size):
-        # if episode > batch_size:
-        self.epsilon = self.initial_epsilon - episode * (self.initial_epsilon - self.final_epsilon) / self.episode
-        # else:
-        #     self.epsilon = 1
+        if episode > batch_size:
+            self.epsilon = self.initial_epsilon - episode * (self.initial_epsilon - self.final_epsilon) / self.episode
+        else:
+            self.epsilon = 1
 
     def hidden_state_reset(self, batch_size=1):
         self.eval_hidden_state = torch.zeros(self.agent_num, batch_size, self.rnn_hidden_size).to(self.dev)
@@ -146,9 +136,10 @@ class QMIXagent(object):
            seqLen = 每个episode抽取多少个时间步的数据
         '''
         states, rewards, next_states, seqLen, batch_length = self.mixing_memory.sample_batch(episodes)
+        rewards = rewards.squeeze(-1).detach()
         state_size = states.shape[-1]
         # 创建mask以标记末尾状态
-        mask = torch.zeros((batchSize, seqLen)).to(self.dev)
+        mask = torch.zeros((seqLen, batchSize)).to(self.dev)
         for row, last_index in zip(mask, batch_length):
             row[:last_index] = 1
 
@@ -207,12 +198,10 @@ class QMIXagent(object):
                 # Q_evals -> (batchSize, agent_num)
                 Q_evals = torch.stack(Q_eval_l, dim=1).view(batchSize, -1)
                 Q_targets = torch.stack(Q_target_l, dim=1).view(batchSize, -1)
-                Q_tot_eval = self.mixing_eval_net(Q_evals, states[transition], self.agent_num, state_size)
-                Q_tot_target = self.mixing_target_net(Q_targets, next_states[transition], self.agent_num,
-                                                      state_size)
+                Q_tot_eval = torch.sum(Q_evals, dim=1)
+                Q_tot_target = torch.sum(Q_targets, dim=1)
 
-                td_target = rewards[transition] + self.gamma * torch.mul(Q_tot_target.detach(),
-                                                                         mask[:, transition].unsqueeze(1).detach())
+                td_target = rewards[transition] + self.gamma * torch.mul(Q_tot_target.detach(), mask[transition].detach())
 
                 for i, b_l in enumerate(batch_length):
                     if b_l < transition + 1:
@@ -239,21 +228,4 @@ class QMIXagent(object):
 
 
 if __name__ == '__main__':
-    agent = QMIXagent(5, 200, 200, 200)
-    eval_mixing_param = agent.mixing_eval_net.state_dict()
-    target_mixing_param = agent.mixing_target_net.state_dict()
-    eval_param = []
-    target_param = []
-
-    eval_param.extend(list(agent.mixing_eval_net.parameters()))
-    target_param.extend(list(agent.mixing_target_net.parameters()))
-
-    agent.optimizer = torch.optim.RMSprop(eval_param, lr=agent.lr)
-    for e in range(10):
-        agent.optimizer.zero_grad()
-        loss = nn.MSELoss()(torch.rand(0, 10), torch.rand(0, 10))
-        loss.requires_grad = True
-        loss.backward()
-        print(f"loss = {loss}")
-        agent.optimizer.step()
     pass

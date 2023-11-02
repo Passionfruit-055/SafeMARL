@@ -45,8 +45,6 @@ class QMIXNet(nn.Module):
         w2 = torch.abs(self.hyper_w2(states)).view(-1, self.mixing_hidden_size, 1)
         b2 = self.hyper_b2(states).view(-1, 1, 1)
         # mixing_network forward
-        output = F.elu(torch.bmm(Qvals, w1) + b1)
-        # print(f"after layer1, {output}")
-        output = torch.bmm(output, w2) + b2
-        # print(f"after layer2, {output}")
+        q_hidden = F.elu(torch.bmm(Qvals, w1) + b1)
+        output = torch.bmm(q_hidden, w2) + b2
         return output.view(-1, 1)

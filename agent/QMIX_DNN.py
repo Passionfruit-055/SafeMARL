@@ -6,6 +6,7 @@ import numpy as np
 
 from network.QMIXnets import QMIXNet
 from network.BaseModel import RNN
+from network.fc3 import DeepQNetwork as DNN
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -40,30 +41,27 @@ class QMIXagent(object):
         self.epsilon = initial_epsilon
         self.gamma = gamma
         self.lr = lr
-        self.local_q_mode = ['sharing', 'individual'][1]
+        self.local_q_mode = ['sharing', 'individual'][args['q_mode']]
 
         self.param = []
         # individual local Q-network
         if self.local_q_mode == 'individual':
             self.eval_net = []
             self.target_net = []
-            net_template = RNN(obs_size, action_size, rnn_hidden_size).state_dict()
+            net_template = DNN(args['learning_rate'], obs_size, action_size).state_dict()
             for i in range(self.agent_num):
-                self.eval_net.append(RNN(obs_size, action_size, rnn_hidden_size).to(self.dev))
+                self.eval_net.append(DNN(args['learning_rate'], obs_size, action_size).to(self.dev))
                 self.eval_net[i].load_state_dict(net_template)
-                self.target_net.append(RNN(obs_size, action_size, rnn_hidden_size).to(self.dev))
+                self.target_net.append(DNN(args['learning_rate'], obs_size, action_size).to(self.dev))
                 self.target_net[i].load_state_dict(self.eval_net[i].state_dict())
             for i in range(self.agent_num):
                 self.param.extend(self.eval_net[i].parameters())
         # sharing local Q-network
         else:
-            # self.obs_size += self.agent_num
-            # self.state_size += self.agent_num ** 2
-
-            self.eval_net = RNN(self.obs_size, action_size, rnn_hidden_size).to(self.dev)
-            self.target_net = RNN(self.obs_size, action_size, rnn_hidden_size).to(self.dev)
+            self.eval_net = DNN(args['learning_rate'], obs_size, action_size).to(self.dev)
+            self.target_net = DNN(args['learning_rate'], obs_size, action_size).to(self.dev)
             self.target_net.load_state_dict(self.eval_net.state_dict())
-            self.param.extend(self.eval_net.parameters())
+        self.param.extend(self.eval_net.parameters())
 
         # mixing net (实际上是hypernets在更新)
         self.mixing_eval_net = QMIXNet(self.agent_num, self.mixing_hidden_size, self.state_size,
@@ -85,7 +83,7 @@ class QMIXagent(object):
 
         self.mixing_memory = ReplayBuffer(buffer_size, dev=self.dev)
 
-        self.optimizer = torch.optim.RMSprop(self.param, lr=self.lr)
+        self.optimizer = torch.optim.Adam(self.param, lr=self.lr)
         self.loss = nn.MSELoss()
 
         # target network update
@@ -101,13 +99,12 @@ class QMIXagent(object):
             else:
                 self.target_net.load_state_dict(self.eval_net.state_dict())
             self.mixing_target_net.load_state_dict(self.mixing_eval_net.state_dict())
-            # logger.info('Target net updated at ' + str(self.training_step))
 
     def decrement_epsilon(self, episode, batch_size):
-        # if episode > batch_size:
-        self.epsilon = self.initial_epsilon - episode * (self.initial_epsilon - self.final_epsilon) / self.episode
-        # else:
-        #     self.epsilon = 1
+        if episode > batch_size:
+            self.epsilon = self.initial_epsilon - episode * (self.initial_epsilon - self.final_epsilon) / self.episode
+        else:
+            self.epsilon = 1
 
     def hidden_state_reset(self, batch_size=1):
         self.eval_hidden_state = torch.zeros(self.agent_num, batch_size, self.rnn_hidden_size).to(self.dev)
@@ -118,16 +115,15 @@ class QMIXagent(object):
         self.target_hidden_state_exec = torch.zeros(self.agent_num, batch_size, self.rnn_hidden_size).to(self.dev)
 
     def choose_actions(self, obs):
-        obs = torch.tensor(obs, dtype=torch.float64).view(self.agent_num, -1).to(self.dev)
+        obs = torch.tensor(obs, dtype=torch.float32).view(self.agent_num, -1).to(self.dev)
         actions = []
-
         for a in range(self.agent_num):
             if self.local_q_mode == 'individual':
                 with torch.no_grad():
-                    Qvals, self.eval_hidden_state_exec[a] = self.eval_net[a](obs[a], self.eval_hidden_state_exec[a])
+                    Qvals = self.eval_net[a](obs[a])
             else:
                 with torch.no_grad():
-                    Qvals, self.eval_hidden_state_exec[a] = self.eval_net(obs[a], self.eval_hidden_state_exec[a])
+                    Qvals = self.eval_net(obs[a])
 
             if random.random() > self.epsilon:
                 actions.append(torch.argmax(Qvals[0], dim=0).item())
@@ -195,8 +191,8 @@ class QMIXagent(object):
                                                                                       self.target_hidden_state):
                         # Q_eval -> (batchSize, action_size)
                         # with torch.autograd.set_detect_anomaly(True):
-                        Q_eval, eval_hidden_state = self.eval_net(obs[transition], eval_hidden_state)
-                        Q_target, target_hidden_state = self.target_net(n_obs[transition], target_hidden_state)
+                        Q_eval = self.eval_net(obs[transition])
+                        Q_target = self.target_net(n_obs[transition])
                         # Q_eval -> (batchSize, 1)
                         Q_eval = torch.gather(Q_eval, 1, us[transition].unsqueeze(1)).squeeze(-1)
                         Q_target = torch.max(Q_target, 1)
