@@ -1,0 +1,286 @@
+2023-09-27 21:42:12,039 - INFO - 
+
+learning_rate:0.001
+gamma:0.8
+tau:0.01
+hsRNN:64
+hsMixing:64
+hsHyper:64
+replace_cycle:500
+agent_num:2
+obs_size:5
+msg_size:27
+com_size:32
+com_mode:3
+state_size:7
+action_size:6
+epoch:1
+buffer_size:32
+batch_size:32
+seq_len:100
+episode:3000
+timestep:200
+view_range:1
+report_cycle:1
+comm_cycle:1
+row:8
+col:8
+height:3
+risklevel:0.1
+risk_num:3
+AoI_limit:3
+
+2023-09-27 21:42:13,113 - INFO - 
+Map size: 8 * 8 * 3
+At height 1 
+[6, 5] [7, 1] [1, 4] 
+At height 2 
+[6, 2] [6, 6] [2, 6] is dangerous
+UAVs are at:
+[3, 3, 1] [3, 5, 1] 
+Dest are at:
+[[0, 7], [0, 0]] [[7, 0], [7, 7]] 
+2023-09-27 21:42:13,123 - INFO - Episode 0 seed: 259
+2023-09-27 21:42:14,908 - INFO - Episode 0 finished after 265 timesteps
+2023-09-27 21:42:15,401 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:42:15,402 - INFO - Episode 1 seed: 259
+2023-09-27 21:42:15,579 - INFO - Episode 1 finished after 47 timesteps
+2023-09-27 21:42:15,975 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:42:15,975 - INFO - Episode 2 seed: 259
+2023-09-27 21:42:17,333 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:42:17,333 - INFO - Episode 3 seed: 259
+2023-09-27 21:42:17,498 - INFO - Episode 3 finished after 45 timesteps
+2023-09-27 21:42:17,953 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:42:17,953 - INFO - Episode 4 seed: 259
+2023-09-27 21:42:19,410 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:42:19,410 - INFO - Episode 5 seed: 259
+2023-09-27 21:42:20,735 - INFO - Arrived: 0 Broken: 0
+2023-09-27 21:42:20,735 - INFO - Episode 6 seed: 259
+2023-09-27 21:42:21,241 - INFO - Episode 6 finished after 166 timesteps
+2023-09-27 21:42:21,654 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:42:21,654 - INFO - Episode 7 seed: 259
+2023-09-27 21:42:22,060 - INFO - Episode 7 finished after 111 timesteps
+2023-09-27 21:42:22,592 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:42:22,592 - INFO - Episode 8 seed: 259
+2023-09-27 21:42:23,154 - INFO - Episode 8 finished after 235 timesteps
+2023-09-27 21:42:23,547 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:42:23,547 - INFO - Episode 9 seed: 259
+2023-09-27 21:42:24,921 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:42:24,921 - INFO - Episode 10 seed: 259
+2023-09-27 21:42:25,451 - INFO - Episode 10 finished after 183 timesteps
+2023-09-27 21:42:25,851 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:42:25,852 - INFO - Episode 11 seed: 259
+2023-09-27 21:42:27,300 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:42:27,300 - INFO - Episode 12 seed: 259
+2023-09-27 21:42:27,698 - INFO - Episode 12 finished after 133 timesteps
+2023-09-27 21:42:28,103 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:42:28,103 - INFO - Episode 13 seed: 259
+2023-09-27 21:42:29,071 - INFO - Episode 13 finished after 296 timesteps
+2023-09-27 21:42:29,481 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:42:29,481 - INFO - Episode 14 seed: 259
+2023-09-27 21:42:29,721 - INFO - Episode 14 finished after 90 timesteps
+2023-09-27 21:42:30,110 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:42:30,111 - INFO - Episode 15 seed: 259
+2023-09-27 21:42:30,367 - INFO - Episode 15 finished after 75 timesteps
+2023-09-27 21:42:30,880 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:42:30,881 - INFO - Episode 16 seed: 259
+2023-09-27 21:42:32,265 - INFO - Arrived: 0 Broken: 0
+2023-09-27 21:42:32,265 - INFO - Episode 17 seed: 259
+2023-09-27 21:42:33,597 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:42:33,598 - INFO - Episode 18 seed: 259
+2023-09-27 21:42:35,145 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:42:35,146 - INFO - Episode 19 seed: 259
+2023-09-27 21:42:35,910 - INFO - Episode 19 finished after 254 timesteps
+2023-09-27 21:42:36,384 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:42:36,384 - INFO - Episode 20 seed: 259
+2023-09-27 21:42:36,689 - INFO - Episode 20 finished after 97 timesteps
+2023-09-27 21:42:37,097 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:42:37,097 - INFO - Episode 21 seed: 259
+2023-09-27 21:42:37,420 - INFO - Episode 21 finished after 108 timesteps
+2023-09-27 21:42:37,822 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:42:37,822 - INFO - Episode 22 seed: 259
+2023-09-27 21:42:39,245 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:42:39,245 - INFO - Episode 23 seed: 259
+2023-09-27 21:42:40,707 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:42:40,707 - INFO - Episode 24 seed: 259
+2023-09-27 21:42:41,143 - INFO - Episode 24 finished after 131 timesteps
+2023-09-27 21:42:41,564 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:42:41,565 - INFO - Episode 25 seed: 259
+2023-09-27 21:42:42,870 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:42:42,871 - INFO - Episode 26 seed: 259
+2023-09-27 21:42:44,324 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:42:44,324 - INFO - Episode 27 seed: 259
+2023-09-27 21:42:45,760 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:42:45,760 - INFO - Episode 28 seed: 259
+2023-09-27 21:42:46,731 - INFO - Episode 28 finished after 287 timesteps
+2023-09-27 21:42:47,128 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:42:47,128 - INFO - Episode 29 seed: 259
+2023-09-27 21:42:48,538 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:42:48,538 - INFO - Episode 30 seed: 259
+2023-09-27 21:42:49,042 - INFO - Episode 30 finished after 171 timesteps
+2023-09-27 21:42:49,471 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:42:49,471 - INFO - Episode 31 seed: 259
+2023-09-27 21:42:50,996 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:42:50,996 - INFO - Episode 32 seed: 259
+2023-09-27 21:42:51,414 - INFO - Episode 32 finished after 127 timesteps
+2023-09-27 21:43:14,048 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:43:14,048 - INFO - Episode 33 seed: 259
+2023-09-27 21:43:14,405 - INFO - Episode 33 finished after 106 timesteps
+2023-09-27 21:43:37,354 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:43:37,354 - INFO - Episode 34 seed: 259
+2023-09-27 21:43:37,445 - INFO - Episode 34 finished after 15 timesteps
+2023-09-27 21:44:02,098 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:44:02,099 - INFO - Episode 35 seed: 259
+2023-09-27 21:44:02,206 - INFO - Episode 35 finished after 47 timesteps
+2023-09-27 21:44:26,908 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:44:26,908 - INFO - Episode 36 seed: 259
+2023-09-27 21:44:27,163 - INFO - Episode 36 finished after 85 timesteps
+2023-09-27 21:44:52,874 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:44:52,874 - INFO - Episode 37 seed: 259
+2023-09-27 21:44:53,239 - INFO - Episode 37 finished after 91 timesteps
+2023-09-27 21:45:18,684 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:45:18,684 - INFO - Episode 38 seed: 259
+2023-09-27 21:45:44,602 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:45:44,603 - INFO - Episode 39 seed: 259
+2023-09-27 21:45:44,636 - INFO - Episode 39 finished after 22 timesteps
+2023-09-27 21:46:11,086 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:46:11,086 - INFO - Episode 40 seed: 259
+2023-09-27 21:46:11,426 - INFO - Episode 40 finished after 92 timesteps
+2023-09-27 21:46:36,711 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:46:36,711 - INFO - Episode 41 seed: 259
+2023-09-27 21:46:37,659 - INFO - Episode 41 finished after 267 timesteps
+2023-09-27 21:47:03,941 - INFO - Arrived: 1 Broken: 1
+2023-09-27 21:47:03,941 - INFO - Episode 42 seed: 259
+2023-09-27 21:47:04,191 - INFO - Episode 42 finished after 57 timesteps
+2023-09-27 21:47:30,516 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:47:30,516 - INFO - Episode 43 seed: 259
+2023-09-27 21:47:31,617 - INFO - Episode 43 finished after 272 timesteps
+2023-09-27 21:47:59,774 - INFO - Arrived: 1 Broken: 1
+2023-09-27 21:47:59,775 - INFO - Episode 44 seed: 259
+2023-09-27 21:48:00,419 - INFO - Episode 44 finished after 166 timesteps
+2023-09-27 21:48:27,745 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:48:27,745 - INFO - Episode 45 seed: 259
+2023-09-27 21:48:28,517 - INFO - Episode 45 finished after 248 timesteps
+2023-09-27 21:48:54,947 - INFO - Arrived: 1 Broken: 1
+2023-09-27 21:48:54,947 - INFO - Episode 46 seed: 259
+2023-09-27 21:48:55,147 - INFO - Episode 46 finished after 63 timesteps
+2023-09-27 21:49:21,648 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:49:21,649 - INFO - Episode 47 seed: 259
+2023-09-27 21:49:21,695 - INFO - Episode 47 finished after 25 timesteps
+2023-09-27 21:49:49,355 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:49:49,355 - INFO - Episode 48 seed: 259
+2023-09-27 21:49:49,463 - INFO - Episode 48 finished after 37 timesteps
+2023-09-27 21:50:16,861 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:50:16,861 - INFO - Episode 49 seed: 259
+2023-09-27 21:50:16,887 - INFO - Episode 49 finished after 16 timesteps
+2023-09-27 21:50:47,230 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:50:47,230 - INFO - Episode 50 seed: 259
+2023-09-27 21:50:47,493 - INFO - Episode 50 finished after 87 timesteps
+2023-09-27 21:51:18,689 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:51:18,690 - INFO - Episode 51 seed: 259
+2023-09-27 21:51:50,420 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:51:50,420 - INFO - Episode 52 seed: 259
+2023-09-27 21:51:51,233 - INFO - Episode 52 finished after 234 timesteps
+2023-09-27 21:52:20,228 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:52:20,228 - INFO - Episode 53 seed: 259
+2023-09-27 21:52:48,257 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:52:48,257 - INFO - Episode 54 seed: 259
+2023-09-27 21:53:18,944 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:53:18,944 - INFO - Episode 55 seed: 259
+2023-09-27 21:53:19,024 - INFO - Episode 55 finished after 44 timesteps
+2023-09-27 21:53:45,820 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:53:45,820 - INFO - Episode 56 seed: 259
+2023-09-27 21:54:12,565 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:54:12,565 - INFO - Episode 57 seed: 259
+2023-09-27 21:54:12,641 - INFO - Episode 57 finished after 19 timesteps
+2023-09-27 21:54:41,928 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:54:41,929 - INFO - Episode 58 seed: 259
+2023-09-27 21:54:41,985 - INFO - Episode 58 finished after 19 timesteps
+2023-09-27 21:55:12,233 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:55:12,234 - INFO - Episode 59 seed: 259
+2023-09-27 21:55:12,443 - INFO - Episode 59 finished after 63 timesteps
+2023-09-27 21:55:42,066 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:55:42,067 - INFO - Episode 60 seed: 259
+2023-09-27 21:56:12,396 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:56:12,396 - INFO - Episode 61 seed: 259
+2023-09-27 21:56:40,717 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:56:40,718 - INFO - Episode 62 seed: 259
+2023-09-27 21:56:40,768 - INFO - Episode 62 finished after 25 timesteps
+2023-09-27 21:57:12,503 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:57:12,503 - INFO - Episode 63 seed: 259
+2023-09-27 21:57:12,743 - INFO - Episode 63 finished after 67 timesteps
+2023-09-27 21:57:41,944 - INFO - Arrived: 2 Broken: 0
+2023-09-27 21:57:41,944 - INFO - Episode 64 seed: 259
+2023-09-27 21:58:11,731 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:58:11,731 - INFO - Episode 65 seed: 259
+2023-09-27 21:58:12,807 - INFO - Episode 65 finished after 290 timesteps
+2023-09-27 21:58:42,838 - INFO - Arrived: 1 Broken: 1
+2023-09-27 21:58:42,839 - INFO - Episode 66 seed: 259
+2023-09-27 21:59:14,810 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:59:14,810 - INFO - Episode 67 seed: 259
+2023-09-27 21:59:43,624 - INFO - Arrived: 1 Broken: 0
+2023-09-27 21:59:43,624 - INFO - Episode 68 seed: 259
+2023-09-27 22:00:14,295 - INFO - Arrived: 1 Broken: 0
+2023-09-27 22:00:14,295 - INFO - Episode 69 seed: 259
+2023-09-27 22:00:15,372 - INFO - Episode 69 finished after 283 timesteps
+2023-09-27 22:00:39,318 - INFO - Arrived: 1 Broken: 1
+2023-09-27 22:00:39,318 - INFO - Episode 70 seed: 259
+2023-09-27 22:00:40,455 - INFO - Episode 70 finished after 279 timesteps
+2023-09-27 22:01:03,862 - INFO - Arrived: 1 Broken: 1
+2023-09-27 22:01:03,863 - INFO - Episode 71 seed: 259
+2023-09-27 22:01:04,996 - INFO - Episode 71 finished after 276 timesteps
+2023-09-27 22:01:29,076 - INFO - Arrived: 1 Broken: 1
+2023-09-27 22:01:29,076 - INFO - Episode 72 seed: 259
+2023-09-27 22:01:30,216 - INFO - Episode 72 finished after 284 timesteps
+2023-09-27 22:01:56,829 - INFO - Arrived: 1 Broken: 1
+2023-09-27 22:01:56,829 - INFO - Episode 73 seed: 259
+2023-09-27 22:02:20,736 - INFO - Arrived: 1 Broken: 0
+2023-09-27 22:02:20,737 - INFO - Episode 74 seed: 259
+2023-09-27 22:02:45,555 - INFO - Arrived: 1 Broken: 0
+2023-09-27 22:02:45,556 - INFO - Episode 75 seed: 259
+2023-09-27 22:03:07,695 - INFO - Arrived: 1 Broken: 0
+2023-09-27 22:03:07,695 - INFO - Episode 76 seed: 259
+2023-09-27 22:03:07,836 - INFO - Episode 76 finished after 38 timesteps
+2023-09-27 22:03:28,284 - INFO - Arrived: 2 Broken: 0
+2023-09-27 22:03:28,285 - INFO - Episode 77 seed: 259
+2023-09-27 22:03:28,368 - INFO - Episode 77 finished after 25 timesteps
+2023-09-27 22:03:50,830 - INFO - Arrived: 2 Broken: 0
+2023-09-27 22:03:50,830 - INFO - Episode 78 seed: 259
+2023-09-27 22:03:50,914 - INFO - Episode 78 finished after 30 timesteps
+2023-09-27 22:04:12,043 - INFO - Arrived: 2 Broken: 0
+2023-09-27 22:04:12,044 - INFO - Episode 79 seed: 259
+2023-09-27 22:04:12,954 - INFO - Episode 79 finished after 291 timesteps
+2023-09-27 22:04:36,915 - INFO - Arrived: 1 Broken: 1
+2023-09-27 22:04:36,915 - INFO - Episode 80 seed: 259
+2023-09-27 22:04:37,754 - INFO - Episode 80 finished after 259 timesteps
+2023-09-27 22:05:01,214 - INFO - Arrived: 1 Broken: 1
+2023-09-27 22:05:01,215 - INFO - Episode 81 seed: 259
+2023-09-27 22:05:02,169 - INFO - Episode 81 finished after 264 timesteps
+2023-09-27 22:05:25,395 - INFO - Arrived: 1 Broken: 1
+2023-09-27 22:05:25,396 - INFO - Episode 82 seed: 259
+2023-09-27 22:05:26,302 - INFO - Episode 82 finished after 282 timesteps
+2023-09-27 22:05:50,183 - INFO - Arrived: 1 Broken: 1
+2023-09-27 22:05:50,183 - INFO - Episode 83 seed: 259
+2023-09-27 22:06:13,327 - INFO - Arrived: 1 Broken: 0
+2023-09-27 22:06:13,327 - INFO - Episode 84 seed: 259
+2023-09-27 22:06:14,252 - INFO - Episode 84 finished after 289 timesteps
+2023-09-27 22:06:37,517 - INFO - Arrived: 1 Broken: 1
+2023-09-27 22:06:37,517 - INFO - Episode 85 seed: 259
+2023-09-27 22:07:02,365 - INFO - Arrived: 1 Broken: 0
+2023-09-27 22:07:02,365 - INFO - Episode 86 seed: 259
+2023-09-27 22:07:02,445 - INFO - Episode 86 finished after 24 timesteps
+2023-09-27 22:07:23,673 - INFO - Arrived: 2 Broken: 0
+2023-09-27 22:07:23,673 - INFO - Episode 87 seed: 259
+2023-09-27 22:07:46,369 - INFO - Arrived: 1 Broken: 0
+2023-09-27 22:07:46,369 - INFO - Episode 88 seed: 259
+2023-09-27 22:07:47,463 - INFO - Episode 88 finished after 283 timesteps
+2023-09-27 22:08:08,518 - INFO - Arrived: 1 Broken: 1
+2023-09-27 22:08:08,518 - INFO - Episode 89 seed: 259
+2023-09-27 22:08:09,532 - INFO - Episode 89 finished after 300 timesteps
+2023-09-27 22:08:30,517 - INFO - Arrived: 1 Broken: 1
+2023-09-27 22:08:30,517 - INFO - Episode 90 seed: 259
+2023-09-27 22:08:31,644 - INFO - Episode 90 finished after 290 timesteps
+2023-09-27 22:08:51,475 - INFO - Arrived: 1 Broken: 1
+2023-09-27 22:08:51,476 - INFO - Episode 91 seed: 259
+2023-09-27 22:09:11,081 - INFO - Arrived: 1 Broken: 0
+2023-09-27 22:09:11,081 - INFO - Episode 92 seed: 259

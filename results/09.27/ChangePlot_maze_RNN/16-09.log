@@ -1,0 +1,116 @@
+2023-09-27 16:09:25,541 - INFO - 
+
+learning_rate:0.001
+gamma:0.8
+tau:0.01
+hsRNN:64
+hsMixing:64
+hsHyper:64
+replace_cycle:500
+agent_num:2
+obs_size:5
+msg_size:27
+com_size:32
+com_mode:3
+state_size:7
+action_size:6
+q_mode:0
+epoch:1
+buffer_size:32
+batch_size:32
+seq_len:100
+episode:3000
+timestep:200
+view_range:1
+report_cycle:1
+comm_cycle:1
+row:8
+col:8
+height:3
+risklevel:0.1
+risk_num:3
+AoI_limit:3
+
+2023-09-27 16:09:26,688 - INFO - 
+Map size: 8 * 8 * 3 
+At height 1 
+At height 2 
+[6, 2] [2, 2] [2, 6] is dangerous
+UAVs are at:
+[3, 3, 1] [3, 5, 1] 
+Dest are at:
+[[0, 7], [0, 0]] [[7, 0], [7, 7]] 
+2023-09-27 16:09:26,704 - INFO - Episode 0 seed: 921
+2023-09-27 16:09:29,789 - INFO - Arrived: 1 Broken: 0
+2023-09-27 16:09:29,789 - INFO - Episode 1 seed: 921
+2023-09-27 16:09:30,783 - INFO - Episode 1 finished after 283 timesteps
+2023-09-27 16:09:31,613 - INFO - Arrived: 2 Broken: 0
+2023-09-27 16:09:31,613 - INFO - Episode 2 seed: 921
+2023-09-27 16:09:32,389 - INFO - Episode 2 finished after 190 timesteps
+2023-09-27 16:09:33,286 - INFO - Arrived: 2 Broken: 0
+2023-09-27 16:09:33,286 - INFO - Episode 3 seed: 921
+2023-09-27 16:09:35,173 - INFO - Arrived: 1 Broken: 0
+2023-09-27 16:09:35,174 - INFO - Episode 4 seed: 921
+2023-09-27 16:09:35,960 - INFO - Episode 4 finished after 230 timesteps
+2023-09-27 16:09:36,795 - INFO - Arrived: 2 Broken: 0
+2023-09-27 16:09:36,796 - INFO - Episode 5 seed: 921
+2023-09-27 16:09:37,845 - INFO - Episode 5 finished after 300 timesteps
+2023-09-27 16:09:38,688 - INFO - Arrived: 2 Broken: 0
+2023-09-27 16:09:38,689 - INFO - Episode 6 seed: 921
+2023-09-27 16:09:40,756 - INFO - Arrived: 0 Broken: 0
+2023-09-27 16:09:40,756 - INFO - Episode 7 seed: 921
+2023-09-27 16:09:42,812 - INFO - Arrived: 1 Broken: 0
+2023-09-27 16:09:42,812 - INFO - Episode 8 seed: 921
+2023-09-27 16:09:44,817 - INFO - Arrived: 0 Broken: 0
+2023-09-27 16:09:44,818 - INFO - Episode 9 seed: 921
+2023-09-27 16:09:46,726 - INFO - Arrived: 1 Broken: 0
+2023-09-27 16:09:46,727 - INFO - Episode 10 seed: 921
+2023-09-27 16:09:48,538 - INFO - Arrived: 1 Broken: 0
+2023-09-27 16:09:48,538 - INFO - Episode 11 seed: 921
+2023-09-27 16:09:50,464 - INFO - Arrived: 1 Broken: 0
+2023-09-27 16:09:50,464 - INFO - Episode 12 seed: 921
+2023-09-27 16:09:52,266 - INFO - Arrived: 1 Broken: 0
+2023-09-27 16:09:52,267 - INFO - Episode 13 seed: 921
+2023-09-27 16:09:54,025 - INFO - Arrived: 1 Broken: 0
+2023-09-27 16:09:54,026 - INFO - Episode 14 seed: 921
+2023-09-27 16:09:54,112 - INFO - Episode 14 finished after 29 timesteps
+2023-09-27 16:09:54,873 - INFO - Arrived: 2 Broken: 0
+2023-09-27 16:09:54,874 - INFO - Episode 15 seed: 921
+2023-09-27 16:09:55,557 - INFO - Episode 15 finished after 212 timesteps
+2023-09-27 16:09:56,341 - INFO - Arrived: 2 Broken: 0
+2023-09-27 16:09:56,341 - INFO - Episode 16 seed: 921
+2023-09-27 16:09:58,256 - INFO - Arrived: 0 Broken: 0
+2023-09-27 16:09:58,256 - INFO - Episode 17 seed: 921
+2023-09-27 16:10:00,146 - INFO - Arrived: 0 Broken: 0
+2023-09-27 16:10:00,147 - INFO - Episode 18 seed: 921
+2023-09-27 16:10:02,083 - INFO - Arrived: 1 Broken: 0
+2023-09-27 16:10:02,084 - INFO - Episode 19 seed: 921
+2023-09-27 16:10:04,508 - INFO - Arrived: 1 Broken: 0
+2023-09-27 16:10:04,509 - INFO - Episode 20 seed: 921
+2023-09-27 16:10:05,286 - INFO - Episode 20 finished after 235 timesteps
+2023-09-27 16:10:06,321 - INFO - Arrived: 2 Broken: 0
+2023-09-27 16:10:06,322 - INFO - Episode 21 seed: 921
+2023-09-27 16:10:08,154 - INFO - Arrived: 1 Broken: 0
+2023-09-27 16:10:08,155 - INFO - Episode 22 seed: 921
+2023-09-27 16:10:10,021 - INFO - Arrived: 1 Broken: 0
+2023-09-27 16:10:10,021 - INFO - Episode 23 seed: 921
+2023-09-27 16:10:11,794 - INFO - Arrived: 1 Broken: 0
+2023-09-27 16:10:11,795 - INFO - Episode 24 seed: 921
+2023-09-27 16:10:13,660 - INFO - Arrived: 1 Broken: 0
+2023-09-27 16:10:13,661 - INFO - Episode 25 seed: 921
+2023-09-27 16:10:15,583 - INFO - Arrived: 1 Broken: 0
+2023-09-27 16:10:15,584 - INFO - Episode 26 seed: 921
+2023-09-27 16:10:15,756 - INFO - Episode 26 finished after 61 timesteps
+2023-09-27 16:10:16,503 - INFO - Arrived: 2 Broken: 0
+2023-09-27 16:10:16,504 - INFO - Episode 27 seed: 921
+2023-09-27 16:10:18,268 - INFO - Arrived: 1 Broken: 0
+2023-09-27 16:10:18,269 - INFO - Episode 28 seed: 921
+2023-09-27 16:10:20,202 - INFO - Arrived: 1 Broken: 0
+2023-09-27 16:10:20,202 - INFO - Episode 29 seed: 921
+2023-09-27 16:10:22,053 - INFO - Arrived: 1 Broken: 0
+2023-09-27 16:10:22,054 - INFO - Episode 30 seed: 921
+2023-09-27 16:10:24,123 - INFO - Arrived: 1 Broken: 0
+2023-09-27 16:10:24,125 - INFO - Episode 31 seed: 921
+2023-09-27 16:10:25,914 - INFO - Arrived: 1 Broken: 0
+2023-09-27 16:10:25,914 - INFO - Episode 32 seed: 921
+2023-09-27 16:10:26,350 - INFO - Episode 32 finished after 140 timesteps

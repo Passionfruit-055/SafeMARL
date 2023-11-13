@@ -1,0 +1,83 @@
+2023-09-28 17:23:05,666 - INFO - 
+
+learning_rate:0.001
+gamma:0.8
+tau:0.01
+hsRNN:64
+hsMixing:64
+hsHyper:64
+replace_cycle:500
+agent_num:2
+obs_size:5
+msg_size:27
+com_size:32
+com_mode:3
+state_size:7
+action_size:6
+epoch:1
+buffer_size:32
+batch_size:32
+seq_len:100
+episode:3000
+timestep:300
+view_range:1
+report_cycle:1
+comm_cycle:1
+row:8
+col:8
+height:3
+risklevel:0.1
+risk_num:3
+AoI_limit:3
+
+2023-09-28 17:23:06,722 - INFO - Episode 0 seed: 334
+2023-09-28 17:25:48,706 - INFO - Episode 1 seed: 334
+2023-09-28 17:29:28,813 - INFO - Episode 2 seed: 334
+2023-09-28 17:32:16,475 - INFO - Episode 3 seed: 334
+2023-09-28 17:35:05,416 - INFO - Episode 4 seed: 334
+2023-09-28 17:38:21,052 - INFO - Episode 5 seed: 334
+2023-09-28 17:41:09,946 - INFO - Episode 6 seed: 334
+2023-09-28 17:43:59,417 - INFO - Episode 7 seed: 334
+2023-09-28 17:46:54,040 - INFO - Episode 8 seed: 334
+2023-09-28 17:49:43,898 - INFO - Episode 9 seed: 334
+2023-09-28 17:52:33,783 - INFO - Episode 10 seed: 334
+2023-09-28 17:55:21,152 - INFO - Episode 11 seed: 334
+2023-09-28 17:58:09,311 - INFO - Episode 12 seed: 334
+2023-09-28 18:00:57,340 - INFO - Episode 13 seed: 334
+2023-09-28 18:03:41,883 - INFO - Episode 14 seed: 334
+2023-09-28 18:06:29,433 - INFO - Episode 15 seed: 334
+2023-09-28 18:09:29,796 - INFO - Episode 16 seed: 334
+2023-09-28 18:12:31,403 - INFO - Episode 17 seed: 334
+2023-09-28 18:15:34,187 - INFO - Episode 18 seed: 334
+2023-09-28 18:18:34,021 - INFO - Episode 19 seed: 334
+2023-09-28 18:21:36,028 - INFO - Episode 20 seed: 334
+2023-09-28 18:24:33,661 - INFO - Episode 21 seed: 334
+2023-09-28 18:27:29,350 - INFO - Episode 22 seed: 334
+2023-09-28 18:30:32,662 - INFO - Episode 23 seed: 334
+2023-09-28 18:33:39,392 - INFO - Episode 24 seed: 334
+2023-09-28 18:36:45,207 - INFO - Episode 25 seed: 334
+2023-09-28 18:39:51,723 - INFO - Episode 26 seed: 334
+2023-09-28 18:42:58,319 - INFO - Episode 27 seed: 334
+2023-09-28 18:46:04,362 - INFO - Episode 28 seed: 334
+2023-09-28 18:49:09,826 - INFO - Episode 29 seed: 334
+2023-09-28 18:52:17,106 - INFO - Episode 30 seed: 334
+2023-09-28 18:55:20,542 - INFO - Episode 31 seed: 334
+2023-09-28 18:58:30,997 - INFO - Episode 32 seed: 334
+2023-09-28 19:01:42,739 - INFO - Episode 33 seed: 334
+2023-09-28 19:04:54,714 - INFO - Episode 34 seed: 334
+2023-09-28 19:07:57,079 - INFO - Episode 35 seed: 334
+2023-09-28 19:11:04,616 - INFO - Episode 36 seed: 334
+2023-09-28 19:14:12,265 - INFO - Episode 37 seed: 334
+2023-09-28 19:17:19,145 - INFO - Episode 38 seed: 334
+2023-09-28 19:20:25,188 - INFO - Episode 39 seed: 334
+2023-09-28 19:23:31,395 - INFO - Episode 40 seed: 334
+2023-09-28 19:26:35,818 - INFO - Episode 41 seed: 334
+2023-09-28 19:29:39,480 - INFO - Episode 42 seed: 334
+2023-09-28 19:32:45,028 - INFO - Episode 43 seed: 334
+2023-09-28 19:35:50,487 - INFO - Episode 44 seed: 334
+2023-09-28 19:38:54,309 - INFO - Episode 45 seed: 334
+2023-09-28 19:42:01,637 - INFO - Episode 46 seed: 334
+2023-09-28 19:45:06,488 - INFO - Episode 47 seed: 334
+2023-09-28 19:48:08,736 - INFO - Episode 48 seed: 334
+2023-09-28 19:51:18,876 - INFO - Episode 49 seed: 334
+2023-09-28 19:54:25,432 - INFO - Episode 50 seed: 334

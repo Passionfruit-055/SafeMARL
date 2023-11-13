@@ -78,8 +78,8 @@ def choose_agent(net_info, args):
 
 if __name__ == '__main__':
 
-    batch_info = 'TimeSeqObs'
-    env_info = ['maze', 'upload'][1]
+    batch_info = 'new hidden state'
+    env_info = ['maze', 'upload'][0]
     net_info = ['QMIXRNN', 'QMIXDNN', 'VDN', 'IQL'][0]
     info = batch_info + '_' + env_info + '_' + net_info
     logger.setLevel(logging.DEBUG)
@@ -155,9 +155,8 @@ if __name__ == '__main__':
             if done:
                 logger.info('Episode ' + str(e) + ' finished after ' + str(t + 1) + ' timesteps')
                 break
-        cmap = plt.cm.get_cmap('Set2')
+        cmap = plt.colormaps.get_cmap('Set2')
         colors = cmap.colors
-        # colors = ['blue', 'black', 'red', 'green', 'yellow', 'purple']
         plt.figure()
         for i, k in enumerate(episode_reward.keys()):
             if k == 'Team':

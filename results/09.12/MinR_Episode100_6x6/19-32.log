@@ -1,0 +1,287 @@
+2023-09-12 19:32:32,722 - INFO - team_reward is the minimum reward of all agents
+
+learning_rate:0.001
+buffer_size:32
+gamma:0.9
+tau:0.01
+hsRNN:64
+hsMixing:64
+hsHyper:64
+replace_cycle:800
+agent_num:2
+state_size:60
+action_size:6
+obs_size:30
+comm_size:27
+epoch:1
+batch_size:16
+seq_len:100
+episode:1000
+timestep:100
+view_range:1
+report_cycle:1
+comm_cycle:1
+row:6
+col:6
+height:3
+risklevel:0.2
+AoI_limit:3
+
+2023-09-12 19:32:32,722 - INFO - 
+Map size: 6 * 6 * 3 
+At height 1 
+[4, 4] [3, 0] [2, 3] is dangerous
+At height 2 
+[1, 1] [2, 5] [3, 2] is dangerous
+UAVs are at:
+[0, 0, 1] [0, 5, 1] 
+Dest are at:
+[5, 0] [5, 1] 
+2023-09-12 19:32:33,064 - INFO - Episode 0 seed: 863
+2023-09-12 19:32:43,016 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:32:43,016 - INFO - Episode 1 seed: 684
+2023-09-12 19:32:53,003 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:32:53,003 - INFO - Episode 2 seed: 697
+2023-09-12 19:33:02,510 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:33:02,510 - INFO - Episode 3 seed: 327
+2023-09-12 19:33:12,616 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:33:12,617 - INFO - Episode 4 seed: 99
+2023-09-12 19:33:22,391 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:33:22,391 - INFO - Episode 5 seed: 508
+2023-09-12 19:33:31,924 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:33:31,925 - INFO - Episode 6 seed: 399
+2023-09-12 19:33:41,164 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:33:41,164 - INFO - Episode 7 seed: 328
+2023-09-12 19:33:50,554 - INFO - Target net updated at 800
+2023-09-12 19:33:50,751 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:33:50,751 - INFO - Episode 8 seed: 177
+2023-09-12 19:34:00,576 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:34:00,576 - INFO - Episode 9 seed: 206
+2023-09-12 19:34:10,045 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:34:10,045 - INFO - Episode 10 seed: 931
+2023-09-12 19:34:19,661 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:34:19,661 - INFO - Episode 11 seed: 497
+2023-09-12 19:34:29,223 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:34:29,223 - INFO - Episode 12 seed: 433
+2023-09-12 19:34:38,845 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:34:38,845 - INFO - Episode 13 seed: 469
+2023-09-12 19:34:48,316 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:34:48,316 - INFO - Episode 14 seed: 388
+2023-09-12 19:34:56,906 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:34:56,906 - INFO - Episode 15 seed: 824
+2023-09-12 19:35:05,299 - INFO - Target net updated at 1600
+2023-09-12 19:35:05,510 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:35:05,510 - INFO - Episode 16 seed: 885
+2023-09-12 19:35:15,133 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:35:15,133 - INFO - Episode 17 seed: 269
+2023-09-12 19:35:24,973 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:35:24,974 - INFO - Episode 18 seed: 579
+2023-09-12 19:35:34,795 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:35:34,795 - INFO - Episode 19 seed: 896
+2023-09-12 19:35:44,494 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:35:44,494 - INFO - Episode 20 seed: 124
+2023-09-12 19:35:54,528 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:35:54,528 - INFO - Episode 21 seed: 92
+2023-09-12 19:36:04,159 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:36:04,159 - INFO - Episode 22 seed: 236
+2023-09-12 19:36:13,910 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:36:13,910 - INFO - Episode 23 seed: 284
+2023-09-12 19:36:23,453 - INFO - Target net updated at 2400
+2023-09-12 19:36:23,731 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:36:23,731 - INFO - Episode 24 seed: 266
+2023-09-12 19:36:34,010 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:36:34,010 - INFO - Episode 25 seed: 186
+2023-09-12 19:36:44,396 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:36:44,396 - INFO - Episode 26 seed: 175
+2023-09-12 19:36:54,306 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:36:54,306 - INFO - Episode 27 seed: 982
+2023-09-12 19:37:03,977 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:37:03,977 - INFO - Episode 28 seed: 829
+2023-09-12 19:37:13,731 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:37:13,731 - INFO - Episode 29 seed: 56
+2023-09-12 19:37:23,479 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:37:23,480 - INFO - Episode 30 seed: 664
+2023-09-12 19:37:32,901 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:37:32,901 - INFO - Episode 31 seed: 1000
+2023-09-12 19:37:42,102 - INFO - Target net updated at 3200
+2023-09-12 19:37:42,301 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:37:42,301 - INFO - Episode 32 seed: 661
+2023-09-12 19:38:00,595 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:38:00,595 - INFO - Episode 33 seed: 221
+2023-09-12 19:38:28,599 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:38:28,600 - INFO - Episode 34 seed: 876
+2023-09-12 19:38:56,141 - INFO - Target net updated at 4000
+2023-09-12 19:39:05,239 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:39:05,239 - INFO - Episode 35 seed: 646
+2023-09-12 19:39:41,576 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:39:41,576 - INFO - Episode 36 seed: 784
+2023-09-12 19:40:09,469 - INFO - Target net updated at 4800
+2023-09-12 19:40:27,329 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:40:27,329 - INFO - Episode 37 seed: 714
+2023-09-12 19:41:19,088 - INFO - Target net updated at 5600
+2023-09-12 19:41:19,265 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:41:19,266 - INFO - Episode 38 seed: 920
+2023-09-12 19:42:13,809 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:42:13,809 - INFO - Episode 39 seed: 802
+2023-09-12 19:42:32,521 - INFO - Target net updated at 6400
+2023-09-12 19:43:08,130 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:43:08,131 - INFO - Episode 40 seed: 602
+2023-09-12 19:43:43,962 - INFO - Target net updated at 7200
+2023-09-12 19:44:10,382 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:44:10,383 - INFO - Episode 41 seed: 591
+2023-09-12 19:44:55,284 - INFO - Target net updated at 8000
+2023-09-12 19:45:21,985 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:45:21,985 - INFO - Episode 42 seed: 251
+2023-09-12 19:46:07,546 - INFO - Target net updated at 8800
+2023-09-12 19:46:43,260 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:46:43,260 - INFO - Episode 43 seed: 855
+2023-09-12 19:47:20,812 - INFO - Target net updated at 9600
+2023-09-12 19:48:14,966 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:48:14,967 - INFO - Episode 44 seed: 116
+2023-09-12 19:48:34,441 - INFO - Target net updated at 10400
+2023-09-12 19:49:43,965 - INFO - Target net updated at 11200
+2023-09-12 19:49:52,528 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:49:52,528 - INFO - Episode 45 seed: 523
+2023-09-12 19:50:56,093 - INFO - Target net updated at 12000
+2023-09-12 19:51:32,728 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:51:32,729 - INFO - Episode 46 seed: 988
+2023-09-12 19:52:09,831 - INFO - Target net updated at 12800
+2023-09-12 19:53:22,217 - INFO - Target net updated at 13600
+2023-09-12 19:53:22,406 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:53:22,406 - INFO - Episode 47 seed: 664
+2023-09-12 19:54:34,258 - INFO - Target net updated at 14400
+2023-09-12 19:55:10,700 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:55:10,700 - INFO - Episode 48 seed: 982
+2023-09-12 19:55:48,917 - INFO - Target net updated at 15200
+2023-09-12 19:56:59,566 - INFO - Target net updated at 16000
+2023-09-12 19:57:08,802 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:57:08,802 - INFO - Episode 49 seed: 585
+2023-09-12 19:58:13,763 - INFO - Target net updated at 16800
+2023-09-12 19:59:14,628 - INFO - Arrived: 0 Broken: 0
+2023-09-12 19:59:14,628 - INFO - Episode 50 seed: 732
+2023-09-12 19:59:25,375 - INFO - Target net updated at 17600
+2023-09-12 20:00:36,709 - INFO - Target net updated at 18400
+2023-09-12 20:01:30,700 - INFO - Arrived: 0 Broken: 0
+2023-09-12 20:01:30,700 - INFO - Episode 51 seed: 838
+2023-09-12 20:01:50,328 - INFO - Target net updated at 19200
+2023-09-12 20:02:59,099 - INFO - Target net updated at 20000
+2023-09-12 20:03:52,231 - INFO - Arrived: 0 Broken: 0
+2023-09-12 20:03:52,231 - INFO - Episode 52 seed: 597
+2023-09-12 20:04:12,110 - INFO - Target net updated at 20800
+2023-09-12 20:05:22,347 - INFO - Target net updated at 21600
+2023-09-12 20:06:24,253 - INFO - Arrived: 0 Broken: 0
+2023-09-12 20:06:24,253 - INFO - Episode 53 seed: 647
+2023-09-12 20:06:35,081 - INFO - Target net updated at 22400
+2023-09-12 20:07:45,895 - INFO - Target net updated at 23200
+2023-09-12 20:08:55,759 - INFO - Target net updated at 24000
+2023-09-12 20:09:04,763 - INFO - Arrived: 0 Broken: 0
+2023-09-12 20:09:04,764 - INFO - Episode 54 seed: 667
+2023-09-12 20:10:09,218 - INFO - Target net updated at 24800
+2023-09-12 20:11:20,214 - INFO - Target net updated at 25600
+2023-09-12 20:11:46,950 - INFO - Arrived: 0 Broken: 0
+2023-09-12 20:11:46,950 - INFO - Episode 55 seed: 557
+2023-09-12 20:12:33,721 - INFO - Target net updated at 26400
+2023-09-12 20:13:45,103 - INFO - Target net updated at 27200
+2023-09-12 20:14:38,479 - INFO - Arrived: 0 Broken: 0
+2023-09-12 20:14:38,479 - INFO - Episode 56 seed: 173
+2023-09-12 20:14:59,167 - INFO - Target net updated at 28000
+2023-09-12 20:16:10,212 - INFO - Target net updated at 28800
+2023-09-12 20:17:15,669 - INFO - Target net updated at 29600
+2023-09-12 20:17:33,581 - INFO - Arrived: 0 Broken: 0
+2023-09-12 20:17:33,581 - INFO - Episode 57 seed: 924
+2023-09-12 20:18:29,949 - INFO - Target net updated at 30400
+2023-09-12 20:19:41,171 - INFO - Target net updated at 31200
+2023-09-12 20:20:34,663 - INFO - Arrived: 0 Broken: 0
+2023-09-12 20:20:34,663 - INFO - Episode 58 seed: 491
+2023-09-12 20:20:54,793 - INFO - Target net updated at 32000
+2023-09-12 20:22:04,926 - INFO - Target net updated at 32800
+2023-09-12 20:23:16,302 - INFO - Target net updated at 33600
+2023-09-12 20:23:34,988 - INFO - Arrived: 0 Broken: 0
+2023-09-12 20:23:34,988 - INFO - Episode 59 seed: 944
+2023-09-12 20:24:30,524 - INFO - Target net updated at 34400
+2023-09-12 20:25:41,755 - INFO - Target net updated at 35200
+2023-09-12 20:26:41,998 - INFO - Arrived: 0 Broken: 0
+2023-09-12 20:26:41,998 - INFO - Episode 60 seed: 357
+2023-09-12 20:26:53,155 - INFO - Target net updated at 36000
+2023-09-12 20:28:02,783 - INFO - Target net updated at 36800
+2023-09-12 20:29:13,232 - INFO - Target net updated at 37600
+2023-09-12 20:29:49,189 - INFO - Arrived: 0 Broken: 0
+2023-09-12 20:29:49,190 - INFO - Episode 61 seed: 11
+2023-09-12 20:30:27,321 - INFO - Target net updated at 38400
+2023-09-12 20:31:38,049 - INFO - Target net updated at 39200
+2023-09-12 20:32:47,486 - INFO - Target net updated at 40000
+2023-09-12 20:32:56,648 - INFO - Arrived: 0 Broken: 0
+2023-09-12 20:32:56,648 - INFO - Episode 62 seed: 901
+2023-09-12 20:34:02,126 - INFO - Target net updated at 40800
+2023-09-12 20:35:13,488 - INFO - Target net updated at 41600
+2023-09-12 20:36:13,584 - INFO - Arrived: 0 Broken: 0
+2023-09-12 20:36:13,584 - INFO - Episode 63 seed: 370
+2023-09-12 20:36:24,972 - INFO - Target net updated at 42400
+2023-09-12 20:37:35,069 - INFO - Target net updated at 43200
+2023-09-12 20:38:44,512 - INFO - Target net updated at 44000
+2023-09-12 20:39:38,453 - INFO - Arrived: 0 Broken: 0
+2023-09-12 20:39:38,453 - INFO - Episode 64 seed: 173
+2023-09-12 20:39:58,911 - INFO - Target net updated at 44800
+2023-09-12 20:41:10,065 - INFO - Target net updated at 45600
+2023-09-12 20:42:20,751 - INFO - Target net updated at 46400
+2023-09-12 20:43:13,499 - INFO - Arrived: 0 Broken: 0
+2023-09-12 20:43:13,500 - INFO - Episode 65 seed: 887
+2023-09-12 20:43:33,772 - INFO - Target net updated at 47200
+2023-09-12 20:44:42,604 - INFO - Target net updated at 48000
+2023-09-12 20:45:53,980 - INFO - Target net updated at 48800
+2023-09-12 20:46:46,801 - INFO - Arrived: 0 Broken: 0
+2023-09-12 20:46:46,801 - INFO - Episode 66 seed: 617
+2023-09-12 20:47:07,660 - INFO - Target net updated at 49600
+2023-09-12 20:48:18,415 - INFO - Target net updated at 50400
+2023-09-12 20:49:29,703 - INFO - Target net updated at 51200
+2023-09-12 20:50:31,947 - INFO - Arrived: 0 Broken: 0
+2023-09-12 20:50:31,947 - INFO - Episode 67 seed: 671
+2023-09-12 20:50:43,700 - INFO - Target net updated at 52000
+2023-09-12 20:51:54,746 - INFO - Target net updated at 52800
+2023-09-12 20:53:05,525 - INFO - Target net updated at 53600
+2023-09-12 20:54:15,221 - INFO - Target net updated at 54400
+2023-09-12 20:54:24,035 - INFO - Arrived: 0 Broken: 0
+2023-09-12 20:54:24,035 - INFO - Episode 68 seed: 383
+2023-09-12 20:55:29,449 - INFO - Target net updated at 55200
+2023-09-12 20:56:40,429 - INFO - Target net updated at 56000
+2023-09-12 20:57:52,599 - INFO - Target net updated at 56800
+2023-09-12 20:58:27,784 - INFO - Arrived: 0 Broken: 0
+2023-09-12 20:58:27,784 - INFO - Episode 69 seed: 617
+2023-09-12 20:59:06,264 - INFO - Target net updated at 57600
+2023-09-12 21:00:37,930 - INFO - Target net updated at 58400
+2023-09-12 21:01:58,750 - INFO - Target net updated at 59200
+2023-09-12 21:03:07,987 - INFO - Target net updated at 60000
+2023-09-12 21:03:08,194 - INFO - Arrived: 0 Broken: 0
+2023-09-12 21:03:08,195 - INFO - Episode 70 seed: 905
+2023-09-12 21:04:20,775 - INFO - Target net updated at 60800
+2023-09-12 21:05:31,003 - INFO - Target net updated at 61600
+2023-09-12 21:06:41,900 - INFO - Target net updated at 62400
+2023-09-12 21:07:25,780 - INFO - Arrived: 0 Broken: 0
+2023-09-12 21:07:25,780 - INFO - Episode 71 seed: 480
+2023-09-12 21:07:55,821 - INFO - Target net updated at 63200
+2023-09-12 21:09:07,327 - INFO - Target net updated at 64000
+2023-09-12 21:10:17,871 - INFO - Target net updated at 64800
+2023-09-12 21:11:29,454 - INFO - Target net updated at 65600
+2023-09-12 21:11:56,253 - INFO - Arrived: 0 Broken: 0
+2023-09-12 21:11:56,253 - INFO - Episode 72 seed: 683
+2023-09-12 21:12:44,061 - INFO - Target net updated at 66400
+2023-09-12 21:13:54,335 - INFO - Target net updated at 67200
+2023-09-12 21:15:06,187 - INFO - Target net updated at 68000
+2023-09-12 21:16:17,567 - INFO - Target net updated at 68800
+2023-09-12 21:16:35,435 - INFO - Arrived: 0 Broken: 0
+2023-09-12 21:16:35,435 - INFO - Episode 73 seed: 574
+2023-09-12 21:17:32,715 - INFO - Target net updated at 69600
+2023-09-12 21:18:42,049 - INFO - Target net updated at 70400
+2023-09-12 21:19:54,337 - INFO - Target net updated at 71200
+2023-09-12 21:21:06,241 - INFO - Target net updated at 72000
+2023-09-12 21:21:25,081 - INFO - Arrived: 0 Broken: 0
+2023-09-12 21:21:25,081 - INFO - Episode 74 seed: 996
+2023-09-12 21:22:21,675 - INFO - Target net updated at 72800
+2023-09-12 21:23:31,307 - INFO - Target net updated at 73600
+2023-09-12 21:24:41,862 - INFO - Target net updated at 74400
+2023-09-12 21:25:52,724 - INFO - Target net updated at 75200
+2023-09-12 21:26:19,526 - INFO - Arrived: 0 Broken: 0
+2023-09-12 21:26:19,526 - INFO - Episode 75 seed: 544
+2023-09-12 21:27:07,419 - INFO - Target net updated at 76000
+2023-09-12 21:28:18,268 - INFO - Target net updated at 76800
+2023-09-12 21:29:29,139 - INFO - Target net updated at 77600

@@ -1,0 +1,59 @@
+2023-09-26 16:41:40,192 - INFO - 
+
+learning_rate:0.001
+gamma:0.8
+tau:0.01
+hsRNN:64
+hsMixing:64
+hsHyper:64
+replace_cycle:500
+agent_num:2
+obs_size:5
+msg_size:27
+com_size:32
+com_mode:3
+state_size:7
+action_size:6
+q_mode:0
+epoch:1
+buffer_size:32
+batch_size:32
+seq_len:100
+episode:3000
+timestep:200
+view_range:1
+report_cycle:1
+comm_cycle:1
+row:8
+col:8
+height:3
+risklevel:0.1
+AoI_limit:3
+
+2023-09-26 16:41:41,275 - INFO - 
+Map size: 8 * 8 * 3 
+At height 1 
+[4, 1] [3, 4] [5, 0] is dangerous
+At height 2 
+[4, 2] [5, 3] [5, 6] is dangerous
+UAVs are at:
+[3, 5, 1] [3, 3, 1] 
+Dest are at:
+[0, 7] [7, 0] 
+2023-09-26 16:41:41,280 - INFO - Episode 0 seed: 35
+2023-09-26 16:42:02,220 - INFO - Arrived: 1 Broken: 0 Communication: 0.0
+2023-09-26 16:42:02,220 - INFO - Episode 1 seed: 35
+2023-09-26 16:42:22,355 - INFO - Arrived: 1 Broken: 0 Communication: 0.0
+2023-09-26 16:42:22,355 - INFO - Episode 2 seed: 35
+2023-09-26 16:42:22,798 - INFO - Episode 2 finished after 220 timesteps
+2023-09-26 16:42:43,109 - INFO - Arrived: 2 Broken: 0 Communication: 0.0
+2023-09-26 16:42:43,109 - INFO - Episode 3 seed: 35
+2023-09-26 16:42:43,156 - INFO - Episode 3 finished after 32 timesteps
+2023-09-26 16:43:03,731 - INFO - Arrived: 2 Broken: 0 Communication: 0.0
+2023-09-26 16:43:03,732 - INFO - Episode 4 seed: 35
+2023-09-26 16:43:24,971 - INFO - Arrived: 1 Broken: 0 Communication: 0.0
+2023-09-26 16:43:24,971 - INFO - Episode 5 seed: 35
+2023-09-26 16:43:25,072 - INFO - Episode 5 finished after 53 timesteps
+2023-09-26 16:43:45,752 - INFO - Arrived: 2 Broken: 0 Communication: 0.0
+2023-09-26 16:43:45,752 - INFO - Episode 6 seed: 35
+2023-09-26 16:43:45,991 - INFO - Episode 6 finished after 141 timesteps

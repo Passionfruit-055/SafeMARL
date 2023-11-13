@@ -1,0 +1,1214 @@
+2023-09-13 14:45:51,037 - INFO - 
+
+learning_rate:0.001
+gamma:0.9
+tau:0.01
+hsRNN:64
+hsMixing:64
+hsHyper:64
+replace_cycle:500
+agent_num:2
+state_size:60
+action_size:6
+obs_size:30
+comm_size:27
+epoch:1
+buffer_size:16
+batch_size:8
+seq_len:100
+episode:1000
+timestep:300
+view_range:1
+report_cycle:1
+comm_cycle:1
+row:10
+col:10
+height:3
+risklevel:0.2
+AoI_limit:3
+
+2023-09-13 14:45:51,037 - INFO - 
+Map size: 10 * 10 * 3 
+At height 1 
+[0, 8] [0, 5] [2, 0] [4, 1] [3, 3] [5, 3] [7, 1] [9, 0] [1, 1] [3, 2] is dangerous
+At height 2 
+[8, 4] [3, 0] [2, 8] [2, 3] [3, 5] [1, 8] [5, 7] [3, 8] [9, 7] [0, 3] is dangerous
+UAVs are at:
+[0, 0, 1] [0, 9, 1] 
+Dest are at:
+[6, 9] [8, 2] 
+2023-09-13 14:45:51,208 - INFO - Episode 0 seed: 556
+2023-09-13 14:46:07,224 - INFO - Arrived: 0 Broken: 1
+2023-09-13 14:46:07,224 - INFO - Episode 1 seed: 105
+2023-09-13 14:46:22,767 - INFO - Target net updated at 500
+2023-09-13 14:46:29,677 - INFO - Arrived: 0 Broken: 2
+2023-09-13 14:46:29,677 - INFO - Episode 2 seed: 5
+2023-09-13 14:46:52,181 - INFO - Arrived: 0 Broken: 2
+2023-09-13 14:46:52,181 - INFO - Episode 3 seed: 967
+2023-09-13 14:47:00,269 - INFO - Target net updated at 1000
+2023-09-13 14:47:14,441 - INFO - Arrived: 0 Broken: 2
+2023-09-13 14:47:14,441 - INFO - Episode 4 seed: 37
+2023-09-13 14:47:37,270 - INFO - Target net updated at 1500
+2023-09-13 14:47:37,559 - INFO - Arrived: 0 Broken: 2
+2023-09-13 14:47:37,560 - INFO - Episode 5 seed: 265
+2023-09-13 14:47:59,764 - INFO - Arrived: 0 Broken: 2
+2023-09-13 14:47:59,765 - INFO - Episode 6 seed: 741
+2023-09-13 14:48:14,096 - INFO - Target net updated at 2000
+2023-09-13 14:48:20,884 - INFO - Arrived: 0 Broken: 1
+2023-09-13 14:48:20,884 - INFO - Episode 7 seed: 100
+2023-09-13 14:48:42,054 - INFO - Arrived: 0 Broken: 2
+2023-09-13 14:48:42,055 - INFO - Episode 8 seed: 5
+2023-09-13 14:48:49,747 - INFO - Target net updated at 2500
+2023-09-13 14:49:03,891 - INFO - Arrived: 0 Broken: 2
+2023-09-13 14:49:03,891 - INFO - Episode 9 seed: 883
+2023-09-13 14:49:25,961 - INFO - Target net updated at 3000
+2023-09-13 14:49:26,208 - INFO - Arrived: 0 Broken: 2
+2023-09-13 14:49:26,209 - INFO - Episode 10 seed: 188
+2023-09-13 14:49:48,609 - INFO - Arrived: 0 Broken: 2
+2023-09-13 14:49:48,609 - INFO - Episode 11 seed: 245
+2023-09-13 14:50:03,136 - INFO - Target net updated at 3500
+2023-09-13 14:50:10,814 - INFO - Arrived: 0 Broken: 1
+2023-09-13 14:50:10,814 - INFO - Episode 12 seed: 872
+2023-09-13 14:50:35,038 - INFO - Arrived: 0 Broken: 2
+2023-09-13 14:50:35,038 - INFO - Episode 13 seed: 916
+2023-09-13 14:50:44,445 - INFO - Target net updated at 4000
+2023-09-13 14:51:00,662 - INFO - Arrived: 0 Broken: 0
+2023-09-13 14:51:00,662 - INFO - Episode 14 seed: 32
+2023-09-13 14:51:22,857 - INFO - Target net updated at 4500
+2023-09-13 14:51:23,146 - INFO - Arrived: 0 Broken: 1
+2023-09-13 14:51:23,146 - INFO - Episode 15 seed: 990
+2023-09-13 14:51:44,903 - INFO - Arrived: 0 Broken: 2
+2023-09-13 14:51:44,903 - INFO - Episode 16 seed: 718
+2023-09-13 14:51:59,741 - INFO - Target net updated at 5000
+2023-09-13 14:52:27,955 - INFO - Arrived: 0 Broken: 2
+2023-09-13 14:52:27,955 - INFO - Episode 17 seed: 772
+2023-09-13 14:52:36,210 - INFO - Target net updated at 5500
+2023-09-13 14:53:10,788 - INFO - Target net updated at 6000
+2023-09-13 14:53:31,157 - INFO - Arrived: 0 Broken: 1
+2023-09-13 14:53:31,157 - INFO - Episode 18 seed: 431
+2023-09-13 14:53:46,430 - INFO - Target net updated at 6500
+2023-09-13 14:54:21,442 - INFO - Target net updated at 7000
+2023-09-13 14:54:56,254 - INFO - Target net updated at 7500
+2023-09-13 14:54:56,620 - INFO - Arrived: 0 Broken: 0
+2023-09-13 14:54:56,620 - INFO - Episode 19 seed: 880
+2023-09-13 14:55:33,580 - INFO - Target net updated at 8000
+2023-09-13 14:56:08,619 - INFO - Target net updated at 8500
+2023-09-13 14:56:43,799 - INFO - Target net updated at 9000
+2023-09-13 14:56:44,106 - INFO - Arrived: 0 Broken: 2
+2023-09-13 14:56:44,106 - INFO - Episode 20 seed: 638
+2023-09-13 14:57:20,240 - INFO - Target net updated at 9500
+2023-09-13 14:57:50,335 - INFO - Target net updated at 10000
+2023-09-13 14:58:25,240 - INFO - Target net updated at 10500
+2023-09-13 14:58:25,546 - INFO - Arrived: 0 Broken: 1
+2023-09-13 14:58:25,546 - INFO - Episode 21 seed: 74
+2023-09-13 14:59:02,209 - INFO - Target net updated at 11000
+2023-09-13 14:59:37,376 - INFO - Target net updated at 11500
+2023-09-13 15:00:11,541 - INFO - Target net updated at 12000
+2023-09-13 15:00:11,844 - INFO - Arrived: 0 Broken: 1
+2023-09-13 15:00:11,844 - INFO - Episode 22 seed: 738
+2023-09-13 15:00:47,691 - INFO - Target net updated at 12500
+2023-09-13 15:01:22,235 - INFO - Target net updated at 13000
+2023-09-13 15:01:56,070 - INFO - Target net updated at 13500
+2023-09-13 15:02:16,959 - INFO - Arrived: 0 Broken: 1
+2023-09-13 15:02:16,959 - INFO - Episode 23 seed: 973
+2023-09-13 15:02:32,489 - INFO - Target net updated at 14000
+2023-09-13 15:03:07,286 - INFO - Target net updated at 14500
+2023-09-13 15:03:43,191 - INFO - Target net updated at 15000
+2023-09-13 15:04:18,228 - INFO - Target net updated at 15500
+2023-09-13 15:04:46,709 - INFO - Arrived: 0 Broken: 0
+2023-09-13 15:04:46,709 - INFO - Episode 24 seed: 700
+2023-09-13 15:04:55,862 - INFO - Target net updated at 16000
+2023-09-13 15:05:31,300 - INFO - Target net updated at 16500
+2023-09-13 15:06:06,059 - INFO - Target net updated at 17000
+2023-09-13 15:06:40,227 - INFO - Target net updated at 17500
+2023-09-13 15:07:15,158 - INFO - Target net updated at 18000
+2023-09-13 15:07:36,211 - INFO - Arrived: 0 Broken: 0
+2023-09-13 15:07:36,211 - INFO - Episode 25 seed: 911
+2023-09-13 15:07:52,333 - INFO - Target net updated at 18500
+2023-09-13 15:08:27,518 - INFO - Target net updated at 19000
+2023-09-13 15:08:57,102 - INFO - Target net updated at 19500
+2023-09-13 15:09:31,591 - INFO - Target net updated at 20000
+2023-09-13 15:10:07,353 - INFO - Target net updated at 20500
+2023-09-13 15:10:42,002 - INFO - Target net updated at 21000
+2023-09-13 15:10:42,325 - INFO - Arrived: 0 Broken: 1
+2023-09-13 15:10:42,325 - INFO - Episode 26 seed: 461
+2023-09-13 15:11:19,422 - INFO - Target net updated at 21500
+2023-09-13 15:11:55,150 - INFO - Target net updated at 22000
+2023-09-13 15:12:30,770 - INFO - Target net updated at 22500
+2023-09-13 15:13:04,623 - INFO - Target net updated at 23000
+2023-09-13 15:13:39,399 - INFO - Target net updated at 23500
+2023-09-13 15:14:13,246 - INFO - Target net updated at 24000
+2023-09-13 15:14:13,618 - INFO - Arrived: 0 Broken: 1
+2023-09-13 15:14:13,618 - INFO - Episode 27 seed: 125
+2023-09-13 15:14:50,229 - INFO - Target net updated at 24500
+2023-09-13 15:15:25,743 - INFO - Target net updated at 25000
+2023-09-13 15:16:00,131 - INFO - Target net updated at 25500
+2023-09-13 15:16:34,663 - INFO - Target net updated at 26000
+2023-09-13 15:17:09,557 - INFO - Target net updated at 26500
+2023-09-13 15:17:42,842 - INFO - Target net updated at 27000
+2023-09-13 15:17:43,116 - INFO - Arrived: 0 Broken: 0
+2023-09-13 15:17:43,117 - INFO - Episode 28 seed: 678
+2023-09-13 15:18:21,676 - INFO - Target net updated at 27500
+2023-09-13 15:18:56,274 - INFO - Target net updated at 28000
+2023-09-13 15:19:31,041 - INFO - Target net updated at 28500
+2023-09-13 15:20:04,978 - INFO - Target net updated at 29000
+2023-09-13 15:20:33,543 - INFO - Target net updated at 29500
+2023-09-13 15:21:07,818 - INFO - Target net updated at 30000
+2023-09-13 15:21:28,855 - INFO - Arrived: 0 Broken: 1
+2023-09-13 15:21:28,856 - INFO - Episode 29 seed: 622
+2023-09-13 15:21:45,671 - INFO - Target net updated at 30500
+2023-09-13 15:22:20,979 - INFO - Target net updated at 31000
+2023-09-13 15:22:57,009 - INFO - Target net updated at 31500
+2023-09-13 15:23:32,075 - INFO - Target net updated at 32000
+2023-09-13 15:24:07,246 - INFO - Target net updated at 32500
+2023-09-13 15:24:43,080 - INFO - Target net updated at 33000
+2023-09-13 15:25:18,308 - INFO - Target net updated at 33500
+2023-09-13 15:25:25,183 - INFO - Arrived: 0 Broken: 0
+2023-09-13 15:25:25,183 - INFO - Episode 30 seed: 231
+2023-09-13 15:25:54,850 - INFO - Target net updated at 34000
+2023-09-13 15:26:30,022 - INFO - Target net updated at 34500
+2023-09-13 15:27:03,961 - INFO - Target net updated at 35000
+2023-09-13 15:27:38,642 - INFO - Target net updated at 35500
+2023-09-13 15:28:12,963 - INFO - Target net updated at 36000
+2023-09-13 15:28:47,920 - INFO - Target net updated at 36500
+2023-09-13 15:29:22,947 - INFO - Target net updated at 37000
+2023-09-13 15:29:37,078 - INFO - Arrived: 0 Broken: 1
+2023-09-13 15:29:37,078 - INFO - Episode 31 seed: 613
+2023-09-13 15:30:00,062 - INFO - Target net updated at 37500
+2023-09-13 15:30:35,357 - INFO - Target net updated at 38000
+2023-09-13 15:31:10,509 - INFO - Target net updated at 38500
+2023-09-13 15:31:44,825 - INFO - Target net updated at 39000
+2023-09-13 15:32:14,363 - INFO - Target net updated at 39500
+2023-09-13 15:32:47,892 - INFO - Target net updated at 40000
+2023-09-13 15:33:22,622 - INFO - Target net updated at 40500
+2023-09-13 15:33:44,356 - INFO - Arrived: 0 Broken: 1
+2023-09-13 15:33:44,357 - INFO - Episode 32 seed: 303
+2023-09-13 15:34:01,962 - INFO - Target net updated at 41000
+2023-09-13 15:34:36,865 - INFO - Target net updated at 41500
+2023-09-13 15:35:11,677 - INFO - Target net updated at 42000
+2023-09-13 15:35:45,888 - INFO - Target net updated at 42500
+2023-09-13 15:36:21,541 - INFO - Target net updated at 43000
+2023-09-13 15:36:55,838 - INFO - Target net updated at 43500
+2023-09-13 15:37:31,183 - INFO - Target net updated at 44000
+2023-09-13 15:38:05,592 - INFO - Target net updated at 44500
+2023-09-13 15:38:19,789 - INFO - Arrived: 0 Broken: 1
+2023-09-13 15:38:19,789 - INFO - Episode 33 seed: 701
+2023-09-13 15:38:44,484 - INFO - Target net updated at 45000
+2023-09-13 15:39:19,982 - INFO - Target net updated at 45500
+2023-09-13 15:39:55,915 - INFO - Target net updated at 46000
+2023-09-13 15:40:31,320 - INFO - Target net updated at 46500
+2023-09-13 15:41:05,811 - INFO - Target net updated at 47000
+2023-09-13 15:41:41,282 - INFO - Target net updated at 47500
+2023-09-13 15:42:15,872 - INFO - Target net updated at 48000
+2023-09-13 15:42:50,108 - INFO - Target net updated at 48500
+2023-09-13 15:43:18,142 - INFO - Arrived: 0 Broken: 1
+2023-09-13 15:43:18,142 - INFO - Episode 34 seed: 985
+2023-09-13 15:43:28,006 - INFO - Target net updated at 49000
+2023-09-13 15:44:02,965 - INFO - Target net updated at 49500
+2023-09-13 15:44:43,842 - INFO - Target net updated at 50000
+2023-09-13 15:45:43,542 - INFO - Target net updated at 50500
+2023-09-13 15:46:25,441 - INFO - Target net updated at 51000
+2023-09-13 15:47:00,073 - INFO - Target net updated at 51500
+2023-09-13 15:47:33,644 - INFO - Target net updated at 52000
+2023-09-13 15:48:08,370 - INFO - Target net updated at 52500
+2023-09-13 15:48:41,747 - INFO - Target net updated at 53000
+2023-09-13 15:48:48,357 - INFO - Arrived: 0 Broken: 2
+2023-09-13 15:48:48,358 - INFO - Episode 35 seed: 944
+2023-09-13 15:49:19,362 - INFO - Target net updated at 53500
+2023-09-13 15:49:54,938 - INFO - Target net updated at 54000
+2023-09-13 15:50:29,205 - INFO - Target net updated at 54500
+2023-09-13 15:51:05,152 - INFO - Target net updated at 55000
+2023-09-13 15:51:40,790 - INFO - Target net updated at 55500
+2023-09-13 15:52:15,768 - INFO - Target net updated at 56000
+2023-09-13 15:52:50,874 - INFO - Target net updated at 56500
+2023-09-13 15:53:25,448 - INFO - Target net updated at 57000
+2023-09-13 15:53:59,682 - INFO - Target net updated at 57500
+2023-09-13 15:54:06,680 - INFO - Arrived: 0 Broken: 2
+2023-09-13 15:54:06,680 - INFO - Episode 36 seed: 555
+2023-09-13 15:54:37,367 - INFO - Target net updated at 58000
+2023-09-13 15:55:12,339 - INFO - Target net updated at 58500
+2023-09-13 15:55:47,474 - INFO - Target net updated at 59000
+2023-09-13 15:56:21,715 - INFO - Target net updated at 59500
+2023-09-13 15:56:59,324 - INFO - Target net updated at 60000
+2023-09-13 15:57:30,415 - INFO - Target net updated at 60500
+2023-09-13 15:58:19,851 - INFO - Target net updated at 61000
+2023-09-13 15:59:05,368 - INFO - Target net updated at 61500
+2023-09-13 15:59:46,055 - INFO - Target net updated at 62000
+2023-09-13 16:00:19,364 - INFO - Arrived: 0 Broken: 2
+2023-09-13 16:00:19,365 - INFO - Episode 37 seed: 205
+2023-09-13 16:00:31,113 - INFO - Target net updated at 62500
+2023-09-13 16:01:10,320 - INFO - Target net updated at 63000
+2023-09-13 16:01:50,394 - INFO - Target net updated at 63500
+2023-09-13 16:02:31,569 - INFO - Target net updated at 64000
+2023-09-13 16:03:14,628 - INFO - Target net updated at 64500
+2023-09-13 16:03:55,317 - INFO - Target net updated at 65000
+2023-09-13 16:04:37,859 - INFO - Target net updated at 65500
+2023-09-13 16:05:18,586 - INFO - Target net updated at 66000
+2023-09-13 16:05:57,751 - INFO - Target net updated at 66500
+2023-09-13 16:06:38,719 - INFO - Target net updated at 67000
+2023-09-13 16:07:18,845 - INFO - Target net updated at 67500
+2023-09-13 16:07:19,236 - INFO - Arrived: 0 Broken: 1
+2023-09-13 16:07:19,236 - INFO - Episode 38 seed: 914
+2023-09-13 16:08:03,439 - INFO - Target net updated at 68000
+2023-09-13 16:08:45,222 - INFO - Target net updated at 68500
+2023-09-13 16:09:25,817 - INFO - Target net updated at 69000
+2023-09-13 16:10:06,309 - INFO - Target net updated at 69500
+2023-09-13 16:10:46,886 - INFO - Target net updated at 70000
+2023-09-13 16:11:27,075 - INFO - Target net updated at 70500
+2023-09-13 16:12:00,343 - INFO - Target net updated at 71000
+2023-09-13 16:12:35,254 - INFO - Target net updated at 71500
+2023-09-13 16:13:11,007 - INFO - Target net updated at 72000
+2023-09-13 16:13:46,211 - INFO - Target net updated at 72500
+2023-09-13 16:14:14,332 - INFO - Arrived: 0 Broken: 2
+2023-09-13 16:14:14,332 - INFO - Episode 39 seed: 285
+2023-09-13 16:14:25,039 - INFO - Target net updated at 73000
+2023-09-13 16:14:59,987 - INFO - Target net updated at 73500
+2023-09-13 16:15:33,095 - INFO - Target net updated at 74000
+2023-09-13 16:16:08,417 - INFO - Target net updated at 74500
+2023-09-13 16:16:43,587 - INFO - Target net updated at 75000
+2023-09-13 16:17:18,473 - INFO - Target net updated at 75500
+2023-09-13 16:17:53,994 - INFO - Target net updated at 76000
+2023-09-13 16:18:28,565 - INFO - Target net updated at 76500
+2023-09-13 16:19:03,122 - INFO - Target net updated at 77000
+2023-09-13 16:19:37,998 - INFO - Target net updated at 77500
+2023-09-13 16:20:12,753 - INFO - Target net updated at 78000
+2023-09-13 16:20:32,827 - INFO - Arrived: 0 Broken: 1
+2023-09-13 16:20:32,827 - INFO - Episode 40 seed: 368
+2023-09-13 16:20:50,262 - INFO - Target net updated at 78500
+2023-09-13 16:21:24,803 - INFO - Target net updated at 79000
+2023-09-13 16:21:59,400 - INFO - Target net updated at 79500
+2023-09-13 16:22:34,603 - INFO - Target net updated at 80000
+2023-09-13 16:23:09,657 - INFO - Target net updated at 80500
+2023-09-13 16:23:43,539 - INFO - Target net updated at 81000
+2023-09-13 16:24:16,281 - INFO - Target net updated at 81500
+2023-09-13 16:24:46,245 - INFO - Target net updated at 82000
+2023-09-13 16:25:20,717 - INFO - Target net updated at 82500
+2023-09-13 16:25:54,451 - INFO - Target net updated at 83000
+2023-09-13 16:26:29,934 - INFO - Target net updated at 83500
+2023-09-13 16:26:44,273 - INFO - Arrived: 0 Broken: 1
+2023-09-13 16:26:44,273 - INFO - Episode 41 seed: 334
+2023-09-13 16:27:09,448 - INFO - Target net updated at 84000
+2023-09-13 16:27:43,612 - INFO - Target net updated at 84500
+2023-09-13 16:28:17,959 - INFO - Target net updated at 85000
+2023-09-13 16:28:53,261 - INFO - Target net updated at 85500
+2023-09-13 16:29:27,870 - INFO - Target net updated at 86000
+2023-09-13 16:30:03,766 - INFO - Target net updated at 86500
+2023-09-13 16:30:40,951 - INFO - Target net updated at 87000
+2023-09-13 16:31:15,239 - INFO - Target net updated at 87500
+2023-09-13 16:31:50,361 - INFO - Target net updated at 88000
+2023-09-13 16:32:24,116 - INFO - Target net updated at 88500
+2023-09-13 16:32:59,777 - INFO - Target net updated at 89000
+2023-09-13 16:33:28,351 - INFO - Arrived: 0 Broken: 2
+2023-09-13 16:33:28,351 - INFO - Episode 42 seed: 720
+2023-09-13 16:33:38,463 - INFO - Target net updated at 89500
+2023-09-13 16:34:14,000 - INFO - Target net updated at 90000
+2023-09-13 16:34:48,582 - INFO - Target net updated at 90500
+2023-09-13 16:35:23,639 - INFO - Target net updated at 91000
+2023-09-13 16:35:58,137 - INFO - Target net updated at 91500
+2023-09-13 16:36:32,685 - INFO - Target net updated at 92000
+2023-09-13 16:37:02,322 - INFO - Target net updated at 92500
+2023-09-13 16:37:35,203 - INFO - Target net updated at 93000
+2023-09-13 16:38:10,713 - INFO - Target net updated at 93500
+2023-09-13 16:38:46,369 - INFO - Target net updated at 94000
+2023-09-13 16:39:22,226 - INFO - Target net updated at 94500
+2023-09-13 16:39:57,759 - INFO - Target net updated at 95000
+2023-09-13 16:40:05,017 - INFO - Arrived: 0 Broken: 1
+2023-09-13 16:40:05,018 - INFO - Episode 43 seed: 623
+2023-09-13 16:40:36,050 - INFO - Target net updated at 95500
+2023-09-13 16:41:10,382 - INFO - Target net updated at 96000
+2023-09-13 16:41:46,302 - INFO - Target net updated at 96500
+2023-09-13 16:42:19,686 - INFO - Target net updated at 97000
+2023-09-13 16:42:54,016 - INFO - Target net updated at 97500
+2023-09-13 16:43:28,780 - INFO - Target net updated at 98000
+2023-09-13 16:44:03,101 - INFO - Target net updated at 98500
+2023-09-13 16:44:37,621 - INFO - Target net updated at 99000
+2023-09-13 16:45:13,461 - INFO - Target net updated at 99500
+2023-09-13 16:45:49,774 - INFO - Target net updated at 100000
+2023-09-13 16:46:25,357 - INFO - Target net updated at 100500
+2023-09-13 16:46:46,926 - INFO - Arrived: 0 Broken: 2
+2023-09-13 16:46:46,926 - INFO - Episode 44 seed: 702
+2023-09-13 16:47:04,817 - INFO - Target net updated at 101000
+2023-09-13 16:47:40,440 - INFO - Target net updated at 101500
+2023-09-13 16:48:14,244 - INFO - Target net updated at 102000
+2023-09-13 16:48:48,799 - INFO - Target net updated at 102500
+2023-09-13 16:49:24,361 - INFO - Target net updated at 103000
+2023-09-13 16:49:52,457 - INFO - Target net updated at 103500
+2023-09-13 16:50:27,045 - INFO - Target net updated at 104000
+2023-09-13 16:51:01,853 - INFO - Target net updated at 104500
+2023-09-13 16:51:36,478 - INFO - Target net updated at 105000
+2023-09-13 16:52:11,758 - INFO - Target net updated at 105500
+2023-09-13 16:52:48,380 - INFO - Target net updated at 106000
+2023-09-13 16:53:23,103 - INFO - Target net updated at 106500
+2023-09-13 16:53:44,148 - INFO - Arrived: 0 Broken: 2
+2023-09-13 16:53:44,149 - INFO - Episode 45 seed: 707
+2023-09-13 16:54:01,773 - INFO - Target net updated at 107000
+2023-09-13 16:54:36,381 - INFO - Target net updated at 107500
+2023-09-13 16:55:11,780 - INFO - Target net updated at 108000
+2023-09-13 16:55:47,065 - INFO - Target net updated at 108500
+2023-09-13 16:56:22,065 - INFO - Target net updated at 109000
+2023-09-13 16:56:56,623 - INFO - Target net updated at 109500
+2023-09-13 16:57:31,886 - INFO - Target net updated at 110000
+2023-09-13 16:58:08,087 - INFO - Target net updated at 110500
+2023-09-13 16:58:42,441 - INFO - Target net updated at 111000
+2023-09-13 16:59:17,181 - INFO - Target net updated at 111500
+2023-09-13 16:59:51,197 - INFO - Target net updated at 112000
+2023-09-13 17:00:26,243 - INFO - Target net updated at 112500
+2023-09-13 17:00:47,816 - INFO - Arrived: 0 Broken: 2
+2023-09-13 17:00:47,816 - INFO - Episode 46 seed: 210
+2023-09-13 17:01:05,202 - INFO - Target net updated at 113000
+2023-09-13 17:01:41,130 - INFO - Target net updated at 113500
+2023-09-13 17:02:17,075 - INFO - Target net updated at 114000
+2023-09-13 17:02:45,146 - INFO - Target net updated at 114500
+2023-09-13 17:03:19,131 - INFO - Target net updated at 115000
+2023-09-13 17:03:54,142 - INFO - Target net updated at 115500
+2023-09-13 17:04:28,669 - INFO - Target net updated at 116000
+2023-09-13 17:05:04,931 - INFO - Target net updated at 116500
+2023-09-13 17:05:40,657 - INFO - Target net updated at 117000
+2023-09-13 17:06:16,272 - INFO - Target net updated at 117500
+2023-09-13 17:06:51,113 - INFO - Target net updated at 118000
+2023-09-13 17:07:25,594 - INFO - Target net updated at 118500
+2023-09-13 17:08:00,400 - INFO - Target net updated at 119000
+2023-09-13 17:08:07,553 - INFO - Arrived: 0 Broken: 2
+2023-09-13 17:08:07,553 - INFO - Episode 47 seed: 275
+2023-09-13 17:08:39,158 - INFO - Target net updated at 119500
+2023-09-13 17:09:14,100 - INFO - Target net updated at 120000
+2023-09-13 17:09:48,952 - INFO - Target net updated at 120500
+2023-09-13 17:10:23,599 - INFO - Target net updated at 121000
+2023-09-13 17:10:58,827 - INFO - Target net updated at 121500
+2023-09-13 17:11:34,556 - INFO - Target net updated at 122000
+2023-09-13 17:12:16,265 - INFO - Target net updated at 122500
+2023-09-13 17:12:51,419 - INFO - Target net updated at 123000
+2023-09-13 17:13:26,529 - INFO - Target net updated at 123500
+2023-09-13 17:14:01,001 - INFO - Target net updated at 124000
+2023-09-13 17:14:36,698 - INFO - Target net updated at 124500
+2023-09-13 17:15:12,621 - INFO - Target net updated at 125000
+2023-09-13 17:15:40,319 - INFO - Arrived: 0 Broken: 2
+2023-09-13 17:15:40,319 - INFO - Episode 48 seed: 204
+2023-09-13 17:15:49,249 - INFO - Target net updated at 125500
+2023-09-13 17:16:23,081 - INFO - Target net updated at 126000
+2023-09-13 17:16:58,801 - INFO - Target net updated at 126500
+2023-09-13 17:17:34,128 - INFO - Target net updated at 127000
+2023-09-13 17:18:09,343 - INFO - Target net updated at 127500
+2023-09-13 17:18:44,604 - INFO - Target net updated at 128000
+2023-09-13 17:19:19,108 - INFO - Target net updated at 128500
+2023-09-13 17:19:54,128 - INFO - Target net updated at 129000
+2023-09-13 17:20:29,713 - INFO - Target net updated at 129500
+2023-09-13 17:21:06,346 - INFO - Target net updated at 130000
+2023-09-13 17:21:40,826 - INFO - Target net updated at 130500
+2023-09-13 17:22:15,007 - INFO - Target net updated at 131000
+2023-09-13 17:22:49,257 - INFO - Target net updated at 131500
+2023-09-13 17:23:24,418 - INFO - Target net updated at 132000
+2023-09-13 17:23:24,704 - INFO - Arrived: 0 Broken: 1
+2023-09-13 17:23:24,704 - INFO - Episode 49 seed: 184
+2023-09-13 17:24:02,994 - INFO - Target net updated at 132500
+2023-09-13 17:24:37,272 - INFO - Target net updated at 133000
+2023-09-13 17:25:12,637 - INFO - Target net updated at 133500
+2023-09-13 17:25:47,719 - INFO - Target net updated at 134000
+2023-09-13 17:26:22,418 - INFO - Target net updated at 134500
+2023-09-13 17:26:56,668 - INFO - Target net updated at 135000
+2023-09-13 17:27:32,506 - INFO - Target net updated at 135500
+2023-09-13 17:28:07,538 - INFO - Target net updated at 136000
+2023-09-13 17:28:41,727 - INFO - Target net updated at 136500
+2023-09-13 17:29:09,238 - INFO - Target net updated at 137000
+2023-09-13 17:29:43,815 - INFO - Target net updated at 137500
+2023-09-13 17:30:18,792 - INFO - Target net updated at 138000
+2023-09-13 17:30:54,174 - INFO - Target net updated at 138500
+2023-09-13 17:31:01,402 - INFO - Arrived: 0 Broken: 1
+2023-09-13 17:31:01,403 - INFO - Episode 50 seed: 365
+2023-09-13 17:31:32,870 - INFO - Target net updated at 139000
+2023-09-13 17:32:07,490 - INFO - Target net updated at 139500
+2023-09-13 17:32:42,685 - INFO - Target net updated at 140000
+2023-09-13 17:33:17,596 - INFO - Target net updated at 140500
+2023-09-13 17:33:52,209 - INFO - Target net updated at 141000
+2023-09-13 17:34:27,132 - INFO - Target net updated at 141500
+2023-09-13 17:35:01,975 - INFO - Target net updated at 142000
+2023-09-13 17:35:36,528 - INFO - Target net updated at 142500
+2023-09-13 17:36:12,235 - INFO - Target net updated at 143000
+2023-09-13 17:36:47,828 - INFO - Target net updated at 143500
+2023-09-13 17:37:22,389 - INFO - Target net updated at 144000
+2023-09-13 17:37:57,208 - INFO - Target net updated at 144500
+2023-09-13 17:38:32,583 - INFO - Target net updated at 145000
+2023-09-13 17:39:07,702 - INFO - Target net updated at 145500
+2023-09-13 17:39:07,992 - INFO - Arrived: 0 Broken: 1
+2023-09-13 17:39:07,992 - INFO - Episode 51 seed: 712
+2023-09-13 17:39:46,334 - INFO - Target net updated at 146000
+2023-09-13 17:40:21,928 - INFO - Target net updated at 146500
+2023-09-13 17:40:56,874 - INFO - Target net updated at 147000
+2023-09-13 17:41:31,651 - INFO - Target net updated at 147500
+2023-09-13 17:42:07,593 - INFO - Target net updated at 148000
+2023-09-13 17:42:34,729 - INFO - Target net updated at 148500
+2023-09-13 17:43:09,424 - INFO - Target net updated at 149000
+2023-09-13 17:43:43,499 - INFO - Target net updated at 149500
+2023-09-13 17:44:18,003 - INFO - Target net updated at 150000
+2023-09-13 17:44:53,044 - INFO - Target net updated at 150500
+2023-09-13 17:45:27,062 - INFO - Target net updated at 151000
+2023-09-13 17:46:00,871 - INFO - Target net updated at 151500
+2023-09-13 17:46:36,508 - INFO - Target net updated at 152000
+2023-09-13 17:47:05,123 - INFO - Arrived: 0 Broken: 1
+2023-09-13 17:47:05,123 - INFO - Episode 52 seed: 386
+2023-09-13 17:47:16,229 - INFO - Target net updated at 152500
+2023-09-13 17:47:50,951 - INFO - Target net updated at 153000
+2023-09-13 17:48:26,236 - INFO - Target net updated at 153500
+2023-09-13 17:49:01,127 - INFO - Target net updated at 154000
+2023-09-13 17:49:35,699 - INFO - Target net updated at 154500
+2023-09-13 17:50:09,918 - INFO - Target net updated at 155000
+2023-09-13 17:50:43,374 - INFO - Target net updated at 155500
+2023-09-13 17:51:18,222 - INFO - Target net updated at 156000
+2023-09-13 17:51:53,073 - INFO - Target net updated at 156500
+2023-09-13 17:52:28,781 - INFO - Target net updated at 157000
+2023-09-13 17:53:03,668 - INFO - Target net updated at 157500
+2023-09-13 17:53:38,313 - INFO - Target net updated at 158000
+2023-09-13 17:54:12,112 - INFO - Target net updated at 158500
+2023-09-13 17:54:46,740 - INFO - Target net updated at 159000
+2023-09-13 17:55:21,355 - INFO - Target net updated at 159500
+2023-09-13 17:55:28,902 - INFO - Arrived: 0 Broken: 1
+2023-09-13 17:55:28,902 - INFO - Episode 53 seed: 64
+2023-09-13 17:55:55,780 - INFO - Target net updated at 160000
+2023-09-13 17:56:30,765 - INFO - Target net updated at 160500
+2023-09-13 17:57:05,586 - INFO - Target net updated at 161000
+2023-09-13 17:57:40,602 - INFO - Target net updated at 161500
+2023-09-13 17:58:14,968 - INFO - Target net updated at 162000
+2023-09-13 17:58:48,571 - INFO - Target net updated at 162500
+2023-09-13 17:59:24,074 - INFO - Target net updated at 163000
+2023-09-13 17:59:58,140 - INFO - Target net updated at 163500
+2023-09-13 18:00:33,373 - INFO - Target net updated at 164000
+2023-09-13 18:01:08,114 - INFO - Target net updated at 164500
+2023-09-13 18:01:42,032 - INFO - Target net updated at 165000
+2023-09-13 18:02:16,701 - INFO - Target net updated at 165500
+2023-09-13 18:02:49,736 - INFO - Target net updated at 166000
+2023-09-13 18:03:24,573 - INFO - Target net updated at 166500
+2023-09-13 18:03:59,625 - INFO - Target net updated at 167000
+2023-09-13 18:04:06,944 - INFO - Arrived: 0 Broken: 1
+2023-09-13 18:04:06,945 - INFO - Episode 54 seed: 416
+2023-09-13 18:04:39,641 - INFO - Target net updated at 167500
+2023-09-13 18:05:14,068 - INFO - Target net updated at 168000
+2023-09-13 18:05:48,251 - INFO - Target net updated at 168500
+2023-09-13 18:06:23,083 - INFO - Target net updated at 169000
+2023-09-13 18:06:57,283 - INFO - Target net updated at 169500
+2023-09-13 18:07:31,499 - INFO - Target net updated at 170000
+2023-09-13 18:08:06,067 - INFO - Target net updated at 170500
+2023-09-13 18:08:40,811 - INFO - Target net updated at 171000
+2023-09-13 18:09:09,672 - INFO - Target net updated at 171500
+2023-09-13 18:09:43,689 - INFO - Target net updated at 172000
+2023-09-13 18:10:17,971 - INFO - Target net updated at 172500
+2023-09-13 18:10:52,920 - INFO - Target net updated at 173000
+2023-09-13 18:11:27,360 - INFO - Target net updated at 173500
+2023-09-13 18:12:02,805 - INFO - Target net updated at 174000
+2023-09-13 18:12:37,745 - INFO - Target net updated at 174500
+2023-09-13 18:13:05,384 - INFO - Arrived: 0 Broken: 1
+2023-09-13 18:13:05,384 - INFO - Episode 55 seed: 605
+2023-09-13 18:13:16,179 - INFO - Target net updated at 175000
+2023-09-13 18:13:50,488 - INFO - Target net updated at 175500
+2023-09-13 18:14:24,950 - INFO - Target net updated at 176000
+2023-09-13 18:14:58,996 - INFO - Target net updated at 176500
+2023-09-13 18:15:33,906 - INFO - Target net updated at 177000
+2023-09-13 18:16:08,801 - INFO - Target net updated at 177500
+2023-09-13 18:16:43,468 - INFO - Target net updated at 178000
+2023-09-13 18:17:19,220 - INFO - Target net updated at 178500
+2023-09-13 18:17:54,943 - INFO - Target net updated at 179000
+2023-09-13 18:18:29,185 - INFO - Target net updated at 179500
+2023-09-13 18:19:04,100 - INFO - Target net updated at 180000
+2023-09-13 18:19:39,110 - INFO - Target net updated at 180500
+2023-09-13 18:20:13,982 - INFO - Target net updated at 181000
+2023-09-13 18:20:48,792 - INFO - Target net updated at 181500
+2023-09-13 18:21:21,978 - INFO - Target net updated at 182000
+2023-09-13 18:21:56,442 - INFO - Target net updated at 182500
+2023-09-13 18:22:10,369 - INFO - Arrived: 0 Broken: 1
+2023-09-13 18:22:10,370 - INFO - Episode 56 seed: 453
+2023-09-13 18:22:32,738 - INFO - Target net updated at 183000
+2023-09-13 18:23:02,449 - INFO - Target net updated at 183500
+2023-09-13 18:23:38,330 - INFO - Target net updated at 184000
+2023-09-13 18:24:13,856 - INFO - Target net updated at 184500
+2023-09-13 18:24:47,932 - INFO - Target net updated at 185000
+2023-09-13 18:25:22,896 - INFO - Target net updated at 185500
+2023-09-13 18:25:57,742 - INFO - Target net updated at 186000
+2023-09-13 18:26:32,801 - INFO - Target net updated at 186500
+2023-09-13 18:27:06,740 - INFO - Target net updated at 187000
+2023-09-13 18:27:42,229 - INFO - Target net updated at 187500
+2023-09-13 18:28:17,507 - INFO - Target net updated at 188000
+2023-09-13 18:28:52,045 - INFO - Target net updated at 188500
+2023-09-13 18:29:26,063 - INFO - Target net updated at 189000
+2023-09-13 18:30:01,623 - INFO - Target net updated at 189500
+2023-09-13 18:30:34,502 - INFO - Target net updated at 190000
+2023-09-13 18:31:09,353 - INFO - Target net updated at 190500
+2023-09-13 18:31:30,531 - INFO - Arrived: 0 Broken: 1
+2023-09-13 18:31:30,531 - INFO - Episode 57 seed: 483
+2023-09-13 18:31:49,241 - INFO - Target net updated at 191000
+2023-09-13 18:32:22,988 - INFO - Target net updated at 191500
+2023-09-13 18:32:57,177 - INFO - Target net updated at 192000
+2023-09-13 18:33:31,462 - INFO - Target net updated at 192500
+2023-09-13 18:34:05,807 - INFO - Target net updated at 193000
+2023-09-13 18:34:41,369 - INFO - Target net updated at 193500
+2023-09-13 18:35:16,228 - INFO - Target net updated at 194000
+2023-09-13 18:35:51,989 - INFO - Target net updated at 194500
+2023-09-13 18:36:22,592 - INFO - Target net updated at 195000
+2023-09-13 18:36:53,275 - INFO - Target net updated at 195500
+2023-09-13 18:37:27,896 - INFO - Target net updated at 196000
+2023-09-13 18:38:01,708 - INFO - Target net updated at 196500
+2023-09-13 18:38:35,941 - INFO - Target net updated at 197000
+2023-09-13 18:39:10,782 - INFO - Target net updated at 197500
+2023-09-13 18:39:45,265 - INFO - Target net updated at 198000
+2023-09-13 18:40:20,430 - INFO - Target net updated at 198500
+2023-09-13 18:40:48,649 - INFO - Arrived: 0 Broken: 2
+2023-09-13 18:40:48,649 - INFO - Episode 58 seed: 978
+2023-09-13 18:41:00,367 - INFO - Target net updated at 199000
+2023-09-13 18:41:34,819 - INFO - Target net updated at 199500
+2023-09-13 18:42:10,448 - INFO - Target net updated at 200000
+2023-09-13 18:42:45,851 - INFO - Target net updated at 200500
+2023-09-13 18:43:20,743 - INFO - Target net updated at 201000
+2023-09-13 18:43:55,125 - INFO - Target net updated at 201500
+2023-09-13 18:44:29,498 - INFO - Target net updated at 202000
+2023-09-13 18:45:04,097 - INFO - Target net updated at 202500
+2023-09-13 18:45:39,015 - INFO - Target net updated at 203000
+2023-09-13 18:46:13,542 - INFO - Target net updated at 203500
+2023-09-13 18:46:47,918 - INFO - Target net updated at 204000
+2023-09-13 18:47:21,897 - INFO - Target net updated at 204500
+2023-09-13 18:47:56,291 - INFO - Target net updated at 205000
+2023-09-13 18:48:31,063 - INFO - Target net updated at 205500
+2023-09-13 18:49:06,238 - INFO - Target net updated at 206000
+2023-09-13 18:49:40,410 - INFO - Target net updated at 206500
+2023-09-13 18:50:15,181 - INFO - Target net updated at 207000
+2023-09-13 18:50:15,447 - INFO - Arrived: 0 Broken: 2
+2023-09-13 18:50:15,447 - INFO - Episode 59 seed: 897
+2023-09-13 18:50:51,039 - INFO - Target net updated at 207500
+2023-09-13 18:51:25,747 - INFO - Target net updated at 208000
+2023-09-13 18:52:00,540 - INFO - Target net updated at 208500
+2023-09-13 18:52:35,534 - INFO - Target net updated at 209000
+2023-09-13 18:53:09,682 - INFO - Target net updated at 209500
+2023-09-13 18:53:45,654 - INFO - Target net updated at 210000
+2023-09-13 18:54:20,924 - INFO - Target net updated at 210500
+2023-09-13 18:54:55,667 - INFO - Target net updated at 211000
+2023-09-13 18:55:29,723 - INFO - Target net updated at 211500
+2023-09-13 18:56:04,011 - INFO - Target net updated at 212000
+2023-09-13 18:56:38,758 - INFO - Target net updated at 212500
+2023-09-13 18:57:13,502 - INFO - Target net updated at 213000
+2023-09-13 18:57:48,575 - INFO - Target net updated at 213500
+2023-09-13 18:58:22,726 - INFO - Target net updated at 214000
+2023-09-13 18:58:57,571 - INFO - Target net updated at 214500
+2023-09-13 18:59:32,608 - INFO - Target net updated at 215000
+2023-09-13 18:59:40,068 - INFO - Arrived: 0 Broken: 1
+2023-09-13 18:59:40,069 - INFO - Episode 60 seed: 510
+2023-09-13 19:00:11,663 - INFO - Target net updated at 215500
+2023-09-13 19:00:46,480 - INFO - Target net updated at 216000
+2023-09-13 19:01:19,962 - INFO - Target net updated at 216500
+2023-09-13 19:01:53,922 - INFO - Target net updated at 217000
+2023-09-13 19:02:27,316 - INFO - Target net updated at 217500
+2023-09-13 19:03:01,836 - INFO - Target net updated at 218000
+2023-09-13 19:03:37,177 - INFO - Target net updated at 218500
+2023-09-13 19:04:10,960 - INFO - Target net updated at 219000
+2023-09-13 19:04:37,699 - INFO - Target net updated at 219500
+2023-09-13 19:05:12,990 - INFO - Target net updated at 220000
+2023-09-13 19:05:48,514 - INFO - Target net updated at 220500
+2023-09-13 19:06:23,383 - INFO - Target net updated at 221000
+2023-09-13 19:06:58,637 - INFO - Target net updated at 221500
+2023-09-13 19:07:33,293 - INFO - Target net updated at 222000
+2023-09-13 19:08:07,798 - INFO - Target net updated at 222500
+2023-09-13 19:08:42,958 - INFO - Target net updated at 223000
+2023-09-13 19:08:56,879 - INFO - Arrived: 0 Broken: 2
+2023-09-13 19:08:56,879 - INFO - Episode 61 seed: 465
+2023-09-13 19:09:22,683 - INFO - Target net updated at 223500
+2023-09-13 19:09:57,533 - INFO - Target net updated at 224000
+2023-09-13 19:10:32,852 - INFO - Target net updated at 224500
+2023-09-13 19:11:08,218 - INFO - Target net updated at 225000
+2023-09-13 19:11:44,087 - INFO - Target net updated at 225500
+2023-09-13 19:12:19,590 - INFO - Target net updated at 226000
+2023-09-13 19:12:54,486 - INFO - Target net updated at 226500
+2023-09-13 19:13:29,158 - INFO - Target net updated at 227000
+2023-09-13 19:14:03,228 - INFO - Target net updated at 227500
+2023-09-13 19:14:37,921 - INFO - Target net updated at 228000
+2023-09-13 19:15:12,944 - INFO - Target net updated at 228500
+2023-09-13 19:15:47,183 - INFO - Target net updated at 229000
+2023-09-13 19:16:22,003 - INFO - Target net updated at 229500
+2023-09-13 19:16:57,207 - INFO - Target net updated at 230000
+2023-09-13 19:17:31,947 - INFO - Target net updated at 230500
+2023-09-13 19:18:06,723 - INFO - Target net updated at 231000
+2023-09-13 19:18:37,924 - INFO - Target net updated at 231500
+2023-09-13 19:18:42,686 - INFO - Arrived: 0 Broken: 2
+2023-09-13 19:18:42,687 - INFO - Episode 62 seed: 333
+2023-09-13 19:19:15,379 - INFO - Target net updated at 232000
+2023-09-13 19:19:49,309 - INFO - Target net updated at 232500
+2023-09-13 19:20:24,320 - INFO - Target net updated at 233000
+2023-09-13 19:20:59,124 - INFO - Target net updated at 233500
+2023-09-13 19:21:33,613 - INFO - Target net updated at 234000
+2023-09-13 19:22:08,254 - INFO - Target net updated at 234500
+2023-09-13 19:22:43,020 - INFO - Target net updated at 235000
+2023-09-13 19:23:17,933 - INFO - Target net updated at 235500
+2023-09-13 19:23:53,029 - INFO - Target net updated at 236000
+2023-09-13 19:24:27,537 - INFO - Target net updated at 236500
+2023-09-13 19:25:02,323 - INFO - Target net updated at 237000
+2023-09-13 19:25:36,422 - INFO - Target net updated at 237500
+2023-09-13 19:26:11,512 - INFO - Target net updated at 238000
+2023-09-13 19:26:46,871 - INFO - Target net updated at 238500
+2023-09-13 19:27:20,934 - INFO - Target net updated at 239000
+2023-09-13 19:27:55,350 - INFO - Target net updated at 239500
+2023-09-13 19:28:30,333 - INFO - Target net updated at 240000
+2023-09-13 19:28:30,617 - INFO - Arrived: 0 Broken: 2
+2023-09-13 19:28:30,617 - INFO - Episode 63 seed: 745
+2023-09-13 19:29:20,742 - INFO - Target net updated at 240500
+2023-09-13 19:30:04,395 - INFO - Target net updated at 241000
+2023-09-13 19:30:38,159 - INFO - Target net updated at 241500
+2023-09-13 19:31:07,100 - INFO - Target net updated at 242000
+2023-09-13 19:31:36,170 - INFO - Target net updated at 242500
+2023-09-13 19:32:06,810 - INFO - Target net updated at 243000
+2023-09-13 19:32:37,042 - INFO - Target net updated at 243500
+2023-09-13 19:33:07,308 - INFO - Target net updated at 244000
+2023-09-13 19:33:37,039 - INFO - Target net updated at 244500
+2023-09-13 19:34:02,179 - INFO - Target net updated at 245000
+2023-09-13 19:34:33,850 - INFO - Target net updated at 245500
+2023-09-13 19:35:04,259 - INFO - Target net updated at 246000
+2023-09-13 19:35:34,505 - INFO - Target net updated at 246500
+2023-09-13 19:36:04,889 - INFO - Target net updated at 247000
+2023-09-13 19:36:34,909 - INFO - Target net updated at 247500
+2023-09-13 19:37:04,434 - INFO - Target net updated at 248000
+2023-09-13 19:37:28,197 - INFO - Arrived: 0 Broken: 2
+2023-09-13 19:37:28,197 - INFO - Episode 64 seed: 527
+2023-09-13 19:37:44,473 - INFO - Target net updated at 248500
+2023-09-13 19:38:27,304 - INFO - Target net updated at 249000
+2023-09-13 19:38:49,577 - INFO - Target net updated at 249500
+2023-09-13 19:39:11,445 - INFO - Target net updated at 250000
+2023-09-13 19:39:33,310 - INFO - Target net updated at 250500
+2023-09-13 19:39:55,147 - INFO - Target net updated at 251000
+2023-09-13 19:40:16,993 - INFO - Target net updated at 251500
+2023-09-13 19:40:38,999 - INFO - Target net updated at 252000
+2023-09-13 19:41:00,872 - INFO - Target net updated at 252500
+2023-09-13 19:41:22,655 - INFO - Target net updated at 253000
+2023-09-13 19:41:44,517 - INFO - Target net updated at 253500
+2023-09-13 19:42:05,361 - INFO - Target net updated at 254000
+2023-09-13 19:42:27,205 - INFO - Target net updated at 254500
+2023-09-13 19:42:49,155 - INFO - Target net updated at 255000
+2023-09-13 19:43:10,977 - INFO - Target net updated at 255500
+2023-09-13 19:43:32,853 - INFO - Target net updated at 256000
+2023-09-13 19:43:54,693 - INFO - Target net updated at 256500
+2023-09-13 19:44:16,587 - INFO - Target net updated at 257000
+2023-09-13 19:44:21,219 - INFO - Arrived: 0 Broken: 2
+2023-09-13 19:44:21,219 - INFO - Episode 65 seed: 515
+2023-09-13 19:44:42,881 - INFO - Target net updated at 257500
+2023-09-13 19:45:04,796 - INFO - Target net updated at 258000
+2023-09-13 19:45:26,678 - INFO - Target net updated at 258500
+2023-09-13 19:45:48,498 - INFO - Target net updated at 259000
+2023-09-13 19:46:10,398 - INFO - Target net updated at 259500
+2023-09-13 19:46:32,245 - INFO - Target net updated at 260000
+2023-09-13 19:46:54,175 - INFO - Target net updated at 260500
+2023-09-13 19:47:16,107 - INFO - Target net updated at 261000
+2023-09-13 19:47:37,946 - INFO - Target net updated at 261500
+2023-09-13 19:47:59,826 - INFO - Target net updated at 262000
+2023-09-13 19:48:21,653 - INFO - Target net updated at 262500
+2023-09-13 19:48:43,541 - INFO - Target net updated at 263000
+2023-09-13 19:49:05,425 - INFO - Target net updated at 263500
+2023-09-13 19:49:27,280 - INFO - Target net updated at 264000
+2023-09-13 19:49:49,103 - INFO - Target net updated at 264500
+2023-09-13 19:50:10,981 - INFO - Target net updated at 265000
+2023-09-13 19:50:32,861 - INFO - Target net updated at 265500
+2023-09-13 19:50:46,232 - INFO - Arrived: 0 Broken: 2
+2023-09-13 19:50:46,232 - INFO - Episode 66 seed: 3
+2023-09-13 19:50:59,385 - INFO - Target net updated at 266000
+2023-09-13 19:51:21,298 - INFO - Target net updated at 266500
+2023-09-13 19:51:43,151 - INFO - Target net updated at 267000
+2023-09-13 19:52:04,981 - INFO - Target net updated at 267500
+2023-09-13 19:52:26,782 - INFO - Target net updated at 268000
+2023-09-13 19:52:48,645 - INFO - Target net updated at 268500
+2023-09-13 19:53:10,513 - INFO - Target net updated at 269000
+2023-09-13 19:53:32,451 - INFO - Target net updated at 269500
+2023-09-13 19:53:54,303 - INFO - Target net updated at 270000
+2023-09-13 19:54:16,231 - INFO - Target net updated at 270500
+2023-09-13 19:54:38,166 - INFO - Target net updated at 271000
+2023-09-13 19:55:00,081 - INFO - Target net updated at 271500
+2023-09-13 19:55:21,895 - INFO - Target net updated at 272000
+2023-09-13 19:55:43,753 - INFO - Target net updated at 272500
+2023-09-13 19:56:05,623 - INFO - Target net updated at 273000
+2023-09-13 19:56:27,480 - INFO - Target net updated at 273500
+2023-09-13 19:56:49,340 - INFO - Target net updated at 274000
+2023-09-13 19:57:11,256 - INFO - Target net updated at 274500
+2023-09-13 19:57:24,560 - INFO - Arrived: 0 Broken: 2
+2023-09-13 19:57:24,560 - INFO - Episode 67 seed: 331
+2023-09-13 19:57:37,835 - INFO - Target net updated at 275000
+2023-09-13 19:57:59,744 - INFO - Target net updated at 275500
+2023-09-13 19:58:21,621 - INFO - Target net updated at 276000
+2023-09-13 19:58:43,459 - INFO - Target net updated at 276500
+2023-09-13 19:59:05,326 - INFO - Target net updated at 277000
+2023-09-13 19:59:27,188 - INFO - Target net updated at 277500
+2023-09-13 19:59:49,081 - INFO - Target net updated at 278000
+2023-09-13 20:00:10,960 - INFO - Target net updated at 278500
+2023-09-13 20:00:32,814 - INFO - Target net updated at 279000
+2023-09-13 20:00:54,712 - INFO - Target net updated at 279500
+2023-09-13 20:01:16,541 - INFO - Target net updated at 280000
+2023-09-13 20:01:38,401 - INFO - Target net updated at 280500
+2023-09-13 20:02:00,225 - INFO - Target net updated at 281000
+2023-09-13 20:02:22,141 - INFO - Target net updated at 281500
+2023-09-13 20:02:44,046 - INFO - Target net updated at 282000
+2023-09-13 20:03:05,895 - INFO - Target net updated at 282500
+2023-09-13 20:03:27,789 - INFO - Target net updated at 283000
+2023-09-13 20:03:49,647 - INFO - Target net updated at 283500
+2023-09-13 20:04:11,540 - INFO - Target net updated at 284000
+2023-09-13 20:04:16,284 - INFO - Arrived: 0 Broken: 2
+2023-09-13 20:04:16,285 - INFO - Episode 68 seed: 804
+2023-09-13 20:04:38,300 - INFO - Target net updated at 284500
+2023-09-13 20:05:00,151 - INFO - Target net updated at 285000
+2023-09-13 20:05:22,005 - INFO - Target net updated at 285500
+2023-09-13 20:05:43,937 - INFO - Target net updated at 286000
+2023-09-13 20:06:05,989 - INFO - Target net updated at 286500
+2023-09-13 20:06:27,849 - INFO - Target net updated at 287000
+2023-09-13 20:06:49,703 - INFO - Target net updated at 287500
+2023-09-13 20:07:11,577 - INFO - Target net updated at 288000
+2023-09-13 20:07:33,411 - INFO - Target net updated at 288500
+2023-09-13 20:07:55,270 - INFO - Target net updated at 289000
+2023-09-13 20:08:17,109 - INFO - Target net updated at 289500
+2023-09-13 20:08:38,954 - INFO - Target net updated at 290000
+2023-09-13 20:09:00,835 - INFO - Target net updated at 290500
+2023-09-13 20:09:22,692 - INFO - Target net updated at 291000
+2023-09-13 20:09:44,584 - INFO - Target net updated at 291500
+2023-09-13 20:10:06,429 - INFO - Target net updated at 292000
+2023-09-13 20:10:28,337 - INFO - Target net updated at 292500
+2023-09-13 20:10:50,218 - INFO - Target net updated at 293000
+2023-09-13 20:11:07,952 - INFO - Arrived: 0 Broken: 2
+2023-09-13 20:11:07,952 - INFO - Episode 69 seed: 24
+2023-09-13 20:11:16,793 - INFO - Target net updated at 293500
+2023-09-13 20:11:38,712 - INFO - Target net updated at 294000
+2023-09-13 20:12:00,553 - INFO - Target net updated at 294500
+2023-09-13 20:12:22,401 - INFO - Target net updated at 295000
+2023-09-13 20:12:44,239 - INFO - Target net updated at 295500
+2023-09-13 20:13:06,131 - INFO - Target net updated at 296000
+2023-09-13 20:13:28,007 - INFO - Target net updated at 296500
+2023-09-13 20:13:49,896 - INFO - Target net updated at 297000
+2023-09-13 20:14:11,796 - INFO - Target net updated at 297500
+2023-09-13 20:14:33,673 - INFO - Target net updated at 298000
+2023-09-13 20:14:55,541 - INFO - Target net updated at 298500
+2023-09-13 20:15:17,458 - INFO - Target net updated at 299000
+2023-09-13 20:15:39,367 - INFO - Target net updated at 299500
+2023-09-13 20:16:01,236 - INFO - Target net updated at 300000
+2023-09-13 20:16:23,115 - INFO - Target net updated at 300500
+2023-09-13 20:16:44,872 - INFO - Target net updated at 301000
+2023-09-13 20:17:06,706 - INFO - Target net updated at 301500
+2023-09-13 20:17:28,588 - INFO - Target net updated at 302000
+2023-09-13 20:17:50,487 - INFO - Target net updated at 302500
+2023-09-13 20:18:15,090 - INFO - Target net updated at 303000
+2023-09-13 20:18:15,354 - INFO - Arrived: 0 Broken: 1
+2023-09-13 20:18:15,354 - INFO - Episode 70 seed: 604
+2023-09-13 20:18:41,693 - INFO - Target net updated at 303500
+2023-09-13 20:19:03,612 - INFO - Target net updated at 304000
+2023-09-13 20:19:25,499 - INFO - Target net updated at 304500
+2023-09-13 20:19:47,348 - INFO - Target net updated at 305000
+2023-09-13 20:20:09,263 - INFO - Target net updated at 305500
+2023-09-13 20:20:31,170 - INFO - Target net updated at 306000
+2023-09-13 20:20:52,951 - INFO - Target net updated at 306500
+2023-09-13 20:21:14,885 - INFO - Target net updated at 307000
+2023-09-13 20:21:36,788 - INFO - Target net updated at 307500
+2023-09-13 20:21:58,672 - INFO - Target net updated at 308000
+2023-09-13 20:22:20,594 - INFO - Target net updated at 308500
+2023-09-13 20:22:42,491 - INFO - Target net updated at 309000
+2023-09-13 20:23:04,322 - INFO - Target net updated at 309500
+2023-09-13 20:23:26,186 - INFO - Target net updated at 310000
+2023-09-13 20:23:47,992 - INFO - Target net updated at 310500
+2023-09-13 20:24:09,828 - INFO - Target net updated at 311000
+2023-09-13 20:24:31,670 - INFO - Target net updated at 311500
+2023-09-13 20:24:53,563 - INFO - Target net updated at 312000
+2023-09-13 20:25:15,467 - INFO - Target net updated at 312500
+2023-09-13 20:25:20,104 - INFO - Arrived: 0 Broken: 1
+2023-09-13 20:25:20,105 - INFO - Episode 71 seed: 327
+2023-09-13 20:25:42,125 - INFO - Target net updated at 313000
+2023-09-13 20:26:04,078 - INFO - Target net updated at 313500
+2023-09-13 20:26:25,970 - INFO - Target net updated at 314000
+2023-09-13 20:26:47,929 - INFO - Target net updated at 314500
+2023-09-13 20:27:09,794 - INFO - Target net updated at 315000
+2023-09-13 20:27:31,672 - INFO - Target net updated at 315500
+2023-09-13 20:27:53,574 - INFO - Target net updated at 316000
+2023-09-13 20:28:15,561 - INFO - Target net updated at 316500
+2023-09-13 20:28:37,574 - INFO - Target net updated at 317000
+2023-09-13 20:28:59,550 - INFO - Target net updated at 317500
+2023-09-13 20:29:21,604 - INFO - Target net updated at 318000
+2023-09-13 20:29:43,602 - INFO - Target net updated at 318500
+2023-09-13 20:30:05,670 - INFO - Target net updated at 319000
+2023-09-13 20:30:27,654 - INFO - Target net updated at 319500
+2023-09-13 20:30:49,710 - INFO - Target net updated at 320000
+2023-09-13 20:31:11,644 - INFO - Target net updated at 320500
+2023-09-13 20:31:33,619 - INFO - Target net updated at 321000
+2023-09-13 20:31:55,570 - INFO - Target net updated at 321500
+2023-09-13 20:32:17,550 - INFO - Target net updated at 322000
+2023-09-13 20:32:26,586 - INFO - Arrived: 0 Broken: 2
+2023-09-13 20:32:26,586 - INFO - Episode 72 seed: 928
+2023-09-13 20:32:44,554 - INFO - Target net updated at 322500
+2023-09-13 20:33:06,413 - INFO - Target net updated at 323000
+2023-09-13 20:33:28,351 - INFO - Target net updated at 323500
+2023-09-13 20:33:50,305 - INFO - Target net updated at 324000
+2023-09-13 20:34:12,313 - INFO - Target net updated at 324500
+2023-09-13 20:34:34,245 - INFO - Target net updated at 325000
+2023-09-13 20:34:56,255 - INFO - Target net updated at 325500
+2023-09-13 20:35:18,185 - INFO - Target net updated at 326000
+2023-09-13 20:35:40,144 - INFO - Target net updated at 326500
+2023-09-13 20:36:02,077 - INFO - Target net updated at 327000
+2023-09-13 20:36:24,025 - INFO - Target net updated at 327500
+2023-09-13 20:36:45,962 - INFO - Target net updated at 328000
+2023-09-13 20:37:07,899 - INFO - Target net updated at 328500
+2023-09-13 20:37:29,825 - INFO - Target net updated at 329000
+2023-09-13 20:37:52,253 - INFO - Target net updated at 329500
+2023-09-13 20:38:13,932 - INFO - Target net updated at 330000
+2023-09-13 20:38:36,356 - INFO - Target net updated at 330500
+2023-09-13 20:38:58,845 - INFO - Target net updated at 331000
+2023-09-13 20:39:21,314 - INFO - Target net updated at 331500
+2023-09-13 20:39:43,764 - INFO - Target net updated at 332000
+2023-09-13 20:39:48,521 - INFO - Arrived: 0 Broken: 1
+2023-09-13 20:39:48,521 - INFO - Episode 73 seed: 318
+2023-09-13 20:40:11,831 - INFO - Target net updated at 332500
+2023-09-13 20:40:34,271 - INFO - Target net updated at 333000
+2023-09-13 20:40:57,624 - INFO - Target net updated at 333500
+2023-09-13 20:41:21,004 - INFO - Target net updated at 334000
+2023-09-13 20:41:43,507 - INFO - Target net updated at 334500
+2023-09-13 20:42:07,215 - INFO - Target net updated at 335000
+2023-09-13 20:42:26,555 - INFO - Target net updated at 335500
+2023-09-13 20:42:48,894 - INFO - Target net updated at 336000
+2023-09-13 20:43:09,425 - INFO - Target net updated at 336500
+2023-09-13 20:43:31,628 - INFO - Target net updated at 337000
+2023-09-13 20:43:54,060 - INFO - Target net updated at 337500
+2023-09-13 20:44:16,596 - INFO - Target net updated at 338000
+2023-09-13 20:44:37,122 - INFO - Target net updated at 338500
+2023-09-13 20:44:58,032 - INFO - Target net updated at 339000
+2023-09-13 20:45:20,146 - INFO - Target net updated at 339500
+2023-09-13 20:45:42,355 - INFO - Target net updated at 340000
+2023-09-13 20:46:04,447 - INFO - Target net updated at 340500
+2023-09-13 20:46:26,491 - INFO - Target net updated at 341000
+2023-09-13 20:46:48,552 - INFO - Target net updated at 341500
+2023-09-13 20:47:10,868 - INFO - Target net updated at 342000
+2023-09-13 20:47:11,116 - INFO - Arrived: 0 Broken: 2
+2023-09-13 20:47:11,116 - INFO - Episode 74 seed: 509
+2023-09-13 20:47:37,258 - INFO - Target net updated at 342500
+2023-09-13 20:47:59,954 - INFO - Target net updated at 343000
+2023-09-13 20:48:20,767 - INFO - Target net updated at 343500
+2023-09-13 20:48:43,012 - INFO - Target net updated at 344000
+2023-09-13 20:49:04,668 - INFO - Target net updated at 344500
+2023-09-13 20:49:27,344 - INFO - Target net updated at 345000
+2023-09-13 20:49:49,546 - INFO - Target net updated at 345500
+2023-09-13 20:50:12,125 - INFO - Target net updated at 346000
+2023-09-13 20:50:39,993 - INFO - Target net updated at 346500
+2023-09-13 20:51:04,610 - INFO - Target net updated at 347000
+2023-09-13 20:51:27,260 - INFO - Target net updated at 347500
+2023-09-13 20:51:49,957 - INFO - Target net updated at 348000
+2023-09-13 20:52:12,513 - INFO - Target net updated at 348500
+2023-09-13 20:52:35,059 - INFO - Target net updated at 349000
+2023-09-13 20:52:57,529 - INFO - Target net updated at 349500
+2023-09-13 20:53:20,005 - INFO - Target net updated at 350000
+2023-09-13 20:53:42,424 - INFO - Target net updated at 350500
+2023-09-13 20:54:04,920 - INFO - Target net updated at 351000
+2023-09-13 20:54:27,427 - INFO - Target net updated at 351500
+2023-09-13 20:54:49,815 - INFO - Target net updated at 352000
+2023-09-13 20:54:59,034 - INFO - Arrived: 0 Broken: 2
+2023-09-13 20:54:59,035 - INFO - Episode 75 seed: 393
+2023-09-13 20:55:17,466 - INFO - Target net updated at 352500
+2023-09-13 20:55:40,965 - INFO - Target net updated at 353000
+2023-09-13 20:56:03,985 - INFO - Target net updated at 353500
+2023-09-13 20:56:26,795 - INFO - Target net updated at 354000
+2023-09-13 20:56:49,215 - INFO - Target net updated at 354500
+2023-09-13 20:57:11,852 - INFO - Target net updated at 355000
+2023-09-13 20:57:33,654 - INFO - Target net updated at 355500
+2023-09-13 20:57:55,753 - INFO - Target net updated at 356000
+2023-09-13 20:58:18,868 - INFO - Target net updated at 356500
+2023-09-13 20:58:42,271 - INFO - Target net updated at 357000
+2023-09-13 20:59:04,054 - INFO - Target net updated at 357500
+2023-09-13 20:59:25,746 - INFO - Target net updated at 358000
+2023-09-13 20:59:46,480 - INFO - Target net updated at 358500
+2023-09-13 21:00:11,424 - INFO - Target net updated at 359000
+2023-09-13 21:00:35,502 - INFO - Target net updated at 359500
+2023-09-13 21:00:57,685 - INFO - Target net updated at 360000
+2023-09-13 21:01:20,180 - INFO - Target net updated at 360500
+2023-09-13 21:01:42,983 - INFO - Target net updated at 361000
+2023-09-13 21:02:05,447 - INFO - Target net updated at 361500
+2023-09-13 21:02:28,055 - INFO - Target net updated at 362000
+2023-09-13 21:02:45,930 - INFO - Arrived: 0 Broken: 1
+2023-09-13 21:02:45,930 - INFO - Episode 76 seed: 795
+2023-09-13 21:02:55,324 - INFO - Target net updated at 362500
+2023-09-13 21:03:17,430 - INFO - Target net updated at 363000
+2023-09-13 21:03:39,516 - INFO - Target net updated at 363500
+2023-09-13 21:04:00,791 - INFO - Target net updated at 364000
+2023-09-13 21:04:23,949 - INFO - Target net updated at 364500
+2023-09-13 21:04:45,530 - INFO - Target net updated at 365000
+2023-09-13 21:05:06,543 - INFO - Target net updated at 365500
+2023-09-13 21:05:29,008 - INFO - Target net updated at 366000
+2023-09-13 21:05:51,139 - INFO - Target net updated at 366500
+2023-09-13 21:06:14,151 - INFO - Target net updated at 367000
+2023-09-13 21:06:37,323 - INFO - Target net updated at 367500
+2023-09-13 21:06:58,996 - INFO - Target net updated at 368000
+2023-09-13 21:07:20,725 - INFO - Target net updated at 368500
+2023-09-13 21:07:43,959 - INFO - Target net updated at 369000
+2023-09-13 21:08:07,672 - INFO - Target net updated at 369500
+2023-09-13 21:08:31,438 - INFO - Target net updated at 370000
+2023-09-13 21:08:53,933 - INFO - Target net updated at 370500
+2023-09-13 21:09:16,360 - INFO - Target net updated at 371000
+2023-09-13 21:09:39,206 - INFO - Target net updated at 371500
+2023-09-13 21:10:02,843 - INFO - Target net updated at 372000
+2023-09-13 21:10:27,106 - INFO - Target net updated at 372500
+2023-09-13 21:10:45,402 - INFO - Arrived: 0 Broken: 2
+2023-09-13 21:10:45,402 - INFO - Episode 77 seed: 814
+2023-09-13 21:10:55,164 - INFO - Target net updated at 373000
+2023-09-13 21:11:18,137 - INFO - Target net updated at 373500
+2023-09-13 21:11:41,523 - INFO - Target net updated at 374000
+2023-09-13 21:12:04,565 - INFO - Target net updated at 374500
+2023-09-13 21:12:27,613 - INFO - Target net updated at 375000
+2023-09-13 21:12:50,725 - INFO - Target net updated at 375500
+2023-09-13 21:13:13,662 - INFO - Target net updated at 376000
+2023-09-13 21:13:36,110 - INFO - Target net updated at 376500
+2023-09-13 21:13:58,570 - INFO - Target net updated at 377000
+2023-09-13 21:14:20,975 - INFO - Target net updated at 377500
+2023-09-13 21:14:43,474 - INFO - Target net updated at 378000
+2023-09-13 21:15:05,864 - INFO - Target net updated at 378500
+2023-09-13 21:15:28,299 - INFO - Target net updated at 379000
+2023-09-13 21:15:50,719 - INFO - Target net updated at 379500
+2023-09-13 21:16:13,175 - INFO - Target net updated at 380000
+2023-09-13 21:16:35,612 - INFO - Target net updated at 380500
+2023-09-13 21:16:57,997 - INFO - Target net updated at 381000
+2023-09-13 21:17:20,443 - INFO - Target net updated at 381500
+2023-09-13 21:17:43,716 - INFO - Target net updated at 382000
+2023-09-13 21:18:09,145 - INFO - Target net updated at 382500
+2023-09-13 21:18:32,470 - INFO - Target net updated at 383000
+2023-09-13 21:18:55,960 - INFO - Target net updated at 383500
+2023-09-13 21:19:05,478 - INFO - Arrived: 0 Broken: 2
+2023-09-13 21:19:05,478 - INFO - Episode 78 seed: 500
+2023-09-13 21:19:24,274 - INFO - Target net updated at 384000
+2023-09-13 21:19:45,753 - INFO - Target net updated at 384500
+2023-09-13 21:20:08,473 - INFO - Target net updated at 385000
+2023-09-13 21:20:31,217 - INFO - Target net updated at 385500
+2023-09-13 21:20:56,422 - INFO - Target net updated at 386000
+2023-09-13 21:21:20,208 - INFO - Target net updated at 386500
+2023-09-13 21:21:43,624 - INFO - Target net updated at 387000
+2023-09-13 21:22:06,736 - INFO - Target net updated at 387500
+2023-09-13 21:22:30,878 - INFO - Target net updated at 388000
+2023-09-13 21:22:55,182 - INFO - Target net updated at 388500
+2023-09-13 21:23:19,758 - INFO - Target net updated at 389000
+2023-09-13 21:23:44,647 - INFO - Target net updated at 389500
+2023-09-13 21:24:09,416 - INFO - Target net updated at 390000
+2023-09-13 21:24:33,536 - INFO - Target net updated at 390500
+2023-09-13 21:24:57,397 - INFO - Target net updated at 391000
+2023-09-13 21:25:22,370 - INFO - Target net updated at 391500
+2023-09-13 21:25:45,195 - INFO - Target net updated at 392000
+2023-09-13 21:26:08,947 - INFO - Target net updated at 392500
+2023-09-13 21:26:32,023 - INFO - Target net updated at 393000
+2023-09-13 21:26:55,187 - INFO - Target net updated at 393500
+2023-09-13 21:27:21,109 - INFO - Target net updated at 394000
+2023-09-13 21:27:45,083 - INFO - Target net updated at 394500
+2023-09-13 21:27:59,340 - INFO - Arrived: 0 Broken: 1
+2023-09-13 21:27:59,340 - INFO - Episode 79 seed: 758
+2023-09-13 21:28:14,971 - INFO - Target net updated at 395000
+2023-09-13 21:28:40,721 - INFO - Target net updated at 395500
+2023-09-13 21:29:04,419 - INFO - Target net updated at 396000
+2023-09-13 21:29:28,138 - INFO - Target net updated at 396500
+2023-09-13 21:29:52,253 - INFO - Target net updated at 397000
+2023-09-13 21:30:16,539 - INFO - Target net updated at 397500
+2023-09-13 21:30:39,007 - INFO - Target net updated at 398000
+2023-09-13 21:31:02,323 - INFO - Target net updated at 398500
+2023-09-13 21:31:26,723 - INFO - Target net updated at 399000
+2023-09-13 21:31:49,980 - INFO - Target net updated at 399500
+2023-09-13 21:32:13,468 - INFO - Target net updated at 400000
+2023-09-13 21:32:36,816 - INFO - Target net updated at 400500
+2023-09-13 21:33:02,487 - INFO - Target net updated at 401000
+2023-09-13 21:33:26,371 - INFO - Target net updated at 401500
+2023-09-13 21:33:47,788 - INFO - Target net updated at 402000
+2023-09-13 21:34:10,864 - INFO - Target net updated at 402500
+2023-09-13 21:34:33,376 - INFO - Target net updated at 403000
+2023-09-13 21:34:57,018 - INFO - Target net updated at 403500
+2023-09-13 21:35:20,386 - INFO - Target net updated at 404000
+2023-09-13 21:35:43,324 - INFO - Target net updated at 404500
+2023-09-13 21:36:06,551 - INFO - Target net updated at 405000
+2023-09-13 21:36:29,078 - INFO - Target net updated at 405500
+2023-09-13 21:36:53,836 - INFO - Target net updated at 406000
+2023-09-13 21:37:03,645 - INFO - Arrived: 0 Broken: 2
+2023-09-13 21:37:03,645 - INFO - Episode 80 seed: 932
+2023-09-13 21:37:24,960 - INFO - Target net updated at 406500
+2023-09-13 21:37:49,033 - INFO - Target net updated at 407000
+2023-09-13 21:38:12,758 - INFO - Target net updated at 407500
+2023-09-13 21:38:36,810 - INFO - Target net updated at 408000
+2023-09-13 21:39:00,256 - INFO - Target net updated at 408500
+2023-09-13 21:39:24,849 - INFO - Target net updated at 409000
+2023-09-13 21:39:48,834 - INFO - Target net updated at 409500
+2023-09-13 21:40:13,128 - INFO - Target net updated at 410000
+2023-09-13 21:40:37,837 - INFO - Target net updated at 410500
+2023-09-13 21:41:01,002 - INFO - Target net updated at 411000
+2023-09-13 21:41:23,523 - INFO - Target net updated at 411500
+2023-09-13 21:41:45,941 - INFO - Target net updated at 412000
+2023-09-13 21:42:08,386 - INFO - Target net updated at 412500
+2023-09-13 21:42:30,949 - INFO - Target net updated at 413000
+2023-09-13 21:42:53,427 - INFO - Target net updated at 413500
+2023-09-13 21:43:16,479 - INFO - Target net updated at 414000
+2023-09-13 21:43:37,938 - INFO - Target net updated at 414500
+2023-09-13 21:44:01,024 - INFO - Target net updated at 415000
+2023-09-13 21:44:25,804 - INFO - Target net updated at 415500
+2023-09-13 21:44:50,290 - INFO - Target net updated at 416000
+2023-09-13 21:45:14,458 - INFO - Target net updated at 416500
+2023-09-13 21:45:37,887 - INFO - Target net updated at 417000
+2023-09-13 21:46:01,226 - INFO - Target net updated at 417500
+2023-09-13 21:46:06,447 - INFO - Arrived: 0 Broken: 2
+2023-09-13 21:46:06,447 - INFO - Episode 81 seed: 322
+2023-09-13 21:46:30,619 - INFO - Target net updated at 418000
+2023-09-13 21:46:55,413 - INFO - Target net updated at 418500
+2023-09-13 21:47:19,755 - INFO - Target net updated at 419000
+2023-09-13 21:47:43,589 - INFO - Target net updated at 419500
+2023-09-13 21:48:05,891 - INFO - Target net updated at 420000
+2023-09-13 21:48:28,254 - INFO - Target net updated at 420500
+2023-09-13 21:48:50,604 - INFO - Target net updated at 421000
+2023-09-13 21:49:13,006 - INFO - Target net updated at 421500
+2023-09-13 21:49:35,562 - INFO - Target net updated at 422000
+2023-09-13 21:49:57,970 - INFO - Target net updated at 422500
+2023-09-13 21:50:20,412 - INFO - Target net updated at 423000
+2023-09-13 21:50:42,729 - INFO - Target net updated at 423500
+2023-09-13 21:51:06,895 - INFO - Target net updated at 424000
+2023-09-13 21:51:31,682 - INFO - Target net updated at 424500
+2023-09-13 21:51:56,741 - INFO - Target net updated at 425000
+2023-09-13 21:52:21,069 - INFO - Target net updated at 425500
+2023-09-13 21:52:45,511 - INFO - Target net updated at 426000
+2023-09-13 21:53:11,409 - INFO - Target net updated at 426500
+2023-09-13 21:53:35,609 - INFO - Target net updated at 427000
+2023-09-13 21:54:00,717 - INFO - Target net updated at 427500
+2023-09-13 21:54:26,912 - INFO - Target net updated at 428000
+2023-09-13 21:54:53,521 - INFO - Target net updated at 428500
+2023-09-13 21:55:17,740 - INFO - Target net updated at 429000
+2023-09-13 21:55:32,682 - INFO - Arrived: 0 Broken: 2
+2023-09-13 21:55:32,683 - INFO - Episode 82 seed: 698
+2023-09-13 21:55:48,250 - INFO - Target net updated at 429500
+2023-09-13 21:56:13,492 - INFO - Target net updated at 430000
+2023-09-13 21:56:37,786 - INFO - Target net updated at 430500
+2023-09-13 21:57:01,415 - INFO - Target net updated at 431000
+2023-09-13 21:57:25,162 - INFO - Target net updated at 431500
+2023-09-13 21:57:48,905 - INFO - Target net updated at 432000
+2023-09-13 21:58:11,866 - INFO - Target net updated at 432500
+2023-09-13 21:58:36,208 - INFO - Target net updated at 433000
+2023-09-13 21:59:00,478 - INFO - Target net updated at 433500
+2023-09-13 21:59:23,591 - INFO - Target net updated at 434000
+2023-09-13 21:59:47,935 - INFO - Target net updated at 434500
+2023-09-13 22:00:12,621 - INFO - Target net updated at 435000
+2023-09-13 22:00:37,741 - INFO - Target net updated at 435500
+2023-09-13 22:01:01,588 - INFO - Target net updated at 436000
+2023-09-13 22:01:25,735 - INFO - Target net updated at 436500
+2023-09-13 22:01:51,622 - INFO - Target net updated at 437000
+2023-09-13 22:02:15,406 - INFO - Target net updated at 437500
+2023-09-13 22:02:38,663 - INFO - Target net updated at 438000
+2023-09-13 22:03:03,124 - INFO - Target net updated at 438500
+2023-09-13 22:03:26,604 - INFO - Target net updated at 439000
+2023-09-13 22:03:49,054 - INFO - Target net updated at 439500
+2023-09-13 22:04:11,516 - INFO - Target net updated at 440000
+2023-09-13 22:04:33,981 - INFO - Target net updated at 440500
+2023-09-13 22:04:56,456 - INFO - Target net updated at 441000
+2023-09-13 22:05:10,161 - INFO - Arrived: 0 Broken: 2
+2023-09-13 22:05:10,162 - INFO - Episode 83 seed: 250
+2023-09-13 22:05:24,810 - INFO - Target net updated at 441500
+2023-09-13 22:05:47,241 - INFO - Target net updated at 442000
+2023-09-13 22:06:10,363 - INFO - Target net updated at 442500
+2023-09-13 22:06:32,932 - INFO - Target net updated at 443000
+2023-09-13 22:06:56,552 - INFO - Target net updated at 443500
+2023-09-13 22:07:19,680 - INFO - Target net updated at 444000
+2023-09-13 22:07:44,742 - INFO - Target net updated at 444500
+2023-09-13 22:08:08,343 - INFO - Target net updated at 445000
+2023-09-13 22:08:32,459 - INFO - Target net updated at 445500
+2023-09-13 22:08:54,936 - INFO - Target net updated at 446000
+2023-09-13 22:09:23,008 - INFO - Target net updated at 446500
+2023-09-13 22:09:47,382 - INFO - Target net updated at 447000
+2023-09-13 22:10:19,394 - INFO - Target net updated at 447500
+2023-09-13 22:10:44,950 - INFO - Target net updated at 448000
+2023-09-13 22:11:07,332 - INFO - Target net updated at 448500
+2023-09-13 22:11:29,301 - INFO - Target net updated at 449000
+2023-09-13 22:11:54,652 - INFO - Target net updated at 449500
+2023-09-13 22:12:18,912 - INFO - Target net updated at 450000
+2023-09-13 22:12:46,604 - INFO - Target net updated at 450500
+2023-09-13 22:13:12,841 - INFO - Target net updated at 451000
+2023-09-13 22:13:41,701 - INFO - Target net updated at 451500
+2023-09-13 22:14:07,299 - INFO - Target net updated at 452000
+2023-09-13 22:14:33,286 - INFO - Target net updated at 452500
+2023-09-13 22:14:57,273 - INFO - Target net updated at 453000
+2023-09-13 22:15:20,345 - INFO - Target net updated at 453500
+2023-09-13 22:15:25,280 - INFO - Arrived: 0 Broken: 2
+2023-09-13 22:15:25,280 - INFO - Episode 84 seed: 988
+2023-09-13 22:15:49,782 - INFO - Target net updated at 454000
+2023-09-13 22:16:12,929 - INFO - Target net updated at 454500
+2023-09-13 22:16:36,053 - INFO - Target net updated at 455000
+2023-09-13 22:16:59,156 - INFO - Target net updated at 455500
+2023-09-13 22:17:22,297 - INFO - Target net updated at 456000
+2023-09-13 22:17:45,363 - INFO - Target net updated at 456500
+2023-09-13 22:18:08,398 - INFO - Target net updated at 457000
+2023-09-13 22:18:31,532 - INFO - Target net updated at 457500
+2023-09-13 22:18:55,058 - INFO - Target net updated at 458000
+2023-09-13 22:19:18,190 - INFO - Target net updated at 458500
+2023-09-13 22:19:41,392 - INFO - Target net updated at 459000
+2023-09-13 22:20:04,408 - INFO - Target net updated at 459500
+2023-09-13 22:20:27,512 - INFO - Target net updated at 460000
+2023-09-13 22:20:50,554 - INFO - Target net updated at 460500
+2023-09-13 22:21:13,830 - INFO - Target net updated at 461000
+2023-09-13 22:21:36,440 - INFO - Target net updated at 461500
+2023-09-13 22:22:02,608 - INFO - Target net updated at 462000
+2023-09-13 22:22:25,963 - INFO - Target net updated at 462500
+2023-09-13 22:22:50,763 - INFO - Target net updated at 463000
+2023-09-13 22:23:13,786 - INFO - Target net updated at 463500
+2023-09-13 22:23:42,731 - INFO - Target net updated at 464000
+2023-09-13 22:24:06,757 - INFO - Target net updated at 464500
+2023-09-13 22:24:32,223 - INFO - Target net updated at 465000
+2023-09-13 22:24:58,280 - INFO - Target net updated at 465500
+2023-09-13 22:25:21,598 - INFO - Target net updated at 466000
+2023-09-13 22:25:31,774 - INFO - Arrived: 0 Broken: 1
+2023-09-13 22:25:31,775 - INFO - Episode 85 seed: 14
+2023-09-13 22:25:54,312 - INFO - Target net updated at 466500
+2023-09-13 22:26:21,271 - INFO - Target net updated at 467000
+2023-09-13 22:26:42,740 - INFO - Target net updated at 467500
+2023-09-13 22:27:04,756 - INFO - Target net updated at 468000
+2023-09-13 22:27:28,396 - INFO - Target net updated at 468500
+2023-09-13 22:27:52,012 - INFO - Target net updated at 469000
+2023-09-13 22:28:15,622 - INFO - Target net updated at 469500
+2023-09-13 22:28:38,861 - INFO - Target net updated at 470000
+2023-09-13 22:29:02,117 - INFO - Target net updated at 470500
+2023-09-13 22:29:25,163 - INFO - Target net updated at 471000
+2023-09-13 22:29:50,795 - INFO - Target net updated at 471500
+2023-09-13 22:30:15,441 - INFO - Target net updated at 472000
+2023-09-13 22:30:38,861 - INFO - Target net updated at 472500
+2023-09-13 22:31:02,426 - INFO - Target net updated at 473000
+2023-09-13 22:31:24,834 - INFO - Target net updated at 473500
+2023-09-13 22:31:47,227 - INFO - Target net updated at 474000
+2023-09-13 22:32:09,632 - INFO - Target net updated at 474500
+2023-09-13 22:32:32,103 - INFO - Target net updated at 475000
+2023-09-13 22:32:56,377 - INFO - Target net updated at 475500
+2023-09-13 22:33:21,826 - INFO - Target net updated at 476000
+2023-09-13 22:33:47,449 - INFO - Target net updated at 476500
+2023-09-13 22:34:13,597 - INFO - Target net updated at 477000
+2023-09-13 22:34:38,800 - INFO - Target net updated at 477500
+2023-09-13 22:35:02,500 - INFO - Target net updated at 478000
+2023-09-13 22:35:26,006 - INFO - Target net updated at 478500
+2023-09-13 22:35:40,334 - INFO - Arrived: 0 Broken: 2
+2023-09-13 22:35:40,334 - INFO - Episode 86 seed: 943
+2023-09-13 22:35:56,218 - INFO - Target net updated at 479000
+2023-09-13 22:36:19,709 - INFO - Target net updated at 479500
+2023-09-13 22:36:42,377 - INFO - Target net updated at 480000
+2023-09-13 22:37:06,129 - INFO - Target net updated at 480500
+2023-09-13 22:37:30,861 - INFO - Target net updated at 481000
+2023-09-13 22:37:55,588 - INFO - Target net updated at 481500
+2023-09-13 22:38:20,336 - INFO - Target net updated at 482000
+2023-09-13 22:38:45,383 - INFO - Target net updated at 482500
+2023-09-13 22:39:09,734 - INFO - Target net updated at 483000
+2023-09-13 22:39:34,462 - INFO - Target net updated at 483500
+2023-09-13 22:39:59,411 - INFO - Target net updated at 484000
+2023-09-13 22:40:21,732 - INFO - Target net updated at 484500
+2023-09-13 22:40:46,612 - INFO - Target net updated at 485000
+2023-09-13 22:41:11,817 - INFO - Target net updated at 485500
+2023-09-13 22:41:35,085 - INFO - Target net updated at 486000
+2023-09-13 22:41:57,619 - INFO - Target net updated at 486500
+2023-09-13 22:42:21,723 - INFO - Target net updated at 487000
+2023-09-13 22:42:47,024 - INFO - Target net updated at 487500
+2023-09-13 22:43:10,159 - INFO - Target net updated at 488000
+2023-09-13 22:43:33,203 - INFO - Target net updated at 488500
+2023-09-13 22:43:56,270 - INFO - Target net updated at 489000
+2023-09-13 22:44:19,325 - INFO - Target net updated at 489500
+2023-09-13 22:44:42,437 - INFO - Target net updated at 490000
+2023-09-13 22:45:05,510 - INFO - Target net updated at 490500
+2023-09-13 22:45:29,304 - INFO - Target net updated at 491000
+2023-09-13 22:45:50,672 - INFO - Arrived: 0 Broken: 2
+2023-09-13 22:45:50,673 - INFO - Episode 87 seed: 376
+2023-09-13 22:46:03,170 - INFO - Target net updated at 491500
+2023-09-13 22:46:26,342 - INFO - Target net updated at 492000
+2023-09-13 22:46:49,474 - INFO - Target net updated at 492500
+2023-09-13 22:47:12,611 - INFO - Target net updated at 493000
+2023-09-13 22:47:35,184 - INFO - Target net updated at 493500
+2023-09-13 22:47:57,577 - INFO - Target net updated at 494000
+2023-09-13 22:48:20,082 - INFO - Target net updated at 494500
+2023-09-13 22:48:42,590 - INFO - Target net updated at 495000
+2023-09-13 22:49:05,060 - INFO - Target net updated at 495500
+2023-09-13 22:49:27,411 - INFO - Target net updated at 496000
+2023-09-13 22:49:49,914 - INFO - Target net updated at 496500
+2023-09-13 22:50:12,021 - INFO - Target net updated at 497000
+2023-09-13 22:50:34,936 - INFO - Target net updated at 497500
+2023-09-13 22:50:57,142 - INFO - Target net updated at 498000
+2023-09-13 22:51:19,464 - INFO - Target net updated at 498500
+2023-09-13 22:51:41,949 - INFO - Target net updated at 499000
+2023-09-13 22:52:04,368 - INFO - Target net updated at 499500
+2023-09-13 22:52:28,761 - INFO - Target net updated at 500000

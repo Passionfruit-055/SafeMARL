@@ -1,4 +1,3 @@
-import pdb
 import random
 import time
 
@@ -40,7 +39,7 @@ class QMIXagent(object):
         self.epsilon = initial_epsilon
         self.gamma = gamma
         self.lr = lr
-        self.local_q_mode = ['sharing', 'individual'][1]
+        self.local_q_mode = ['sharing', 'individual'][0]
 
         self.param = []
         # individual local Q-network
@@ -75,9 +74,8 @@ class QMIXagent(object):
 
         self.memory = RecurrentReplayBuffer(agent_num, seq_length, buffer_size, dev=self.dev)
         # for train
-        self.eval_hidden_state = [None] * self.agent_num
-        self.target_hidden_state = [None] * self.agent_num
-        self.hidden_state_reset()
+        # self.eval_hidden_state = [None] * self.agent_num
+        # self.target_hidden_state = [None] * self.agent_num
         # for execute
         self.eval_hidden_state_exec = [None] * self.agent_num
         self.target_hidden_state_exec = [None] * self.agent_num
@@ -104,18 +102,24 @@ class QMIXagent(object):
             # logger.info('Target net updated at ' + str(self.training_step))
 
     def decrement_epsilon(self, episode, batch_size):
-        # if episode > batch_size:
         self.epsilon = self.initial_epsilon - episode * (self.initial_epsilon - self.final_epsilon) / self.episode
-        # else:
-        #     self.epsilon = 1
 
-    def hidden_state_reset(self, batch_size=1):
-        self.eval_hidden_state = torch.zeros(self.agent_num, batch_size, self.rnn_hidden_size).to(self.dev)
-        self.target_hidden_state = torch.zeros(self.agent_num, batch_size, self.rnn_hidden_size).to(self.dev)
+    # def hidden_state_reset(self, batch_size=1):
+    #     self.eval_hidden_state = torch.zeros(self.agent_num, batch_size, self.rnn_hidden_size).to(self.dev)
+    #     self.target_hidden_state = torch.zeros(self.agent_num, batch_size, self.rnn_hidden_size).to(self.dev)
 
     def exec_hidden_state_reset(self, batch_size=1):
         self.eval_hidden_state_exec = torch.zeros(self.agent_num, batch_size, self.rnn_hidden_size).to(self.dev)
         self.target_hidden_state_exec = torch.zeros(self.agent_num, batch_size, self.rnn_hidden_size).to(self.dev)
+
+    def hidden_state_reset(self, batch_size=1, seq_len=100):
+        self.eval_hidden_state = []
+        self.target_hidden_state = []
+        for t in range(seq_len + 1):
+            self.eval_hidden_state.append(
+                torch.zeros((self.agent_num, batch_size, self.rnn_hidden_size), requires_grad=False).to(self.dev))
+            self.target_hidden_state.append(
+                torch.zeros((self.agent_num, batch_size, self.rnn_hidden_size), requires_grad=False).to(self.dev))
 
     def choose_actions(self, obs):
         obs = torch.tensor(obs, dtype=torch.float64).view(self.agent_num, -1).to(self.dev)
@@ -165,7 +169,7 @@ class QMIXagent(object):
 
         loss_set = []
         for ep in range(self.epoch):
-            self.hidden_state_reset(batchSize)
+            self.hidden_state_reset(batchSize, seqLen)
             for transition in range(seqLen):
                 self.training_step += 1
 
@@ -190,13 +194,12 @@ class QMIXagent(object):
                         Q_eval_l.append(Q_eval)
                         Q_target_l.append(Q_target[0])
                 else:
-                    for obs, us, n_obs, eval_hidden_state, target_hidden_state in zip(obs_set, us_set, n_obs_set,
-                                                                                      self.eval_hidden_state,
-                                                                                      self.target_hidden_state):
+                    for a, (obs, us, n_obs) in enumerate(zip(obs_set, us_set, n_obs_set)):
                         # Q_eval -> (batchSize, action_size)
                         # with torch.autograd.set_detect_anomaly(True):
-                        Q_eval, eval_hidden_state = self.eval_net(obs[transition], eval_hidden_state)
-                        Q_target, target_hidden_state = self.target_net(n_obs[transition], target_hidden_state)
+                        Q_eval, self.eval_hidden_state[transition + 1][a] = self.eval_net(obs[transition], self.eval_hidden_state[transition][a])
+                        Q_target, self.target_hidden_state[transition + 1][a] = self.target_net(n_obs[transition],
+                                                                        self.target_hidden_state[transition][a])
                         # Q_eval -> (batchSize, 1)
                         Q_eval = torch.gather(Q_eval, 1, us[transition].unsqueeze(1)).squeeze(-1)
                         Q_target = torch.max(Q_target, 1)
@@ -217,6 +220,13 @@ class QMIXagent(object):
                 for i, b_l in enumerate(batch_length):
                     if b_l < transition + 1:
                         td_target[i] = Q_tot_eval[i]  # padding loss = 0
+
+                def _hidden_state_detach():
+                    for t in range(seqLen):
+                        self.eval_hidden_state[t] = self.eval_hidden_state[t].detach()
+                        self.target_hidden_state[t] = self.target_hidden_state[t].detach()
+
+                _hidden_state_detach()
 
                 self.optimizer.zero_grad()
                 loss_val = self.loss(Q_tot_eval, td_target)

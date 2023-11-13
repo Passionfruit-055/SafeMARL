@@ -1,0 +1,76 @@
+2023-09-10 20:04:37,758 - INFO - learning_rate:0.001
+2023-09-10 20:04:37,758 - INFO - buffer_size:64
+2023-09-10 20:04:37,758 - INFO - gamma:0.9
+2023-09-10 20:04:37,758 - INFO - tau:0.01
+2023-09-10 20:04:37,758 - INFO - hsRNN:64
+2023-09-10 20:04:37,758 - INFO - hsMixing:64
+2023-09-10 20:04:37,758 - INFO - hsHyper:64
+2023-09-10 20:04:37,758 - INFO - replace_cycle:300
+2023-09-10 20:04:37,758 - INFO - agent_num:2
+2023-09-10 20:04:37,758 - INFO - state_size:60
+2023-09-10 20:04:37,758 - INFO - action_size:6
+2023-09-10 20:04:37,758 - INFO - obs_size:30
+2023-09-10 20:04:37,758 - INFO - comm_size:27
+2023-09-10 20:04:37,758 - INFO - epoch:1
+2023-09-10 20:04:37,759 - INFO - batch_size:8
+2023-09-10 20:04:37,759 - INFO - seq_len:100
+2023-09-10 20:04:37,759 - INFO - episode:1000
+2023-09-10 20:04:37,759 - INFO - timestep:100
+2023-09-10 20:04:37,759 - INFO - view_range:1
+2023-09-10 20:04:37,759 - INFO - report_cycle:1
+2023-09-10 20:04:37,759 - INFO - comm_cycle:1
+2023-09-10 20:04:37,759 - INFO - row:10
+2023-09-10 20:04:37,759 - INFO - col:10
+2023-09-10 20:04:37,759 - INFO - height:3
+2023-09-10 20:04:37,759 - INFO - risklevel:0.05
+2023-09-10 20:04:37,759 - INFO - AoI_limit:3
+2023-09-10 20:04:37,759 - INFO - 
+Map size: 10 * 10 * 3 
+At height 1 
+[4, 8] [5, 5] is dangerous
+At height 2 
+[1, 8] [0, 6] is dangerous
+UAVs are at:
+[0, 0, 1] [0, 9, 1] 
+Dest are at:
+[7, 4] [6, 2] 
+2023-09-10 20:04:37,948 - INFO - Episode 0
+2023-09-10 20:04:37,949 - INFO - seed: 445
+2023-09-10 20:04:52,936 - INFO - learning_rate:0.001
+2023-09-10 20:04:52,936 - INFO - buffer_size:64
+2023-09-10 20:04:52,936 - INFO - gamma:0.9
+2023-09-10 20:04:52,937 - INFO - tau:0.01
+2023-09-10 20:04:52,937 - INFO - hsRNN:64
+2023-09-10 20:04:52,937 - INFO - hsMixing:64
+2023-09-10 20:04:52,937 - INFO - hsHyper:64
+2023-09-10 20:04:52,937 - INFO - replace_cycle:300
+2023-09-10 20:04:52,937 - INFO - agent_num:2
+2023-09-10 20:04:52,937 - INFO - state_size:60
+2023-09-10 20:04:52,937 - INFO - action_size:6
+2023-09-10 20:04:52,937 - INFO - obs_size:30
+2023-09-10 20:04:52,938 - INFO - comm_size:27
+2023-09-10 20:04:52,938 - INFO - epoch:1
+2023-09-10 20:04:52,938 - INFO - batch_size:8
+2023-09-10 20:04:52,938 - INFO - seq_len:100
+2023-09-10 20:04:52,938 - INFO - episode:1000
+2023-09-10 20:04:52,938 - INFO - timestep:100
+2023-09-10 20:04:52,938 - INFO - view_range:1
+2023-09-10 20:04:52,938 - INFO - report_cycle:1
+2023-09-10 20:04:52,938 - INFO - comm_cycle:1
+2023-09-10 20:04:52,938 - INFO - row:10
+2023-09-10 20:04:52,938 - INFO - col:10
+2023-09-10 20:04:52,938 - INFO - height:3
+2023-09-10 20:04:52,938 - INFO - risklevel:0.05
+2023-09-10 20:04:52,938 - INFO - AoI_limit:3
+2023-09-10 20:04:52,938 - INFO - 
+Map size: 10 * 10 * 3 
+At height 1 
+[8, 2] [1, 9] is dangerous
+At height 2 
+[2, 3] [9, 4] is dangerous
+UAVs are at:
+[0, 0, 1] [0, 9, 1] 
+Dest are at:
+[9, 1] [8, 4] 
+2023-09-10 20:04:53,166 - INFO - Episode 0
+2023-09-10 20:04:53,167 - INFO - seed: 502

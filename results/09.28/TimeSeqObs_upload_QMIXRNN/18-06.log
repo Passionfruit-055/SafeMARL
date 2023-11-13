@@ -1,0 +1,66 @@
+2023-09-28 18:06:55,570 - INFO - 
+
+learning_rate:0.001
+gamma:0.8
+tau:0.01
+hsRNN:64
+hsMixing:64
+hsHyper:64
+replace_cycle:500
+agent_num:2
+obs_size:15
+msg_size:27
+com_size:32
+com_mode:3
+state_size:7
+action_size:6
+epoch:1
+buffer_size:32
+batch_size:32
+seq_len:100
+episode:3000
+timestep:300
+view_range:1
+report_cycle:1
+comm_cycle:1
+row:8
+col:8
+height:3
+risklevel:0.1
+risk_num:3
+AoI_limit:3
+
+2023-09-28 18:06:56,759 - INFO - Episode 0 seed: 886
+2023-09-28 18:11:35,826 - INFO - Episode 1 seed: 886
+2023-09-28 18:14:44,302 - INFO - Episode 2 seed: 886
+2023-09-28 18:18:33,982 - INFO - Episode 3 seed: 886
+2023-09-28 18:22:16,270 - INFO - Episode 4 seed: 886
+2023-09-28 18:25:51,534 - INFO - Episode 5 seed: 886
+2023-09-28 18:29:29,645 - INFO - Episode 6 seed: 886
+2023-09-28 18:32:40,143 - INFO - Episode 7 seed: 886
+2023-09-28 18:35:52,364 - INFO - Episode 8 seed: 886
+2023-09-28 18:39:00,557 - INFO - Episode 9 seed: 886
+2023-09-28 18:42:04,676 - INFO - Episode 10 seed: 886
+2023-09-28 18:45:14,842 - INFO - Episode 11 seed: 886
+2023-09-28 18:48:23,128 - INFO - Episode 12 seed: 886
+2023-09-28 18:51:29,392 - INFO - Episode 13 seed: 886
+2023-09-28 18:54:34,619 - INFO - Episode 14 seed: 886
+2023-09-28 18:57:45,559 - INFO - Episode 15 seed: 886
+2023-09-28 19:00:57,518 - INFO - Episode 16 seed: 886
+2023-09-28 19:04:04,871 - INFO - Episode 17 seed: 886
+2023-09-28 19:07:12,521 - INFO - Episode 18 seed: 886
+2023-09-28 19:10:18,692 - INFO - Episode 19 seed: 886
+2023-09-28 19:13:22,509 - INFO - Episode 20 seed: 886
+2023-09-28 19:16:29,644 - INFO - Episode 21 seed: 886
+2023-09-28 19:19:33,931 - INFO - Episode 22 seed: 886
+2023-09-28 19:22:38,286 - INFO - Episode 23 seed: 886
+2023-09-28 19:25:42,501 - INFO - Episode 24 seed: 886
+2023-09-28 19:28:48,917 - INFO - Episode 25 seed: 886
+2023-09-28 19:31:52,879 - INFO - Episode 26 seed: 886
+2023-09-28 19:34:57,930 - INFO - Episode 27 seed: 886
+2023-09-28 19:38:04,110 - INFO - Episode 28 seed: 886
+2023-09-28 19:41:07,941 - INFO - Episode 29 seed: 886
+2023-09-28 19:44:11,768 - INFO - Episode 30 seed: 886
+2023-09-28 19:47:16,085 - INFO - Episode 31 seed: 886
+2023-09-28 19:50:22,911 - INFO - Episode 32 seed: 886
+2023-09-28 19:53:25,495 - INFO - Episode 33 seed: 886

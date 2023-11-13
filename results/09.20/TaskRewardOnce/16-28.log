@@ -1,0 +1,68 @@
+2023-09-20 16:28:35,538 - INFO - 
+
+learning_rate:0.001
+gamma:0.8
+tau:0.01
+hsRNN:64
+hsMixing:64
+hsHyper:64
+replace_cycle:500
+agent_num:2
+obs_size:20
+msg_size:27
+com_size:32
+com_mode:3
+state_size:40
+action_size:6
+q_mode:0
+epoch:1
+buffer_size:32
+batch_size:16
+seq_len:100
+episode:3000
+timestep:300
+view_range:1
+report_cycle:1
+comm_cycle:1
+row:8
+col:8
+height:3
+risklevel:0.15
+AoI_limit:3
+
+2023-09-20 16:28:36,639 - INFO - 
+Map size: 8 * 8 * 3 
+At height 1 
+[5, 1] [2, 5] [4, 5] [4, 0] is dangerous
+At height 2 
+[2, 2] [5, 3] [2, 6] [4, 3] is dangerous
+UAVs are at:
+[3, 5, 1] [3, 3, 1] 
+Dest are at:
+[0, 7] [7, 0] 
+2023-09-20 16:28:36,645 - INFO - Episode 0 seed: 996
+2023-09-20 16:28:46,229 - INFO - Arrived: 1 Broken: 0 Communication: 0.0
+2023-09-20 16:28:46,230 - INFO - Episode 1 seed: 565
+2023-09-20 16:28:54,956 - INFO - Arrived: 0 Broken: 0 Communication: 0.0
+2023-09-20 16:28:54,956 - INFO - Episode 2 seed: 62
+2023-09-20 16:28:55,814 - INFO - Episode 2 finished after 294 timesteps
+2023-09-20 16:29:04,175 - INFO - Arrived: 1 Broken: 1 Communication: 0.0
+2023-09-20 16:29:04,175 - INFO - Episode 3 seed: 829
+2023-09-20 16:29:14,109 - INFO - Arrived: 1 Broken: 0 Communication: 0.0
+2023-09-20 16:29:14,109 - INFO - Episode 4 seed: 428
+2023-09-20 16:29:23,451 - INFO - Arrived: 0 Broken: 0 Communication: 0.0
+2023-09-20 16:29:23,451 - INFO - Episode 5 seed: 727
+2023-09-20 16:29:32,122 - INFO - Arrived: 0 Broken: 0 Communication: 0.0
+2023-09-20 16:29:32,122 - INFO - Episode 6 seed: 871
+2023-09-20 16:29:40,615 - INFO - Arrived: 0 Broken: 0 Communication: 0.0
+2023-09-20 16:29:40,615 - INFO - Episode 7 seed: 748
+2023-09-20 16:29:49,161 - INFO - Arrived: 1 Broken: 0 Communication: 0.0
+2023-09-20 16:29:49,161 - INFO - Episode 8 seed: 858
+2023-09-20 16:29:56,840 - INFO - Arrived: 1 Broken: 0 Communication: 0.0
+2023-09-20 16:29:56,841 - INFO - Episode 9 seed: 795
+2023-09-20 16:30:05,121 - INFO - Arrived: 1 Broken: 0 Communication: 0.0
+2023-09-20 16:30:05,122 - INFO - Episode 10 seed: 485
+2023-09-20 16:30:13,411 - INFO - Arrived: 0 Broken: 0 Communication: 0.0
+2023-09-20 16:30:13,411 - INFO - Episode 11 seed: 610
+2023-09-20 16:30:21,802 - INFO - Arrived: 0 Broken: 0 Communication: 0.0
+2023-09-20 16:30:21,802 - INFO - Episode 12 seed: 696
